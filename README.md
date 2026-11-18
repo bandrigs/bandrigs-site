@@ -1,7 +1,3 @@
 # bandrigs.com
 
-Static site for BandRigs: one `index.html`, `styles.css`, and `app.js` (a single-page app that renders the rig finder and the `/systems/...` pages), plus images in `assets/`.
-
-No build step. Cloudflare Pages serves the repo root as-is.
-
-This first commit is an exact copy of the live site as of 2026-11-17.
+Static site. Edit `data.js` (packages, prices, gear) or `build.mjs` (page content), then run `node build.mjs` to regenerate every page's HTML, `sitemap.xml` and `robots.txt`. `app.js` adds the rig finder and sends the /plan/ form to Zoho Bigin. Design rules: `DESIGN.md`.
