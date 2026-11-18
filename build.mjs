@@ -5,6 +5,12 @@ import { createHash } from 'node:crypto';
 import { dirname } from 'node:path';
 import { packages, order, gear } from './data.js';
 
+const SOCIAL = [
+  ['YouTube', 'https://www.youtube.com/channel/UCKjgT1H8lktykWGHgZ9NeRg', '<path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"/>'],
+  ['Instagram', 'https://www.instagram.com/bandrigs/', '<rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/>'],
+  ['TikTok', 'https://www.tiktok.com/@bandrigschannel', '<path fill="currentColor" d="M16.6 2h-3.4v13.1a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V8.8a6.4 6.4 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7z"/>'],
+];
+const socials = cls => `<div class="${cls}">${SOCIAL.map(([n, u, p]) => `<a href="${u}" rel="noopener" target="_blank" aria-label="BandRigs on ${n}"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">${p}</svg></a>`).join('')}</div>`;
 const SITE = 'https://bandrigs.com';
 // Cache-busting: browsers keep CSS/JS for hours, so each asset URL carries a hash of its content.
 const ver = (...files) => createHash('sha256').update(files.map(f => readFileSync(f)).join('')).digest('hex').slice(0, 10);
@@ -39,7 +45,8 @@ function layout({ path, title, description, body, schema = [], image = '/assets/
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap head-row">
 <a class="logo" href="/" aria-label="BandRigs home"><svg class="logo-mark" viewBox="0 0 100 100" width="34" height="34" aria-hidden="true"><g fill="#8ec5ff"><rect x="6" y="12" width="88" height="20" rx="2"/><g fill="#0d0e10"><circle cx="11" cy="22" r="2.2"/><circle cx="89" cy="22" r="2.2"/><rect x="17" y="21.25" width="66" height="1.5" opacity=".35"/></g><rect x="6" y="40" width="88" height="20" rx="2"/><g fill="#0d0e10"><circle cx="11" cy="50" r="2.2"/><circle cx="89" cy="50" r="2.2"/><rect x="17" y="49.25" width="66" height="1.5" opacity=".35"/></g><rect x="6" y="68" width="88" height="20" rx="2"/><g fill="#0d0e10"><circle cx="11" cy="78" r="2.2"/><circle cx="89" cy="78" r="2.2"/><rect x="17" y="77.25" width="66" height="1.5" opacity=".35"/></g></g></svg><span class="logo-text">Band<span>Rigs</span></span></a>
-<nav class="nav" id="nav" aria-label="Main">${nav.map(([h, t]) => `<a href="${h}"${path === h ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav>
+${socials('head-social')}
+<nav class="nav" id="nav" aria-label="Main">${nav.map(([h, t]) => `<a href="${h}"${path === h ? ' aria-current="page"' : ''}>${t}</a>`).join('')}${socials('nav-social')}</nav>
 <a class="btn btn-primary btn-sm head-cta" href="/plan/">Plan my rig</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
 </div></header>
