@@ -268,3 +268,4 @@ h1{margin-bottom:var(--s5)}
 .change-rig{margin:var(--s5) 0 0;font-size:var(--fs-small)}
 .change-rig a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
 .change-rig a:hover{color:var(--primary-hover)}
+.gear-img.fill{padding:0;overflow:hidden}.gear-img.fill img{width:100%;height:100%;max-height:none;object-fit:cover}
