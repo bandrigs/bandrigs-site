@@ -181,7 +181,7 @@ figcaption.label{margin-top:var(--s3)}
 .hero-stage .hero-copy{max-width:560px}
 .hero-stage h1{font-size:clamp(52px,7.4vw,112px);line-height:.95;max-width:none;margin-bottom:var(--s5)}
 .hero-eyebrow{color:var(--primary);display:flex;align-items:center;gap:10px}
-.dot{width:7px;height:7px;border-radius:50%;background:#b5f56a;box-shadow:0 0 10px #b5f56a80}
+
 .hero-stage .lead{color:#d3d9e0;max-width:34ch}
 .hero-tag{margin-top:var(--s6);font-size:var(--fs-small)}.hero-tag strong{font-weight:600}
 .hero-note{position:absolute;right:var(--gutter);bottom:var(--s4);margin:0;font-size:13px;color:#c4ccd6;text-shadow:0 1px 4px #000}

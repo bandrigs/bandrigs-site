@@ -82,7 +82,7 @@ page('/', {
 <section class="hero hero-stage">
 <picture class="hero-bg"><source media="(max-width:720px)" srcset="/assets/hero-rack-m.webp"><img src="/assets/hero-rack.webp" alt="BandRigs rack with a WING Rack mixer, Shure PSM 300 transmitters and stage boxes in a road case on a lit stage" width="1672" height="941" fetchpriority="high"></picture>
 <div class="wrap hero-inner"><div class="hero-copy">
-<p class="label hero-eyebrow"><span class="dot" aria-hidden="true"></span>Your next stage starts here</p>
+<p class="label hero-eyebrow">Your next stage starts here</p>
 <h1>Your sound.<br>Your stage.<br>Your BandRig.</h1>
 <p class="lead">Custom in-ear monitor and live mixing rigs, built around how your band plays. Answer four quick questions to find your starting point.</p>
 <div class="actions"><a class="btn btn-primary" href="#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
