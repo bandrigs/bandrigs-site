@@ -68,7 +68,7 @@ export const gear = {
   playaudio: { name: 'iConnectivity PlayAUDIO1U', tag: 'Playback interface', image: 'gear/playaudio1u.webp', h: 184, price: '$1,199.99', desc: 'Runs tracks from two computers and switches to the backup instantly.' },
   flightcase: { name: 'Gator G-Tour 8U shock rack case', tag: 'Rolling flight case', image: 'gear/flightcase-8u.webp', h: 1100, price: '$999.99', desc: 'Shock-mounted 8-space ATA case on casters, shown empty. Price from Sweetwater.' },
   macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', h: 358, price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
-  namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', art: 'name', price: '', desc: 'One rack space with your artist name cut out and backlit in blue.' },
+  namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', art: 'name', price: '$199', desc: 'One rack space with your artist name cut out and backlit in blue.' },
 };
 
 // Rig finder: answers -> package key
