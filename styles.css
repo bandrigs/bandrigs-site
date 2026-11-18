@@ -253,3 +253,4 @@ h1{margin-bottom:var(--s5)}
 .price-note{flex-basis:100%;font:400 var(--fs-label)/1.4 var(--sans);color:var(--muted)}
 .hl{color:var(--text);font-weight:600}
 .why-lead{margin-bottom:var(--s5)}
+.why-cred{max-width:44ch;margin-bottom:var(--s5)}
