@@ -11,6 +11,7 @@ export const packages = {
     fit: ['You perform solo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up alone in minutes'],
     rig: ['furman', 'wing', 'router', 'psm300', 'dl8'],
     upgrades: ['playaudio', 'flightcase', 'macmini', 'namepanel'],
+    illustration: 'solo-rack.svg',
     gear: ['wing', 'psm300'],
   },
   band: {
