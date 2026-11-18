@@ -15,7 +15,7 @@ export const packages = {
     gear: ['wing', 'psm300'],
   },
   band: {
-    name: 'Band rig', for: 'Bands of 3 to 6', price: '$11,500', amount: 11500,
+    name: 'Band rig', for: 'Bands of 3 to 6 · 4 wireless included, 5–6 extra', price: '$11,500', amount: 11500,
     headline: 'Every player hears their own mix.',
     summary: 'Built for bands of 3 to 6. Four players get their own wireless in-ear mix (add two more for a six-piece), the whole band plugs into one stage box, and you run it all from a tablet. One rolling rack, the same setup every night.',
     meta: 'Band in-ear rig from $11,500 for bands of 3 to 6: Behringer WING Rack, Midas DL16 stage box, four Shure PSM 300 wireless in-ears and Furman power in one rolling rack, built by BandRigs.',
