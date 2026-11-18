@@ -169,7 +169,7 @@ page('/plan/', {
   title: 'Plan Your Rig: Free Consultation | BandRigs',
   description: 'Tell BandRigs about your band, your shows and your current gear. We reply within one business day with next steps for your in-ear or live mixing rig.',
   schema: [crumbs([['Home', '/'], ['Plan my rig', '/plan/']])],
-  body: `<section class="page-head"><div class="wrap plan-grid"><div class="plan-intro"><p class="label">Plan my rig</p><h1>Tell us about your band.</h1><p class="lead">Two minutes now saves a lot of back-and-forth. We reply within one business day.</p>
+  body: `<section class="page-head"><div class="wrap plan-grid"><div class="plan-intro"><p class="label">Plan my rig</p><h1>Tell us about your band.</h1><p class="lead">Two minutes now saves a lot of back-and-forth.<br>We reply within one business day.</p>
 <dl class="specs compact"><div><dt>Phone</dt><dd><a href="tel:${TEL}">${PHONE}</a></dd></div><div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div></dl>
 <div class="finder-summary" data-summary hidden></div></div>
 <form class="form" id="plan-form" novalidate>
