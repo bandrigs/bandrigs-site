@@ -1,7 +1,7 @@
 /* BandRigs: tokens from DESIGN.md */
 :root{color-scheme:dark;
 --bg:#0d0e10;--surface:#15171a;--surface-2:#1c1f23;--line:#2a2e34;--line-strong:#3a4048;--text:#f1f0ec;--muted:#a4a8ae;
---primary:#8ec5ff;--primary-hover:#a9d3ff;--primary-ink:#0d0e10;--signal:#f2b443;--error:#ff8a7a;--success:#86dba0;
+--primary:#8ec5ff;--primary-hover:#a9d3ff;--primary-ink:#0d0e10;--signal:#8ec5ff;--error:#ff8a7a;--success:#86dba0;
 --display:'Barlow Condensed','Arial Narrow',sans-serif;--sans:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
 --fs-label:13px;--fs-small:15px;--fs-body:17px;--fs-lead:20px;--fs-h3:24px;--fs-h2:clamp(32px,4vw,48px);--fs-h1:clamp(44px,7vw,88px);
 --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;

@@ -22,7 +22,7 @@ sections, slogan triplets ("Your sound. Your stage.").
 | `--muted` | `#a4a8ae` | Secondary text (8:1 on bg) |
 | `--primary` | `#8ec5ff` | Brand blue: primary buttons, links, focus, "Rigs" in the logo |
 | `--primary-ink` | `#0d0e10` | Text on primary buttons |
-| `--signal` | `#f2b443` | The only accent, like a rack LED: active step, "starting at" price marks. Never for body text blocks |
+| `--signal` | `#8ec5ff` | Same light blue as `--primary` (Ken, 2026-11-18: no yellow text). Active step, "starting at" price marks |
 | `--error` | `#ff8a7a` | Form errors |
 | `--success` | `#86dba0` | Sent / confirmed states |
 
