@@ -11,7 +11,7 @@ export const packages = {
     fit: ['You perform solo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up alone in minutes', 'You need an A/B splitter snake option for FOH'],
     rig: ['furman', 'wing', 'router', 'psm300', 'dl8'],
     upgrades: ['playaudio', 'flightcase', 'macmini', 'namepanel'],
-    illustration: 'solo-rack.svg',
+    photos: { front: ['solo-rig-front.webp', 1254, 1254], angle: ['solo-rig-angle.webp', 1536, 1024] },
     gear: ['wing', 'psm300'],
   },
   band: {
