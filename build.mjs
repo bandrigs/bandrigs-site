@@ -63,7 +63,7 @@ ${socials('head-social')}
 </body></html>`;
 }
 
-const priceLine = p => p.price ? `<span class="price"><span class="label">Starting at</span> ${p.price}</span>` : `<span class="price"><span class="label">Price</span> Custom quote</span>`;
+const priceLine = p => p.price ? `<span class="price"><span class="label">Starting at</span> ${p.price}<span class="price-note">Gear and build included</span></span>` : `<span class="price"><span class="label">Price</span> Custom quote</span>`;
 const servicesBlock = (tag = 'h2') => `<div class="services"><div class="section-head"><${tag}>Other services</${tag}></div><div class="rig-table" role="list"><a class="rig-row" role="listitem" href="tel:${TEL}"><span class="rig-name">Playback tracks built in Ableton</span><span class="rig-for muted">Your stems, click and cues, set up as a show-ready Ableton session</span><span class="price"><span class="label">Price</span> Call for pricing</span><span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a></div></div>`;
 const gearRow = keys => `<ul class="gear">${keys.map(k => { const g = gear[k]; return `<li><div class="gear-img"><img src="/assets/${g.image}" alt="${esc(g.name)}" loading="lazy" width="1100" height="${g.h}"></div><p class="label">${g.tag}</p><p class="gear-name">${g.name}</p><p class="small muted">${g.desc}</p></li>`; }).join('')}</ul>`;
 
@@ -142,7 +142,7 @@ page('/', {
 
 
 <section class="section" aria-labelledby="rigs-title"><div class="wrap">
-<div class="section-head split"><div><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted">Prices include the gear and the build. Final price depends on how many mixes you need, how much is wireless and what gear you keep.</p></div>
+<div class="section-head split"><div><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted"><strong class="hl">Every price includes the gear and the build.</strong> Final price depends on how many mixes you need, how much is wireless and what gear you keep.</p></div>
 <div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a>`; }).join('')}</div>
 ${servicesBlock('h3')}
 </div></section>

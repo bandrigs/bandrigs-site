@@ -250,3 +250,5 @@ h1{margin-bottom:var(--s5)}
 .why-shot{margin-top:var(--s8)}@media (max-width:900px){.why-shot{margin-top:var(--s6)}}
 .how-next{margin:var(--s6) 0 0}
 .nowrap{white-space:nowrap}
+.price-note{flex-basis:100%;font:400 13px/1.4 var(--sans,inherit);color:var(--muted);letter-spacing:0}
+.hl{color:var(--text);font-weight:600}
