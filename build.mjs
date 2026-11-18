@@ -12,7 +12,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 const org = {
   '@context': 'https://schema.org', '@type': 'Organization', '@id': SITE + '/#org', name: 'BandRigs', url: SITE + '/',
   logo: SITE + '/assets/logo.svg', image: SITE + '/assets/og.jpg', email: EMAIL, telephone: TEL,
-  description: 'BandRigs designs and builds custom live mixing and in-ear monitor rack systems for bands anywhere in the US.', areaServed: { '@type': 'Country', name: 'United States' },
+  description: 'BandRigs designs and builds custom live mixing and in-ear monitor rack systems for artists and bands anywhere in the US.', areaServed: { '@type': 'Country', name: 'United States' },
   sameAs: ['https://www.youtube.com/channel/UCKjgT1H8lktykWGHgZ9NeRg', 'https://www.instagram.com/bandrigs/', 'https://www.tiktok.com/@bandrigschannel'],
 };
 
@@ -86,7 +86,7 @@ page('/', {
 <h1>Your sound.<br>Your stage.<br>Your BandRig.</h1>
 <p class="lead">Custom in-ear monitor and live mixing rigs, built around how your band plays. Answer four quick questions to find your starting point.</p>
 <div class="actions"><a class="btn btn-primary" href="#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
-<p class="hero-tag"><strong>Less setup. More show.</strong><br><span class="muted">Gear and build from $5,000 · Bands anywhere in the US</span></p>
+<p class="hero-tag"><strong>Less setup. More show.</strong><br><span class="muted">Gear and build from $5,000 · Artists &amp; Bands anywhere in the US</span></p>
 </div></div>
 <p class="hero-note">BandRigs concept visualization</p>
 </section>
@@ -129,7 +129,7 @@ page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
   description: 'Compare BandRigs packages: compact monitoring from $5,000, band in-ear monitoring from $7,500, complete live mixing rigs from $10,000, plus upgrades and custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
-  body: `<section class="page-head"><div class="wrap"><p class="label">Rigs &amp; pricing</p><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, and we work with bands anywhere in the US.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
+  body: `<section class="page-head"><div class="wrap"><p class="label">Rigs &amp; pricing</p><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, and we work with artists and bands anywhere in the US.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
 <section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><p class="label">${p.for}</p><h2><a href="/systems/${k}/">${p.name}</a></h2><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section>${ctaBand()}`,
 });
 
