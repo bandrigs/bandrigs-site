@@ -26,6 +26,15 @@ jobs:
             [ -f "$f" ] && cp "$f" dist/ || true
           done
 
+      # Creates the Pages project on the first run; later runs skip it.
+      - name: Create Pages project if missing
+        uses: cloudflare/wrangler-action@v3
+        continue-on-error: true
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 670f9f726847c524c89adaa01eef8170
+          command: pages project create bandrigs --production-branch=main
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
