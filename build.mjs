@@ -1,10 +1,16 @@
 // Builds the static BandRigs site: node build.mjs
 // Every route gets real HTML (for people and for search engines); app.js only adds the rig finder and the form.
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { dirname } from 'node:path';
 import { packages, order, gear } from './data.js';
 
 const SITE = 'https://bandrigs.com';
+// Cache-busting: browsers keep CSS/JS for hours, so each asset URL carries a hash of its content.
+const ver = (...files) => createHash('sha256').update(files.map(f => readFileSync(f)).join('')).digest('hex').slice(0, 10);
+const DATA_V = ver('data.js');
+{ const src = readFileSync('app.js', 'utf8'); const out = src.replace(/from '\/data\.js(\?v=[0-9a-f]+)?'/, `from '/data.js?v=${DATA_V}'`); if (out !== src) writeFileSync('app.js', out); }
+const CSS_V = ver('styles.css'), APP_V = ver('app.js');
 const PHONE = '858-232-3544', TEL = '+18582323544', EMAIL = 'sales@bandrigs.com';
 const arrow = '<span aria-hidden="true" class="arr"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span>';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -28,7 +34,7 @@ function layout({ path, title, description, body, schema = [], image = '/assets/
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/styles.css">${scripts ? '<script type="module" src="/app.js"></script>' : ''}${ld}
+<link rel="stylesheet" href="/styles.css?v=${CSS_V}">${scripts ? `<script type="module" src="/app.js?v=${APP_V}"></script>` : ''}${ld}
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap head-row">
