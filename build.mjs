@@ -123,7 +123,7 @@ page('/', {
 <section class="section why" id="why" aria-labelledby="why-title"><div class="wrap why-grid">
 <div><h2 id="why-title">Why BandRigs exists</h2><p class="muted">For solo artists, duos, tribute and cover bands, worship teams and touring acts anywhere in the US.</p></div>
 <div class="why-body">
-<p>You got into music to play, not to spend an hour running cables and chasing feedback. Most bands sound great in rehearsal, then fight every room they walk into: a new stage, a new house engineer, monitor wedges that squeal, and a mix nobody on stage can really hear. BandRigs builds custom in-ear monitor and live mixing rigs so you spend more time in the music and less time setting up gear.</p>
+<p>You got into music to play, not to spend an hour running cables and chasing feedback. Most bands sound great in rehearsal, then fight every room they walk into: a new stage, a new house engineer, monitor wedges that squeal, and a mix nobody on stage can really hear. BandRigs builds custom in-ear monitor (IEM) and live mixing rigs so you spend more time in the music and less time setting up gear.</p>
 <p>Everything lives in one rolling rack, wired, labeled and tested before it ships. Your monitor mixes are saved on a digital mixer like the Behringer WING, the players who move get wireless in-ear monitors, and playback with click and cues runs from the same rack. Roll it in, plug in power and a couple of cables, and you are line checked and ready to play.</p>
 <ul class="why-points">
 <li><h3>Faster setup</h3><p class="muted">The rack arrives prewired. Load-in drops from a pile of cables and stands to a few connections.</p></li>
@@ -148,7 +148,7 @@ page('/', {
 
 
 <section class="section" aria-labelledby="rigs-title"><div class="wrap">
-<div class="section-head split"><div><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted"><strong class="hl">Every price includes the gear and the build. Shipping the rig to you is extra.</strong> Final price depends on how many mixes you need, how much is wireless and what gear you keep. Prefer to buy the gear yourself? Have it drop shipped to us and we build it at our <span class="nowrap">$125/hr</span> service rate, plus shipping back to you.</p></div>
+<div class="section-head split"><div><h2 id="rigs-title">In-ear monitor rigs, sized to your band.</h2></div><p class="muted"><strong class="hl">Every price includes the gear and the build. Shipping the rig to you is extra.</strong> Final price depends on how many mixes you need, how much is wireless and what gear you keep. Prefer to buy the gear yourself? Have it drop shipped to us and we build it at our <span class="nowrap">$125/hr</span> service rate, plus shipping back to you.</p></div>
 <div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a>`; }).join('')}</div>
 ${servicesBlock('h3')}
 </div></section>
@@ -161,7 +161,7 @@ ${servicesBlock('h3')}
 </div></section>
 
 <section class="section" aria-labelledby="faq-title"><div class="wrap faq-grid">
-<div><h2 id="faq-title">Good to know</h2></div>
+<div><h2 id="faq-title">In-ear monitor rig FAQ</h2></div>
 <div class="faq">${faqs.map(([q, a]) => `<details><summary>${q}</summary><p class="muted">${a}</p></details>`).join('')}</div>
 </div></section>
 ${ctaBand()}`,
