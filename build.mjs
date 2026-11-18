@@ -63,7 +63,7 @@ ${socials('head-social')}
 </body></html>`;
 }
 
-const priceLine = p => p.price ? `<span class="price"><span class="label">Starting at</span> ${p.price}<span class="price-note">Gear and build included</span></span>` : `<span class="price"><span class="label">Price</span> Custom quote</span>`;
+const priceLine = p => p.price ? `<span class="price"><span class="label">Starting at</span> ${p.price}<span class="price-note">Gear and build included, plus shipping to you</span></span>` : `<span class="price"><span class="label">Price</span> Custom quote</span>`;
 const servicesBlock = (tag = 'h2') => `<div class="services"><div class="section-head"><${tag}>Other services</${tag}></div><div class="rig-table" role="list"><a class="rig-row" role="listitem" href="tel:${TEL}"><span class="rig-name">Playback tracks built in Ableton</span><span class="rig-for muted">Your stems, click and cues, set up as a show-ready Ableton session</span><span class="price"><span class="label">Price</span> Call for pricing</span><span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a></div></div>`;
 const gearRow = keys => `<ul class="gear">${keys.map(k => { const g = gear[k]; return `<li><div class="gear-img"><img src="/assets/${g.image}" alt="${esc(g.name)}" loading="lazy" width="1100" height="${g.h}"></div><p class="label">${g.tag}</p><p class="gear-name">${g.name}</p><p class="small muted">${g.desc}</p></li>`; }).join('')}</ul>`;
 
@@ -85,7 +85,7 @@ const steps = [
 const faqs = [
   ['Do I need to know what gear I want?', 'No. Tell us who plays and what bugs you about your current setup. Picking the gear is our job.'],
   ['Can I keep the equipment I already own?', 'Yes. We look at your mixer, stage boxes and in-ear gear first and only replace what doesn’t fit the plan.'],
-  ['Can I buy the gear myself?', 'Yes. We send you the equipment list, you buy it from any dealer and have it drop shipped to us. We build, configure and test the rig at our service rate of $125 an hour.'],
+  ['Can I buy the gear myself?', 'Yes. We send you the equipment list, you buy it from any dealer and have it drop shipped to us. We build, configure and test the rig at our service rate of $125 an hour, plus shipping the finished rig back to you.'],
   ['Wired or wireless in-ears?', 'Either, or a mix. Drummers and keys players are often fine wired. Singers and anyone who moves around usually go wireless.'],
   ['What is a personal mix?', 'It’s what one performer hears in their in-ears. Each person who wants their own balance of vocals and instruments needs their own mix.'],
   ['What happens after I send my details?', `We reply within one business day to set up a planning call. Prefer to talk now? Call ${PHONE}.`],
@@ -143,7 +143,7 @@ page('/', {
 
 
 <section class="section" aria-labelledby="rigs-title"><div class="wrap">
-<div class="section-head split"><div><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted"><strong class="hl">Every price includes the gear and the build.</strong> Final price depends on how many mixes you need, how much is wireless and what gear you keep. Prefer to buy the gear yourself? Have it drop shipped to us and we build it at our <span class="nowrap">$125/hr</span> service rate.</p></div>
+<div class="section-head split"><div><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted"><strong class="hl">Every price includes the gear and the build, plus shipping to you.</strong> Final price depends on how many mixes you need, how much is wireless and what gear you keep. Prefer to buy the gear yourself? Have it drop shipped to us and we build it at our <span class="nowrap">$125/hr</span> service rate, plus shipping back to you.</p></div>
 <div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a>`; }).join('')}</div>
 ${servicesBlock('h3')}
 </div></section>
@@ -171,7 +171,7 @@ page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
   description: 'Compare BandRigs packages: solo and duo rigs from $5,000, band rigs from $11,500, complete live mixing rigs from $12,500, plus upgrades and custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
-  body: `<section class="page-head"><div class="wrap"><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, and we work with artists and bands anywhere in the US. You can also buy the gear yourself, have it drop shipped to us, and we build it at our <span class="nowrap">$125/hr</span> service rate.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
+  body: `<section class="page-head"><div class="wrap"><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, plus shipping to you, and we work with artists and bands anywhere in the US. You can also buy the gear yourself, have it drop shipped to us, and we build it at our <span class="nowrap">$125/hr</span> service rate, plus shipping back to you.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
 <section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><p class="label">${p.for}</p><h2><a href="/systems/${k}/">${p.name}</a></h2><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section><section class="section tight"><div class="wrap">${servicesBlock()}</div></section>${ctaBand()}`,
 });
 
