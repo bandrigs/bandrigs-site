@@ -80,7 +80,7 @@ export const gear = {
   psm300extra: { name: 'Extra Shure PSM 300', tag: 'More wireless mixes', image: 'gear/psm300-p3t.webp', h: 491, price: '$989 each', desc: 'Add wireless in-ears for players five and six. The rack has room for both.' },
   rack: { name: 'Gator GRR-8L rolling rack', tag: 'Rolling rack', image: 'gear/rollingrack-8u.webp', h: 1100, price: '$489.99', desc: '8-space rack on casters with front and rear rails and locking covers. Price from Sweetwater.' },
   macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', h: 358, price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
-  namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', art: 'name', price: '$199', desc: 'One rack space with your artist name cut out and backlit in blue.' },
+  namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', image: 'gear/name-panel.webp', h: 619, fill: true, price: '$199', desc: 'One rack space with your artist name cut out and backlit in blue.' },
 };
 
 // Rig finder: answers -> package key
