@@ -15,13 +15,15 @@ export const packages = {
     gear: ['wing', 'psm300'],
   },
   band: {
-    name: 'Band monitoring', for: 'Bands of 3 to 8', price: '$7,500', amount: 7500,
-    headline: 'Every player gets their own mix.',
-    summary: 'One rack that gives each performer their own in-ear mix, wired or wireless, from rehearsal to show.',
-    meta: 'In-ear monitor rigs for bands, from $7,500. A personal mix for every player, wired or wireless, built by BandRigs.',
-    includes: ['Mix plan: who hears what, and how it connects', 'Personal in-ear mixes for each performer', 'Wired and wireless positions where they fit', 'Racked, labeled and tested, with saved starting mixes', 'Setup guide and a walkthrough with your band'],
-    fit: ['Your band uses wedges and nobody can hear', 'Each player wants a different mix', 'You want load-in to be the same every night'],
-    gear: ['psm300', 'dl16', 'dn4816'],
+    name: 'Band rig', for: 'Bands of 3 to 6', price: '$7,500', amount: 7500,
+    headline: 'Every player hears their own mix.',
+    summary: 'Built for bands of 3 to 6. All six players get their own wireless in-ear mix, the whole band plugs into one stage box, and you run it all from a tablet. One rolling rack, the same setup every night.',
+    meta: 'Band in-ear rig from $7,500 for bands of 3 to 6: Behringer WING Rack, Midas DL16 stage box, six Shure PSM 300 wireless in-ears and Furman power in one rolling rack, built by BandRigs.',
+    includes: ['Mix plan: who hears what, and how it connects', 'Your mixer, stage box and wireless in-ears racked together', 'Six wireless in-ear systems, one mix per player', 'Wi-Fi router so each player can adjust their mix from a phone', 'Wired, labeled and tested, with saved starting mixes', 'Setup guide and a walkthrough with your band'],
+    fit: ['Your band has 3 to 6 players', 'Your band uses wedges and nobody can hear', 'Each player wants a different mix', 'You want load-in to be the same every night', 'You need an A/B splitter snake option for FOH'],
+    rig: ['rack12', 'furman', 'wing', 'router', 'dl16', 'psm300band'],
+    upgrades: ['playaudio', 'macmini', 'namepanel'],
+    gear: ['wing', 'dl16', 'psm300'],
   },
   complete: {
     name: 'Complete live rig', for: 'Bands that run their own sound', price: '$10,000', amount: 10000,
@@ -59,7 +61,7 @@ export const gear = {
   psm300: { name: 'Shure PSM 300', tag: 'Wireless in-ears', image: 'gear/psm300-p3t.webp', h: 491, price: '$989', desc: 'Stereo wireless in-ear system with earphones. One transmitter per mix.' },
   s16: { name: 'Behringer S16', tag: 'Stage box', image: 's16.webp', h: 293, desc: '16 inputs on stage, one network cable back to the rack.' },
   s32: { name: 'Behringer S32', tag: 'Stage box', image: 's32.webp', h: 393, desc: '32 inputs for bigger input lists.' },
-  dl16: { name: 'Midas DL16', tag: 'Stage box', image: 'dl16.webp', h: 301, desc: '16 Midas preamps and 8 outputs on stage.' },
+  dl16: { name: 'Midas DL16', tag: 'Stage box', image: 'dl16.webp', h: 301, price: '$729', desc: '16 Midas preamps and 8 outputs on stage, over one network cable.' },
   dn4816: { name: 'Midas DN4816-O', tag: 'In-ear outputs', image: 'dn4816-o.webp', h: 152, desc: '16 outputs to feed up to 8 stereo in-ear mixes.' },
   dn4888: { name: 'Midas DN4888', tag: 'Line I/O', image: 'dn4888.webp', h: 152, desc: '8 line inputs and outputs for playback and routing.' },
   dl8: { name: 'Midas DL8', tag: 'Stage box', image: 'gear/dl8.webp', h: 365, price: '$669', desc: '8 Midas preamps and 8 outputs, powered over one network cable.' },
@@ -67,6 +69,8 @@ export const gear = {
   router: { name: 'MikroTik L009 Wi-Fi router', tag: 'Wireless control', image: 'gear/router.webp', h: 935, price: '$109', desc: 'Mix from a tablet or phone anywhere on stage.' },
   playaudio: { name: 'iConnectivity PlayAUDIO1U', tag: 'Playback interface', image: 'gear/playaudio1u.webp', h: 184, price: '$1,199.99', desc: 'Runs tracks from two computers and switches to the backup instantly.' },
   flightcase: { name: 'Gator G-Tour 8U shock rack case', tag: 'Rolling flight case', image: 'gear/flightcase-8u.webp', h: 1137, price: '$999.99', desc: 'Swap the rolling rack for a shock-mounted ATA case with locking lids. Price is for the 8-space size, from Sweetwater.' },
+  rack12: { name: 'Gator G-Tour 12U rolling rack', tag: 'Rolling rack', image: 'gear/rollingrack-8u.webp', h: 1100, price: '$699.99', desc: '12-space ATA road case on casters, room for the whole band rig. Price from Markertek.' },
+  psm300band: { name: 'Shure PSM 300 × 6', tag: 'Wireless in-ears', image: 'gear/psm300-p3t.webp', h: 491, price: '$5,934 ($989 each)', desc: 'Six stereo wireless in-ear systems, one per player. They mount two per rack space.' },
   rack: { name: 'Gator GRR-8L rolling rack', tag: 'Rolling rack', image: 'gear/rollingrack-8u.webp', h: 1100, price: '$489.99', desc: '8-space rack on casters with front and rear rails and locking covers. Price from Sweetwater.' },
   macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', h: 358, price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
   namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', art: 'name', price: '$199', desc: 'One rack space with your artist name cut out and backlit in blue.' },
@@ -76,7 +80,7 @@ export const gear = {
 export function recommend(a) {
   if (a.goal === 'upgrade') return 'upgrade';
   if (a.who === 'solo' || a.who === 'duo') return 'compact'; // the solo/duo rig already includes the mixer
-  if (a.people > 16 || a.who === 'production') return 'custom';
+  if (a.who === 'production' || (a.people > 6 && a.goal !== 'everything')) return 'custom';
   if (a.goal === 'everything') return 'complete';
   return a.people <= 2 ? 'compact' : 'band';
 }
