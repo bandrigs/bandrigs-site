@@ -204,7 +204,7 @@ figcaption.label{margin-top:var(--s3)}
 .pkg-photo .gear-img{aspect-ratio:16/10;padding:var(--s6);margin:0 0 var(--s2)}.work-gear{aspect-ratio:16/10;padding:var(--s6);margin:0}.work-gear img{border:0;border-radius:0;width:auto}
 .pkg-photo .gear-img img,.work-gear img{border:0;border-radius:0;width:auto;max-width:100%;max-height:100%;object-fit:contain}
 .piece-price{font:500 var(--fs-small) var(--mono);color:var(--primary);margin:0 0 var(--s2)}.gear-img svg{max-width:80%;height:auto}
-.pieces .gear-img img{max-width:78%;max-height:78%}
+.pieces .gear-img{padding:var(--s2)}.pieces .gear-img img{max-width:100%;max-height:100%}.pieces .gear-img svg{max-width:94%}
 .pieces .gear-img img[src*="flightcase"]{max-width:100%;max-height:100%}
 .pieces .gear-img:has(img[src*="flightcase"]){padding:0;overflow:hidden;background:#2d2c2e}
 .pkg-photo .rack-art{aspect-ratio:8/7;padding:var(--s4)}.pkg-photo .rack-art img{max-width:100%;max-height:100%}
