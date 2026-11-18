@@ -3,10 +3,10 @@ export const order = ['compact', 'band', 'complete', 'upgrade', 'custom'];
 
 export const packages = {
   compact: {
-    name: 'Solo / Duo artist rig', for: 'Solo performers and duos', price: '$5,000', amount: 5000,
+    name: 'Solo / Duo artist rig', for: 'Solo performers and duos', price: '$4,995', amount: 4995,
     headline: 'Your whole show in one small rack.',
     summary: 'Built for a solo performer or duo. Mix your vocals, instruments and backing tracks from the stage, hear your own in-ear mix, and set up the whole rig without a crew. Duos add a second PSM 300.',
-    meta: 'Solo and duo rig from $5,000: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rolling rack, built by BandRigs for solo performers and duos.',
+    meta: 'Solo and duo rig from $4,995: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rolling rack, built by BandRigs for solo performers and duos.',
     includes: ['Planning call and a written system design', 'Your mixer, stage box and wireless in-ears racked together', 'Wi-Fi router so you can mix from a tablet or phone', 'Wired, labeled and tested, with saved starting mixes', 'One-page setup guide'],
     fit: ['You perform solo or as a duo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up without a crew in minutes', 'You need an A/B splitter snake option for FOH'],
     rig: ['rack', 'furman', 'wing', 'router', 'psm300', 'dl8'],
