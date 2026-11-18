@@ -118,7 +118,7 @@ if (form) {
     if (bad) { err.textContent = bad === 'name' ? 'Please add your name.' : 'Please add a valid email address so we can reply.'; err.hidden = false; form.elements[bad].setAttribute('aria-invalid', 'true'); form.elements[bad].focus(); return; }
     err.hidden = true;
     const sysName = d.system ? packages[d.system].name : 'Not sure yet';
-    const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nBand: ${d.band}\nPerformers: ${d.size}\nTiming: ${d.timing}\nInterested in: ${sysName}\n\nCurrent gear:\n${d.gear}\n\nNotes:\n${d.message}\n\n${summaryText(a)}`;
+    const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nBand: ${d.band}\nPerformers: ${d.size}\nTiming: ${d.timing}\nInterested in: ${sysName}\nSMS consent: ${d.sms === 'yes' ? 'YES, opted in to texts on ' + new Date().toISOString() : 'No'}\n\nCurrent gear:\n${d.gear}\n\nNotes:\n${d.message}\n\n${summaryText(a)}`;
     const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
     try {
       const words = d.name.trim().split(/\s+/), last = words.length > 1 ? words[words.length - 1] : words[0], first = words.length > 1 ? words.slice(0, -1).join(' ') : '';

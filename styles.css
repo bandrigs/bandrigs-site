@@ -262,3 +262,6 @@ h1{margin-bottom:var(--s5)}
 .rig-shots{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-top:var(--s7)}
 .rig-shot{display:block;color:var(--text);text-decoration:none!important}.rig-shot img{width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);transition:border-color .2s ease-out}.rig-shot .label{display:block;margin-top:var(--s2)}.rig-shot:hover img{border-color:var(--primary)}.rig-shot:hover .label{color:var(--primary)}
 @media (max-width:720px){.rig-shots{grid-template-columns:1fr;gap:var(--s5)}}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:var(--fs-small);line-height:1.5;color:var(--muted);cursor:pointer}
+.consent input{flex:none;width:20px;height:20px;margin-top:2px;accent-color:var(--primary)}
+.consent a{color:inherit;text-decoration:underline}
