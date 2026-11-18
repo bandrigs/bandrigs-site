@@ -198,3 +198,5 @@ figcaption.label{margin-top:var(--s3)}
 }
 .arr{display:inline-flex;align-items:center}.tri{display:block}
 .rig-go .tri{width:11px;height:13px}
+.logo{display:inline-flex;align-items:center;gap:10px}.logo-mark{flex:none;display:block}
+.logo .logo-text{color:var(--text)}.logo .logo-text span{color:var(--primary)}
