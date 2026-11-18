@@ -9,7 +9,7 @@ export const packages = {
     meta: 'Solo and duo rig from $5,000: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rolling rack, built by BandRigs for solo performers and duos.',
     includes: ['Planning call and a written system design', 'Your mixer, stage box and wireless in-ears racked together', 'Wi-Fi router so you can mix from a tablet or phone', 'Wired, labeled and tested, with saved starting mixes', 'One-page setup guide'],
     fit: ['You perform solo or as a duo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up without a crew in minutes', 'You need an A/B splitter snake option for FOH'],
-    rig: ['furman', 'wing', 'router', 'psm300', 'dl8'],
+    rig: ['rack', 'furman', 'wing', 'router', 'psm300', 'dl8'],
     upgrades: ['playaudio', 'flightcase', 'macmini', 'namepanel'],
     photos: { front: ['solo-rig-front.webp', 1254, 1254], angle: ['solo-rig-angle.webp', 1536, 1024] },
     gear: ['wing', 'psm300'],
@@ -66,7 +66,8 @@ export const gear = {
   furman: { name: 'Furman PL-8C', tag: 'Power conditioner', image: 'gear/furman.webp', h: 339, price: '$327.95', desc: 'Clean, protected power for everything in the rack, with pull-out rack lights.' },
   router: { name: 'MikroTik L009 Wi-Fi router', tag: 'Wireless control', image: 'gear/router.webp', h: 935, price: '$109', desc: 'Mix from a tablet or phone anywhere on stage.' },
   playaudio: { name: 'iConnectivity PlayAUDIO1U', tag: 'Playback interface', image: 'gear/playaudio1u.webp', h: 184, price: '$1,199.99', desc: 'Runs tracks from two computers and switches to the backup instantly.' },
-  flightcase: { name: 'Gator G-Tour 8U shock rack case', tag: 'Rolling flight case', image: 'gear/flightcase-8u.webp', h: 1100, price: '$999.99', desc: 'Shock-mounted 8-space ATA case on casters, shown empty. Price from Sweetwater.' },
+  flightcase: { name: 'Gator G-Tour 8U shock rack case', tag: 'Rolling flight case', image: 'gear/flightcase-8u.webp', h: 1137, price: '$999.99', desc: 'Swap the rolling rack for a shock-mounted ATA case with locking lids. Price is for the 8-space size, from Sweetwater.' },
+  rack: { name: 'Gator GRR-8L rolling rack', tag: 'Rolling rack', image: 'gear/rollingrack-8u.webp', h: 1100, price: '$489.99', desc: '8-space rack on casters with front and rear rails and locking covers. Price from Sweetwater.' },
   macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', h: 358, price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
   namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', art: 'name', price: '$199', desc: 'One rack space with your artist name cut out and backlit in blue.' },
 };
