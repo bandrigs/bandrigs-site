@@ -36,7 +36,7 @@ p{margin:0 0 var(--s4)}
 /* Header */
 .site-header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(13,14,16,.94);backdrop-filter:blur(6px);z-index:10}
 .head-row{display:flex;align-items:center;gap:var(--s6);min-height:72px}
-.logo{font:700 26px/1 var(--sans);letter-spacing:-.04em;color:var(--text);text-decoration:none!important}.logo span{color:var(--primary)}
+.logo{font:700 35px/1 var(--sans);letter-spacing:-.04em;color:var(--text);text-decoration:none!important}.logo span{color:var(--primary)}
 .nav{display:flex;gap:var(--s6);margin-left:auto}.nav a{color:var(--muted);font-size:var(--fs-small);font-weight:500}.nav a:hover,.nav a[aria-current=page]{color:var(--text);text-decoration:none}
 .menu-btn{display:none}
 
