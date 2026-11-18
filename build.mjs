@@ -114,6 +114,18 @@ page('/', {
 
 </section>
 
+<section class="section why" id="why" aria-labelledby="why-title"><div class="wrap why-grid">
+<div><h2 id="why-title">Why BandRigs exists</h2><p class="muted">For solo artists, duos, tribute and cover bands, worship teams and touring acts anywhere in the US.</p></div>
+<div class="why-body">
+<p>Most bands sound great in rehearsal and then fight the room every night. New stage, new house engineer, monitor wedges that feed back, and a mix nobody on stage can really hear. BandRigs fixes that with a custom in-ear monitor and live mixing rig that travels with you, so your sound is the same at every venue.</p>
+<p>We design each rig around your lineup, then build, label and test it before it ships. Your monitor mixes live on a digital mixer like the Behringer WING, the people who move get wireless in-ear monitors, and playback with click and cues runs from the same rack when your show needs it. Load-in turns into plug in, sound check and play.</p>
+<ul class="why-points">
+<li><h3>The same mix every night</h3><p class="muted">Your in-ear mixes are saved in the rig, not rebuilt from scratch at each gig.</p></li>
+<li><h3>Quieter, safer stages</h3><p class="muted">In-ear monitors replace loud wedges, protect your hearing and clean up the front-of-house sound.</p></li>
+<li><h3>Built and backed by us</h3><p class="muted">Ready to plug in on day one, with a $49/mo service and support plan if you want us on call.</p></li>
+</ul>
+</div></div></section>
+
 <section class="section finder-section" id="finder" aria-labelledby="finder-title"><div class="wrap finder-grid">
 <div class="finder-intro"><h2 id="finder-title">Which rig fits your band?</h2><p class="muted">Four taps, no sign-up. You’ll see a starting price and what we’d build.</p></div>
 <div class="finder" data-finder><noscript><p>The rig finder needs JavaScript. You can still <a href="/plan/">send us your details</a> or call <a href="tel:${TEL}">${PHONE}</a>.</p></noscript></div>
