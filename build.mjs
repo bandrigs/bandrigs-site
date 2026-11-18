@@ -88,7 +88,7 @@ const page = (path, opts) => pages.push({ path, html: layout({ path, ...opts }) 
 
 // Home
 page('/', {
-  title: 'Custom In-Ear Monitor & Live Mixing Rigs for Bands | BandRigs',
+  title: 'Custom In-Ear Monitor & Live Mixing Rigs for Artists | BandRigs',
   description: 'BandRigs designs and builds custom in-ear monitor and live mixing racks for bands. Answer 4 questions to see which rig fits your band. Rigs from $5,000.',
   schema: [faqSchema, { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Custom live sound and in-ear monitor rack design and build', provider: { '@id': SITE + '/#org' },
     offers: order.filter(k => packages[k].price).map(k => ({ '@type': 'Offer', name: packages[k].name, url: `${SITE}/systems/${k}/`, priceSpecification: { '@type': 'PriceSpecification', minPrice: packages[k].amount, priceCurrency: 'USD' } })) }],
