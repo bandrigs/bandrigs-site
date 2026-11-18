@@ -5,10 +5,10 @@ export const packages = {
   compact: {
     name: 'Solo artist rig', for: 'Solo artists', price: '$5,000', amount: 5000,
     headline: 'Your whole show in one small rack.',
-    summary: 'A digital mixer, a stage box and wireless in-ears in one rack, so a solo artist can run their own sound and hear exactly what they want.',
+    summary: 'Built for one performer. Mix your vocals, instruments and backing tracks from the stage, hear your own in-ear mix, and set the whole rig up by yourself.',
     meta: 'Solo artist rig from $5,000: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rack, built by BandRigs.',
     includes: ['Planning call and a written system design', 'Your mixer, stage box and wireless in-ears racked together', 'Wi-Fi router so you can mix from a tablet or phone', 'Wired, labeled and tested, with saved starting mixes', 'One-page setup guide'],
-    fit: ['You perform solo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up alone in minutes'],
+    fit: ['You perform solo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up alone in minutes', 'You need an A/B splitter snake option for FOH'],
     rig: ['furman', 'wing', 'router', 'psm300', 'dl8'],
     upgrades: ['playaudio', 'flightcase', 'macmini', 'namepanel'],
     illustration: 'solo-rack.svg',
