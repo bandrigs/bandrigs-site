@@ -65,9 +65,9 @@ export const gear = {
   dl8: { name: 'Midas DL8', tag: 'Stage box', image: 'gear/dl8.webp', h: 365, price: '$669', desc: '8 Midas preamps and 8 outputs, powered over one network cable.' },
   furman: { name: 'Furman PL-8C', tag: 'Power conditioner', image: 'gear/furman.webp', h: 339, price: '$327.95', desc: 'Clean, protected power for everything in the rack, with pull-out rack lights.' },
   router: { name: 'MikroTik L009 Wi-Fi router', tag: 'Wireless control', image: 'gear/router.webp', h: 935, price: '$109', desc: 'Mix from a tablet or phone anywhere on stage.' },
-  playaudio: { name: 'iConnectivity PlayAUDIO1U', tag: 'Playback interface', image: 'gear/playaudio1u.webp', h: 145, price: '$1,199.99', desc: 'Runs tracks from two computers and switches to the backup instantly.' },
-  flightcase: { name: 'Gator G-Tour 8U shock rack case', tag: 'Rolling flight case', image: 'gear/flightcase-8u.webp', remote: '4bf622309eA3dMMdKCaCejdwJg2O7ozLhmOl3T07.jpg', price: '$999.99', desc: 'Shock-mounted 8-space ATA case on casters, shown empty. Price from Sweetwater.' },
-  macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', h: 438, price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
+  playaudio: { name: 'iConnectivity PlayAUDIO1U', tag: 'Playback interface', image: 'gear/playaudio1u.webp', h: 184, price: '$1,199.99', desc: 'Runs tracks from two computers and switches to the backup instantly.' },
+  flightcase: { name: 'Gator G-Tour 8U shock rack case', tag: 'Rolling flight case', image: 'gear/flightcase-8u.webp', h: 1137, price: '$999.99', desc: 'Shock-mounted ATA rack case on casters. Price is for the 8-space size, from Sweetwater.' },
+  macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', h: 358, price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
   namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', art: 'name', price: '', desc: 'One rack space with your artist name cut out and backlit in blue.' },
 };
 
