@@ -52,23 +52,22 @@ export const packages = {
   },
 };
 
-// price: typical US retail per piece (Sweetwater / BSW, checked 2026-11-18), shown for reference.
-// remote: source of the product shot; deploy fetches it, trims the white background and serves it at /assets/<image>.
+// price: typical US retail per piece (Sweetwater, BSW, Markertek, Musician's Friend, Multilink; checked 2026-11-18). Product photos supplied by Ken.
 // art: drawn illustration for pieces without a fixed model.
 export const gear = {
-  wing: { name: 'Behringer WING Rack', tag: 'Digital mixer', image: 'wing-front.webp', h: 498, price: '$1,799', desc: 'Runs the show mix and every in-ear mix from one rack unit.' },
-  psm300: { name: 'Shure PSM 300', tag: 'Wireless in-ears', image: 'psm300.webp', h: 1100, price: '$989', desc: 'Stereo wireless in-ear system with earphones. One transmitter per mix.' },
+  wing: { name: 'Behringer WING Rack', tag: 'Digital mixer', image: 'gear/wing-rack.webp', h: 477, price: '$1,799', desc: 'Runs the show mix and every in-ear mix from one rack unit.' },
+  psm300: { name: 'Shure PSM 300', tag: 'Wireless in-ears', image: 'gear/psm300-p3t.webp', h: 491, price: '$989', desc: 'Stereo wireless in-ear system with earphones. One transmitter per mix.' },
   s16: { name: 'Behringer S16', tag: 'Stage box', image: 's16.webp', h: 293, desc: '16 inputs on stage, one network cable back to the rack.' },
   s32: { name: 'Behringer S32', tag: 'Stage box', image: 's32.webp', h: 393, desc: '32 inputs for bigger input lists.' },
   dl16: { name: 'Midas DL16', tag: 'Stage box', image: 'dl16.webp', h: 301, desc: '16 Midas preamps and 8 outputs on stage.' },
   dn4816: { name: 'Midas DN4816-O', tag: 'In-ear outputs', image: 'dn4816-o.webp', h: 152, desc: '16 outputs to feed up to 8 stereo in-ear mixes.' },
   dn4888: { name: 'Midas DN4888', tag: 'Line I/O', image: 'dn4888.webp', h: 152, desc: '8 line inputs and outputs for playback and routing.' },
-  dl8: { name: 'Midas DL8', tag: 'Stage box', image: 'gear/dl8.webp', remote: '83fd35bf58WAqvZDD1AdhA67KVJ0lLDeJrTMsl6L.jpg', price: '$669', desc: '8 Midas preamps and 8 outputs, powered over one network cable.' },
-  furman: { name: 'Furman M-8x2', tag: 'Power conditioner', image: 'gear/furman.webp', remote: 'e35e203ac4e1ouMewDfKcYrVJlDMCHM5pi3GFBmz.jpg', price: '$169.95', desc: 'Clean, protected power for everything in the rack.' },
-  router: { name: 'Half-rack Wi-Fi router', tag: 'Wireless control', art: 'router', price: '', desc: 'Mix from a tablet or phone anywhere on stage.' },
-  playaudio: { name: 'iConnectivity PlayAUDIO1U', tag: 'Playback interface', image: 'gear/playaudio1u.webp', remote: '2071dd5519iCVL96z2VUmmOMTstGpMQtwCXDZwQh.jpg', price: '$1,199.99', desc: 'Runs tracks from two computers and switches to the backup instantly.' },
-  flightcase: { name: 'Flight case', tag: 'Road case', art: 'case', price: '', desc: 'Shock-mounted case sized to your rack, built for the road.' },
-  macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', remote: 'c978fcff4bu0nnFXeON3dl0JSb1O5k9ktj4r3Wiq.png', price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
+  dl8: { name: 'Midas DL8', tag: 'Stage box', image: 'gear/dl8.webp', h: 365, price: '$669', desc: '8 Midas preamps and 8 outputs, powered over one network cable.' },
+  furman: { name: 'Furman PL-8C', tag: 'Power conditioner', image: 'gear/furman.webp', h: 339, price: '$327.95', desc: 'Clean, protected power for everything in the rack, with pull-out rack lights.' },
+  router: { name: 'MikroTik L009 Wi-Fi router', tag: 'Wireless control', image: 'gear/router.webp', h: 935, price: '$109', desc: 'Mix from a tablet or phone anywhere on stage.' },
+  playaudio: { name: 'iConnectivity PlayAUDIO1U', tag: 'Playback interface', image: 'gear/playaudio1u.webp', h: 145, price: '$1,199.99', desc: 'Runs tracks from two computers and switches to the backup instantly.' },
+  flightcase: { name: 'Gator G-Tour flight case', tag: 'Rolling road case', image: 'gear/flightcase.webp', h: 1276, price: '$699.99', desc: 'ATA road case on casters, sized to your rack.' },
+  macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', h: 438, price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
   namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', art: 'name', price: '', desc: 'One rack space with your artist name cut out and backlit in blue.' },
 };
 

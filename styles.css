@@ -207,3 +207,4 @@ figcaption.label{margin-top:var(--s3)}
 .pieces .gear-img img{max-width:78%;max-height:78%}
 .pkg-photo .rack-art{aspect-ratio:8/7;padding:var(--s4)}.pkg-photo .rack-art img{max-width:100%;max-height:100%}
 .wide-shot{margin:0}.wide-shot img{width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line)}.wide-shot figcaption{margin-top:var(--s2)}
+.mock-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:var(--s5);margin-top:var(--s7);align-items:start}.mock-cap{margin-top:var(--s3)}@media (max-width:720px){.mock-grid{grid-template-columns:1fr}}
