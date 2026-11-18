@@ -77,10 +77,10 @@ const ART = {
 const pieceRow = keys => `<ul class="gear pieces">${keys.map(k => { const g = gear[k]; const pic = g.art ? ART[g.art] : `<img src="/assets/${g.image}" alt="${esc(g.name)}" loading="lazy">`; return `<li><div class="gear-img">${pic}</div><p class="label">${g.tag}</p><p class="gear-name">${g.name}</p><p class="piece-price">${g.price || 'Priced with your build'}</p><p class="small muted">${g.desc}</p></li>`; }).join('')}</ul>`;
 
 const steps = [
-  ['Tell us about your band', 'Answer four quick questions or give us a call. Who plays, who needs in-ears and what gear you already have.'],
-  ['We design it with you', 'You get a signal flow, an equipment list and a fixed quote before anything is ordered. We keep the gear you own when it still makes sense.'],
-  ['We build and test it', 'Everything is racked, wired, labeled and configured, then tested as a whole system on our bench.'],
-  ['You plug in and play', 'We walk you through it and hand over a setup guide, so load-in is the same every night.'],
+  ['Answer four questions', 'Right below this, tap through four quick questions about your lineup. You see a starting price and the rig we’d build in under a minute.'],
+  ['Send us your details', 'One short form, or call <span class="nowrap">858-232-3544</span>. We reply within one business day to set up a free call about your show.'],
+  ['Approve your design', 'You get a signal flow, an equipment list and a fixed quote before anything is ordered. We keep the gear you own when it still makes sense.'],
+  ['We build it, you play', 'We rack, wire, label and test the whole system, then walk you through it with a setup guide so load-in is the same every night.'],
 ];
 const faqs = [
   ['Do I need to know what gear I want?', 'No. Tell us who plays and what bugs you about your current setup. Picking the gear is our job.'],
@@ -128,15 +128,18 @@ page('/', {
 <div class="wrap"><figure class="wide-shot why-shot"><picture><source media="(max-width:720px)" srcset="/assets/band-live-m.webp"><img src="/assets/band-live.webp" alt="Band playing a live club show with in-ear monitors, with a BandRigs rolling rack and laptop for playback on stage beside the drum riser" loading="lazy" width="1672" height="941"></picture></figure></div>
 </section>
 
+<section class="section" id="how" aria-labelledby="how-title"><div class="wrap">
+<div class="section-head"><h2 id="how-title">Your next steps</h2><p class="muted">Getting your rig takes four steps. The first one takes about a minute.</p></div>
+<ol class="steps">${steps.map(([t, d], i) => `<li><span class="step-n">0${i + 1}</span><h3>${t}</h3><p class="muted">${d}</p></li>`).join('')}</ol>
+<p class="how-next"><a class="btn btn-primary" href="#finder">Start step 1 ${arrow}</a></p>
+</div></section>
+
 <section class="section finder-section" id="finder" aria-labelledby="finder-title"><div class="wrap finder-grid">
-<div class="finder-intro"><h2 id="finder-title">Which rig fits your band?</h2><p class="muted">Four taps, no sign-up. You’ll see a starting price and what we’d build.</p></div>
+<div class="finder-intro"><h2 id="finder-title">Start here: which rig fits your band?</h2><p class="muted">Four taps, no sign-up. You’ll see a starting price and what we’d build.</p></div>
 <div class="finder" data-finder><noscript><p>The rig finder needs JavaScript. You can still <a href="/plan/">send us your details</a> or call <a href="tel:${TEL}">${PHONE}</a>.</p></noscript></div>
 </div></section>
 
-<section class="section" id="how" aria-labelledby="how-title"><div class="wrap">
-<div class="section-head"><h2 id="how-title">From first call to first show.</h2></div>
-<ol class="steps">${steps.map(([t, d], i) => `<li><span class="step-n">0${i + 1}</span><h3>${t}</h3><p class="muted">${d}</p></li>`).join('')}</ol>
-</div></section>
+
 
 <section class="section" aria-labelledby="rigs-title"><div class="wrap">
 <div class="section-head split"><div><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted">Prices include the gear and the build. Final price depends on how many mixes you need, how much is wireless and what gear you keep.</p></div>
