@@ -53,6 +53,14 @@ function layout({ path, title, description, body, schema = [], image = '/assets/
 const priceLine = p => p.price ? `<span class="price"><span class="label">Starting at</span> ${p.price}</span>` : `<span class="price"><span class="label">Price</span> Custom quote</span>`;
 const gearRow = keys => `<ul class="gear">${keys.map(k => { const g = gear[k]; return `<li><div class="gear-img"><img src="/assets/${g.image}" alt="${esc(g.name)}" loading="lazy" width="1100" height="${g.h}"></div><p class="label">${g.tag}</p><p class="gear-name">${g.name}</p><p class="small muted">${g.desc}</p></li>`; }).join('')}</ul>`;
 
+
+const ART = {
+  router: '<svg viewBox="0 0 240 120" width="240" height="120" aria-hidden="true"><g fill="none" stroke="#a4a8ae" stroke-width="2"><path d="M70 52 62 14M170 52 178 14"/><rect x="30" y="52" width="180" height="44" rx="4" fill="#23272c"/></g><g fill="#8ec5ff"><circle cx="52" cy="74" r="3"/><circle cx="66" cy="74" r="3"/><circle cx="80" cy="74" r="3" opacity=".4"/></g><g fill="#3a4048"><rect x="120" y="66" width="12" height="16" rx="1"/><rect x="138" y="66" width="12" height="16" rx="1"/><rect x="156" y="66" width="12" height="16" rx="1"/><rect x="174" y="66" width="12" height="16" rx="1"/></g></svg>',
+  case: '<svg viewBox="0 0 240 150" width="240" height="150" aria-hidden="true"><rect x="30" y="20" width="180" height="110" rx="6" fill="#23272c" stroke="#a4a8ae" stroke-width="2"/><g fill="none" stroke="#a4a8ae" stroke-width="2"><path d="M30 40h180M30 110h180"/><rect x="95" y="8" width="50" height="12" rx="3"/></g><g fill="#a4a8ae"><rect x="26" y="16" width="16" height="16" rx="2"/><rect x="198" y="16" width="16" height="16" rx="2"/><rect x="26" y="118" width="16" height="16" rx="2"/><rect x="198" y="118" width="16" height="16" rx="2"/><rect x="70" y="68" width="14" height="22" rx="2"/><rect x="156" y="68" width="14" height="22" rx="2"/></g></svg>',
+  name: '<svg viewBox="0 0 260 90" width="260" height="90" aria-hidden="true"><defs><filter id="glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="6" y="22" width="248" height="46" rx="3" fill="#111316" stroke="#3a4048" stroke-width="2"/><circle cx="18" cy="45" r="4" fill="#0d0e10" stroke="#3a4048"/><circle cx="242" cy="45" r="4" fill="#0d0e10" stroke="#3a4048"/><text x="130" y="54" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="600" font-size="26" letter-spacing="6" fill="#8ec5ff" filter="url(#glow)">BANDRIGS</text></svg>',
+};
+const pieceRow = keys => `<ul class="gear pieces">${keys.map(k => { const g = gear[k]; const pic = g.art ? ART[g.art] : `<img src="/assets/${g.image}" alt="${esc(g.name)}" loading="lazy">`; return `<li><div class="gear-img">${pic}</div><p class="label">${g.tag}</p><p class="gear-name">${g.name}</p><p class="piece-price">${g.price || 'Priced with your build'}</p><p class="small muted">${g.desc}</p></li>`; }).join('')}</ul>`;
+
 const steps = [
   ['Tell us about your band', 'Answer four quick questions or give us a call. Who plays, who needs in-ears and what gear you already have.'],
   ['We design it with you', 'You get a signal flow, an equipment list and a fixed quote before anything is ordered. We keep the gear you own when it still makes sense.'],
@@ -127,7 +135,7 @@ function ctaBand() {
 // Systems overview
 page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
-  description: 'Compare BandRigs packages: compact monitoring from $5,000, band in-ear monitoring from $7,500, complete live mixing rigs from $10,000, plus upgrades and custom builds.',
+  description: 'Compare BandRigs packages: solo artist rigs from $5,000, band in-ear monitoring from $7,500, complete live mixing rigs from $10,000, plus upgrades and custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
   body: `<section class="page-head"><div class="wrap"><p class="label">Rigs &amp; pricing</p><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, and we work with artists and bands anywhere in the US.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
 <section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><p class="label">${p.for}</p><h2><a href="/systems/${k}/">${p.name}</a></h2><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section>${ctaBand()}`,
@@ -147,7 +155,9 @@ for (const k of order) {
 <figure class="pkg-photo"><div class="gear-img"><img src="/assets/${gear[p.gear[0]].image}" alt="${esc(gear[p.gear[0]].name)}" width="1100" height="${gear[p.gear[0]].h}"></div><figcaption class="label">Typical gear · ${gear[p.gear[0]].name}</figcaption></figure></div></section>
 <section class="section tight"><div class="wrap two-col"><div><h2>What’s included</h2><ul class="ticks">${p.includes.map(i => `<li>${i}</li>`).join('')}</ul></div>
 <div><h2>A good fit if…</h2><ul class="ticks">${p.fit.map(i => `<li>${i}</li>`).join('')}</ul></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head"><h2>Gear we often start with</h2><p class="muted">Examples, not a fixed list. Your mix count, inputs and existing gear decide the final setup.</p></div>${gearRow(p.gear)}</div></section>
+${p.rig ? `<section class="section tight"><div class="wrap"><div class="section-head"><h2>The basic rig</h2><p class="muted">What goes in the rack. Prices are typical US retail for each piece, for reference. Your rig price covers the gear and the build.</p></div>${pieceRow(p.rig)}</div></section>
+<section class="section tight"><div class="wrap"><div class="section-head"><h2>Popular upgrades</h2><p class="muted">Add any of these to your rig.</p></div>${pieceRow(p.upgrades)}</div></section>` : ''}
+${p.rig ? '' : `<section class="section tight"><div class="wrap"><div class="section-head"><h2>Gear we often start with</h2><p class="muted">Examples, not a fixed list. Your mix count, inputs and existing gear decide the final setup.</p></div>${gearRow(p.gear)}</div></section>`}
 ${ctaBand()}`,
   });
 }

@@ -64,7 +64,8 @@ if (finder) {
     else if (a.move === 'all') why.push('Wireless in-ears for everyone');
     else if (a.move === 'some') why.push('Wireless for the players who move, wired for the rest');
     else why.push('We’ll help you decide what should be wireless');
-    if (a.goal === 'everything') why.push('A digital mixer for your main mix, in the same rack');
+    if (key === 'compact') why.push('A WING Rack mixer and Midas DL8 stage box, so you can run your own sound');
+    else if (a.goal === 'everything') why.push('A digital mixer for your main mix, in the same rack');
     if (a.goal === 'upgrade') why.push('We start from the gear you already own');
     if (a.goal === 'unsure') why.push('We’ll talk through whether you need mixing too');
     return `<div class="result"><p class="label">We’d start with</p><h3 class="r-name" tabindex="-1">${p.name}</h3>
