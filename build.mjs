@@ -88,7 +88,7 @@ page('/', {
 <div class="actions"><a class="btn btn-primary" href="#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
 <p class="hero-tag"><strong>Less setup. More show.</strong><br><span class="muted">Gear and build from $5,000 · Artists &amp; Bands anywhere in the US</span></p>
 </div></div>
-<p class="hero-note">BandRigs concept visualization</p>
+
 </section>
 
 <section class="section finder-section" id="finder" aria-labelledby="finder-title"><div class="wrap finder-grid">
