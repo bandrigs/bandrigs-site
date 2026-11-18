@@ -124,7 +124,9 @@ page('/', {
 <li><h3>The same mix every night</h3><p class="muted">Your in-ear mixes are saved in the rig, so every show sounds like your best rehearsal.</p></li>
 <li><h3>Shorter sound checks</h3><p class="muted">Monitors are already dialed in. Check a few lines, hand the engineer a clean feed and play.</p></li>
 </ul>
-</div></div></section>
+</div></div>
+<div class="wrap"><figure class="wide-shot why-shot"><picture><source media="(max-width:720px)" srcset="/assets/band-live-m.webp"><img src="/assets/band-live.webp" alt="Band playing a live club show with in-ear monitors, with a BandRigs rolling rack and laptop for playback on stage beside the drum riser" loading="lazy" width="1672" height="941"></picture></figure></div>
+</section>
 
 <section class="section finder-section" id="finder" aria-labelledby="finder-title"><div class="wrap finder-grid">
 <div class="finder-intro"><h2 id="finder-title">Which rig fits your band?</h2><p class="muted">Four taps, no sign-up. You’ll see a starting price and what we’d build.</p></div>
