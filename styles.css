@@ -196,3 +196,5 @@ figcaption.label{margin-top:var(--s3)}
 .hero-bg img{object-position:85% center}
 .hero-stage:before{background:linear-gradient(90deg,#0b0f17 0%,rgba(11,15,23,.92) 45%,rgba(11,15,23,.35) 75%,rgba(11,15,23,.1) 100%)}
 }
+.arr{display:inline-flex;align-items:center}.tri{display:block}
+.rig-go .tri{width:11px;height:13px}

@@ -1,7 +1,7 @@
 import { packages, gear, recommend } from '/data.js';
 
 const KEY = 'bandrigs-finder';
-const arrow = '<span aria-hidden="true" class="arr">→</span>';
+const arrow = '<span aria-hidden="true" class="arr"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span>';
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const load = () => { try { return JSON.parse(sessionStorage.getItem(KEY)) || {}; } catch { return {}; } };
 const save = a => { try { sessionStorage.setItem(KEY, JSON.stringify(a)); } catch {} };

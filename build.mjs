@@ -6,7 +6,7 @@ import { packages, order, gear } from './data.js';
 
 const SITE = 'https://bandrigs.com';
 const PHONE = '858-232-3544', TEL = '+18582323544', EMAIL = 'sales@bandrigs.com';
-const arrow = '<span aria-hidden="true" class="arr">→</span>';
+const arrow = '<span aria-hidden="true" class="arr"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span>';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 const org = {
@@ -103,7 +103,7 @@ page('/', {
 
 <section class="section" aria-labelledby="rigs-title"><div class="wrap">
 <div class="section-head split"><div><p class="label">Rigs &amp; pricing</p><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted">Prices include the gear and the build. Final price depends on how many mixes you need, how much is wireless and what gear you keep.</p></div>
-<div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true">→</span></a>`; }).join('')}</div>
+<div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a>`; }).join('')}</div>
 </div></section>
 
 <section class="section work" aria-labelledby="work-title"><div class="wrap work-grid">
