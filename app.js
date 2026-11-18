@@ -127,7 +127,7 @@ if (form) {
         ['Description', (body + '\n\nPage: ' + location.href).slice(0, 30000)], ['Closing Date', mdy], ['Pipeline', 'Sales Pipeline Standard'], ['Stage', 'New lead']].forEach(([k, v]) => fd.append(k, v));
       await fetch(BIGIN.url, { method: 'POST', mode: 'no-cors', body: fd });
       const wrap = form.parentElement;
-      form.outerHTML = `<div class="form sent" tabindex="-1"><p class="label ok">Sent</p><h2>Thanks, ${esc(words[0])}. We’ve got it.</h2><p class="muted">We’ll reply within one business day. Show coming up fast? Call <a href="tel:+18582323544">858-232-3544</a>.</p><a class="btn btn-secondary" href="/systems/">Browse rigs &amp; pricing</a></div>`;
+      form.outerHTML = `<div class="form sent" tabindex="-1"><p class="label ok">Sent</p><h2>Thanks, ${esc(words[0])}. We’ve got it.</h2><p class="muted">We’ll reply within one business day.<br>Show coming up fast? Call <a href="tel:+18582323544" style="white-space:nowrap">858-232-3544</a>.</p><a class="btn btn-secondary" href="/systems/">Browse rigs &amp; pricing</a></div>`;
       wrap.querySelector('.sent').focus();
     } catch {
       location.href = 'mailto:sales@bandrigs.com?subject=' + encodeURIComponent('Rig request — ' + (d.band || d.name)) + '&body=' + encodeURIComponent(body);
