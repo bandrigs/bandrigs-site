@@ -86,6 +86,7 @@ export function recommend(a) {
   if (a.goal === 'upgrade') return 'upgrade';
   if (a.who === 'solo' || a.who === 'duo') return 'compact'; // the solo/duo rig already includes the mixer
   if (a.who === 'production' || (a.people > 6 && a.goal !== 'everything')) return 'custom';
+  if (a.who === 'band') return 'band'; // bands of 3 to 6 start with the band rig; Complete is offered as the step up
   if (a.goal === 'everything') return 'complete';
   return a.people <= 2 ? 'compact' : 'band';
 }

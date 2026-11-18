@@ -1,4 +1,4 @@
-import { packages, gear, recommend } from '/data.js?v=272e77b834';
+import { packages, gear, recommend } from '/data.js?v=5240d2c08c';
 
 const KEY = 'bandrigs-finder';
 const arrow = '<span aria-hidden="true" class="arr"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span>';
@@ -65,6 +65,7 @@ if (finder) {
     else if (a.move === 'some') why.push('Wireless for the players who move, wired for the rest');
     else why.push('We’ll help you decide what should be wireless');
     if (key === 'compact') why.push('A WING Rack mixer and Midas DL8 stage box, so you can run your own sound');
+    else if (key === 'band') why.push('A WING Rack mixer and Midas DL16 stage box, with four wireless in-ear mixes included');
     else if (a.goal === 'everything') why.push('A digital mixer for your main mix, in the same rack');
     if (a.goal === 'upgrade') why.push('We start from the gear you already own');
     if (a.goal === 'unsure') why.push('We’ll talk through whether you need mixing too');
@@ -72,6 +73,7 @@ if (finder) {
 <p class="r-price">${p.price ? `<span class="label">Starting at</span> ${p.price}` : '<span class="label">Price</span> Custom quote after a free gear review'}</p>
 <ul class="ticks">${why.map(w => `<li>${esc(w)}</li>`).join('')}</ul>
 <p class="small muted">Typical gear: ${p.gear.map(g => gear[g].name).join(', ')}.</p>
+${key === 'band' && a.goal === 'everything' ? `<p class="small muted">Running the main speakers too? The <a href="/systems/complete/">Complete live rig</a> adds front-of-house mixing and splitting from ${packages.complete.price}.</p>` : ''}
 <div class="f-actions"><a class="btn btn-primary" href="/plan/?system=${key}">Plan this rig ${arrow}</a><a class="quiet" href="/systems/${key}/">What’s included ${arrow}</a></div>
 <button type="button" class="link-btn" data-restart>Start over</button></div>`;
   };
