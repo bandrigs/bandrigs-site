@@ -52,7 +52,7 @@ function layout({ path, title, description, body, schema = [], image = '/assets/
 <a href="https://www.youtube.com/channel/UCKjgT1H8lktykWGHgZ9NeRg" rel="noopener" target="_blank">YouTube</a><br>
 <a href="https://www.instagram.com/bandrigs/" rel="noopener" target="_blank">Instagram</a><br>
 <a href="https://www.tiktok.com/@bandrigschannel" rel="noopener" target="_blank">TikTok</a></p></div>
-</div><div class="wrap foot-base"><span>© 2026 BandRigs</span><span>Behringer, Midas and Shure are trademarks of their owners. BandRigs is an independent builder.</span></div></footer>
+</div><div class="wrap foot-base"><span>© 2026 BandRigs</span><span>Behringer, Midas, Shure and iConnectivity are trademarks of their owners. BandRigs is an independent builder.</span></div></footer>
 </body></html>`;
 }
 
