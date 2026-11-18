@@ -12,13 +12,13 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 const org = {
   '@context': 'https://schema.org', '@type': 'Organization', '@id': SITE + '/#org', name: 'BandRigs', url: SITE + '/',
   logo: SITE + '/assets/logo.svg', image: SITE + '/assets/og.jpg', email: EMAIL, telephone: TEL,
-  description: 'BandRigs designs and builds custom live mixing and in-ear monitor rack systems for bands.',
+  description: 'BandRigs designs and builds custom live mixing and in-ear monitor rack systems for bands anywhere in the US.', areaServed: { '@type': 'Country', name: 'United States' },
   sameAs: ['https://www.youtube.com/channel/UCKjgT1H8lktykWGHgZ9NeRg', 'https://www.instagram.com/bandrigs/', 'https://www.tiktok.com/@bandrigschannel'],
 };
 
 function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true }) {
   const url = SITE + path;
-  const nav = [['/systems/', 'Rigs & pricing'], ['/work/illusion/', 'Our work'], ['/#how', 'How it works']];
+  const nav = [['/systems/', 'Rigs & pricing'], ['/work/wing-rack-build/', 'Our work'], ['/#how', 'How it works']];
   const ld = [org, ...schema].map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,10 +85,10 @@ page('/', {
 <h1>Your whole band in-ears, in one rack.</h1>
 <p class="lead">We design and build custom rack rigs for bands: personal in-ear mixes for every player, and mixing too if you want it. Racked, labeled and tested before it reaches your stage.</p>
 <div class="actions"><a class="btn btn-primary" href="#finder">Find my rig in 30 seconds ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
-<p class="small muted">Rigs from $5,000 · Or call <a href="tel:${TEL}">${PHONE}</a></p>
+<p class="small muted">Gear and build from $5,000 · Bands anywhere in the US · Or call <a href="tel:${TEL}">${PHONE}</a></p>
 </div>
 <figure class="hero-photo"><img src="/assets/photos/rig-0698.webp" alt="BandRigs rack in a Gator road case with a Behringer WING Rack mixer, two Shure PSM 300 in-ear transmitters and Furman power" width="1800" height="1350" fetchpriority="high">
-<figcaption class="label">Built for Illusion · WING Rack + PSM 300</figcaption></figure>
+<figcaption class="label">Real BandRigs build · WING Rack + PSM 300</figcaption></figure>
 </div></section>
 
 <section class="section finder-section" id="finder" aria-labelledby="finder-title"><div class="wrap finder-grid">
@@ -102,15 +102,15 @@ page('/', {
 </div></section>
 
 <section class="section" aria-labelledby="rigs-title"><div class="wrap">
-<div class="section-head split"><div><p class="label">Rigs &amp; pricing</p><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted">Final price depends on how many mixes you need, how much is wireless and what gear you keep.</p></div>
+<div class="section-head split"><div><p class="label">Rigs &amp; pricing</p><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted">Prices include the gear and the build. Final price depends on how many mixes you need, how much is wireless and what gear you keep.</p></div>
 <div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true">→</span></a>`; }).join('')}</div>
 </div></section>
 
 <section class="section work" aria-labelledby="work-title"><div class="wrap work-grid">
-<figure><img src="/assets/photos/rig-0707.webp" alt="Rear of the Illusion rack showing XLR and network connections, labeled" loading="lazy" width="1800" height="1350"><figcaption class="label">Rear panel · every connection labeled</figcaption></figure>
-<div><p class="label">Recent build</p><h2 id="work-title">Illusion: a Styx tribute’s mixing and in-ear rig.</h2>
+<figure><img src="/assets/photos/rig-0707.webp" alt="Rear of a BandRigs rack showing XLR and network connections, labeled" loading="lazy" width="1800" height="1350"><figcaption class="label">Rear panel · every connection labeled</figcaption></figure>
+<div><p class="label">Recent build</p><h2 id="work-title">A band’s mixing and in-ear rig in one road case.</h2>
 <p class="muted">A Behringer WING Rack mixer, an S16 stage box, a Midas DN4816-O output expander and Shure PSM 300 wireless in-ears, built into one Gator road case with Furman power.</p>
-<a class="quiet" href="/work/illusion/">See the build ${arrow}</a></div>
+<a class="quiet" href="/work/wing-rack-build/">See the build ${arrow}</a></div>
 </div></section>
 
 <section class="section" aria-labelledby="faq-title"><div class="wrap faq-grid">
@@ -129,7 +129,7 @@ page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
   description: 'Compare BandRigs packages: compact monitoring from $5,000, band in-ear monitoring from $7,500, complete live mixing rigs from $10,000, plus upgrades and custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
-  body: `<section class="page-head"><div class="wrap"><p class="label">Rigs &amp; pricing</p><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. These are the usual starting points and what they cost.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
+  body: `<section class="page-head"><div class="wrap"><p class="label">Rigs &amp; pricing</p><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, and we work with bands anywhere in the US.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
 <section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><p class="label">${p.for}</p><h2><a href="/systems/${k}/">${p.name}</a></h2><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section>${ctaBand()}`,
 });
 
@@ -153,17 +153,17 @@ ${ctaBand()}`,
 }
 
 // Case study
-page('/work/illusion/', {
-  title: 'Illusion (Styx Tribute) Live Mixing & In-Ear Rig Build | BandRigs',
-  description: 'How BandRigs built a WING Rack, S16, DN4816-O and Shure PSM 300 mixing and in-ear monitor rig in one road case for Styx tribute band Illusion.',
+page('/work/wing-rack-build/', {
+  title: 'WING Rack Live Mixing & In-Ear Monitor Rig Build | BandRigs',
+  description: 'How BandRigs built a WING Rack, S16, DN4816-O and Shure PSM 300 mixing and in-ear monitor rig in one road case.',
   image: '/assets/og.jpg',
-  schema: [crumbs([['Home', '/'], ['Our work', '/work/illusion/']])],
-  body: `<section class="page-head"><div class="wrap"><p class="label">Our work · 2025</p><h1>Illusion: mixing and in-ears in one case.</h1><p class="lead">A complete live rig for a Styx tribute band. The mixer, stage connections and wireless in-ears live in one road case, so setup is the same every night.</p></div></section>
+  schema: [crumbs([['Home', '/'], ['Our work', '/work/wing-rack-build/']])],
+  body: `<section class="page-head"><div class="wrap"><p class="label">Our work · 2025</p><h1>Mixing and in-ears in one road case.</h1><p class="lead">A complete live rig for a working band. The mixer, stage connections and wireless in-ears live in one road case, so setup is the same every night.</p></div></section>
 <section class="section tight"><div class="wrap gallery">
-<figure class="g-wide"><img src="/assets/photos/rig-0705.webp" alt="WING Rack touchscreen showing mixer faders inside the Illusion rack" width="1800" height="1350"><figcaption class="label">Behringer WING Rack: the mixer for the show and every in-ear mix</figcaption></figure>
-<figure><img src="/assets/photos/rig-0702.webp" alt="Illusion rack in a Gator case, seen from the front left" loading="lazy" width="1800" height="1350"><figcaption class="label">Gator road case with Furman power on top</figcaption></figure>
-<figure><img src="/assets/photos/rig-0708.webp" alt="Rear connection panel of the Illusion rack" loading="lazy" width="1800" height="1013"><figcaption class="label">Labeled rear panel for fast load-in</figcaption></figure>
-<figure class="g-wide"><img src="/assets/photos/rig-0716.webp" alt="Illusion rack powered on with WING Rack screen and PSM 300 transmitters lit" loading="lazy" width="1800" height="1350"><figcaption class="label">Powered up and tested before delivery</figcaption></figure>
+<figure class="g-wide"><img src="/assets/photos/rig-0705.webp" alt="WING Rack touchscreen showing mixer faders inside a BandRigs rack" width="1800" height="1350"><figcaption class="label">Behringer WING Rack: the mixer for the show and every in-ear mix</figcaption></figure>
+<figure><img src="/assets/photos/rig-0702.webp" alt="BandRigs rack in a Gator case, seen from the front left" loading="lazy" width="1800" height="1350"><figcaption class="label">Gator road case with Furman power on top</figcaption></figure>
+<figure><img src="/assets/photos/rig-0708.webp" alt="Rear connection panel of a BandRigs rack" loading="lazy" width="1800" height="1013"><figcaption class="label">Labeled rear panel for fast load-in</figcaption></figure>
+<figure class="g-wide"><img src="/assets/photos/rig-0716.webp" alt="BandRigs rack powered on with WING Rack screen and PSM 300 transmitters lit" loading="lazy" width="1800" height="1350"><figcaption class="label">Powered up and tested before delivery</figcaption></figure>
 </div></section>
 <section class="section tight"><div class="wrap two-col"><div><h2>What’s in the rack</h2>
 <dl class="specs">
