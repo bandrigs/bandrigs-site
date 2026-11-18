@@ -125,6 +125,7 @@ page('/', {
 <div class="why-body">
 <p>You got into music to play, not to spend an hour running cables and chasing feedback. Most bands sound great in rehearsal, then fight every room they walk into: a new stage, a new house engineer, monitor wedges that squeal, and a mix nobody on stage can really hear. Our custom in-ear monitor (IEM) and live mixing rigs let you spend more time in the music and less time setting up gear.</p>
 <p>Everything lives in one rolling rack, wired, labeled and tested before it ships. Your monitor mixes are saved on a digital mixer like the Behringer WING, the players who move get wireless in-ear monitors, and playback with click and cues runs from the same rack. Roll it in, plug in power and a couple of cables, and you are line checked and ready to play.</p>
+<p><strong class="hl">Why this gear?</strong> We build around Behringer, Midas and Shure because it is solid on the road, sounds great and gives working bands pro-level features at a price that fits a real budget. It is the gear we would put on our own stage, and it is easy to service and replace anywhere in the country.</p>
 <ul class="why-points">
 <li><h3>Faster setup</h3><p class="muted">The rack arrives prewired. Load-in drops from a pile of cables and stands to a few connections.</p></li>
 <li><h3>The same mix every night</h3><p class="muted">Your in-ear mixes are saved in the rig, so every show sounds like your best rehearsal.</p></li>
