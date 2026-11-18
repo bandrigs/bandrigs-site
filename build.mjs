@@ -79,17 +79,17 @@ page('/', {
   schema: [faqSchema, { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Custom live sound and in-ear monitor rack design and build', provider: { '@id': SITE + '/#org' },
     offers: order.filter(k => packages[k].price).map(k => ({ '@type': 'Offer', name: packages[k].name, url: `${SITE}/systems/${k}/`, priceSpecification: { '@type': 'PriceSpecification', minPrice: packages[k].amount, priceCurrency: 'USD' } })) }],
   body: `
-<section class="hero"><div class="wrap hero-grid">
-<div class="hero-copy">
-<p class="label">In-ear monitor &amp; live mixing rigs</p>
-<h1>Your whole band in-ears, in one rack.</h1>
-<p class="lead">We design and build custom rack rigs for bands: personal in-ear mixes for every player, and mixing too if you want it. Racked, labeled and tested before it reaches your stage.</p>
-<div class="actions"><a class="btn btn-primary" href="#finder">Find my rig in 30 seconds ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
-<p class="small muted">Gear and build from $5,000 · Bands anywhere in the US · Or call <a href="tel:${TEL}">${PHONE}</a></p>
-</div>
-<figure class="hero-photo"><img src="/assets/photos/rig-0698.webp" alt="BandRigs rack in a Gator road case with a Behringer WING Rack mixer, two Shure PSM 300 in-ear transmitters and Furman power" width="1800" height="1350" fetchpriority="high">
-<figcaption class="label">Real BandRigs build · WING Rack + PSM 300</figcaption></figure>
-</div></section>
+<section class="hero hero-stage">
+<picture class="hero-bg"><source media="(max-width:720px)" srcset="/assets/hero-rack-m.webp"><img src="/assets/hero-rack.webp" alt="BandRigs rack with a WING Rack mixer, Shure PSM 300 transmitters and stage boxes in a road case on a lit stage" width="1672" height="941" fetchpriority="high"></picture>
+<div class="wrap hero-inner"><div class="hero-copy">
+<p class="label hero-eyebrow"><span class="dot" aria-hidden="true"></span>Your next stage starts here</p>
+<h1>Your sound.<br>Your stage.<br>Your BandRig.</h1>
+<p class="lead">Custom in-ear monitor and live mixing rigs, built around how your band plays. Answer four quick questions to find your starting point.</p>
+<div class="actions"><a class="btn btn-primary" href="#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
+<p class="hero-tag"><strong>Less setup. More show.</strong><br><span class="muted">Gear and build from $5,000 · Bands anywhere in the US</span></p>
+</div></div>
+<p class="hero-note">BandRigs concept visualization</p>
+</section>
 
 <section class="section finder-section" id="finder" aria-labelledby="finder-title"><div class="wrap finder-grid">
 <div class="finder-intro"><p class="label">Rig finder</p><h2 id="finder-title">Which rig fits your band?</h2><p class="muted">Four taps, no sign-up. You’ll see a starting price and what we’d build.</p></div>

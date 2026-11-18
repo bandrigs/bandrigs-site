@@ -66,6 +66,7 @@ Radius: 4px for buttons, inputs and panels, 2px for tags. No shadows: depth come
 
 ## Imagery and icons
 
-- Real BandRigs build photos (`/assets/photos/rig-*.webp`), captioned with a mono label naming the gear.
+- Home header: the BandRigs concept render of a loaded rack on stage (`/assets/hero-rack.webp`), chosen by Ken, labeled "BandRigs concept visualization".
+- Everywhere else: real BandRigs build photos (`/assets/photos/rig-*.webp`), captioned with a mono label naming the gear.
 - Manufacturer product shots only on `--surface-2` backing, for "typical gear".
 - Icons: inline SVG, 1.5px stroke, currentColor, used only where they add meaning (phone, mail, socials, arrows).
