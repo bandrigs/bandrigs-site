@@ -59,7 +59,7 @@ ${socials('head-social')}
 <a href="https://www.youtube.com/channel/UCKjgT1H8lktykWGHgZ9NeRg" rel="noopener" target="_blank">YouTube</a><br>
 <a href="https://www.instagram.com/bandrigs/" rel="noopener" target="_blank">Instagram</a><br>
 <a href="https://www.tiktok.com/@bandrigschannel" rel="noopener" target="_blank">TikTok</a></p></div>
-</div><div class="wrap foot-base"><span>© 2026 BandRigs</span><span>Behringer, Midas, Shure and iConnectivity are trademarks of their owners. BandRigs is an independent builder.</span></div></footer>
+</div><div class="wrap foot-base"><span>© 2026 BandRigs · <a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a></span><span>Behringer, Midas, Shure and iConnectivity are trademarks of their owners. BandRigs is an independent builder.</span></div></footer>
 </body></html>`;
 }
 
@@ -236,6 +236,54 @@ page('/plan/', {
 });
 
 // 404
+const legal = (h1, updated, sections) => `<section class="page-head"><div class="wrap"><h1>${h1}</h1><p class="small muted">Last updated ${updated}</p></div></section>
+<section class="section tight"><div class="wrap legal">${sections.map(([h, body]) => `<h2>${h}</h2>${body}`).join('\n')}</div></section>`;
+const UPDATED = 'November 18, 2026';
+
+page('/terms/', {
+  title: 'Terms of Service | BandRigs',
+  description: 'BandRigs terms of service: quotes, payment schedule, gear, builds, shipping, warranty, cancellations and the service and support plan.',
+  schema: [crumbs([['Home', '/'], ['Terms of Service', '/terms/']])],
+  body: legal('Terms of Service', UPDATED, [
+    ['Who we are', `<p>BandRigs designs, builds and supports custom live mixing and in-ear monitor rigs for artists and bands in the United States. These terms apply to every quote, build, service and subscription we provide. By approving a quote or paying a deposit, you agree to them.</p>`],
+    ['Quotes and system design', `<p>Before anything is ordered, we send you a written design with an equipment list, signal flow and a fixed quote. Starting prices on this site are guides. Your final price depends on the number of mixes, how much is wireless and what gear you already own. A quote is valid for 14 days, because gear prices and stock change often.</p>`],
+    ['Payment schedule', `<table class="pay"><thead><tr><th>Service</th><th>To start</th><th>Before delivery</th></tr></thead><tbody>
+<tr><td>Rig build (gear and build included)</td><td>50% deposit when you approve the quote. We order gear only after it clears.</td><td>50% balance after the bench test, before the rig ships. We send photos or video of the finished rig first.</td></tr>
+<tr><td>Build with gear you buy yourself</td><td>50% of the estimated hours at $125/hr when you approve the plan.</td><td>Remaining hours, plus return shipping, before the rig ships back.</td></tr>
+<tr><td>Playback tracks in Ableton</td><td>50% when we start.</td><td>50% on delivery of the finished session.</td></tr>
+<tr><td>Service &amp; support plan</td><td colspan="2">$75 a month billed monthly, or $50 a month billed once a year in advance.</td></tr>
+</tbody></table>
+<p>Shipping, insurance and any sales tax are added to the final invoice. Invoices are due when issued. A rig ships only after it is paid in full.</p>`],
+    ['Gear you supply', `<p>If you buy your own gear, have it drop shipped to us. You are responsible for buying the right items on the equipment list and for any manufacturer warranty claims. We inspect everything when it arrives and tell you right away if something is damaged, missing or wrong. Extra time caused by wrong or faulty parts is billed at $125/hr.</p>`],
+    ['Changes to a build', `<p>If you change the design after gear is ordered, we send an updated quote. Extra gear and time are added to your balance. Items already opened or configured may not be returnable.</p>`],
+    ['Cancellations and refunds', `<p>If you cancel before we order gear, we refund your deposit in full. After gear is ordered, we refund your deposit minus any supplier restocking fees, return shipping and build time already completed. Custom parts, such as a backlit name panel, are not refundable once made. The monthly support plan can be cancelled at any time and stops at the end of the paid month. The annual plan is not refundable, and your support continues to the end of the year you paid for.</p>`],
+    ['Shipping and delivery', `<p>Finished rigs ship insured to the address you give us. Check the rig when it arrives and tell us within 3 days about any shipping damage, so we can file a claim with the carrier. Delivery dates are estimates, because they depend on gear availability and carriers.</p>`],
+    ['Warranty', `<p>All gear carries the manufacturer’s own warranty, and we help you use it. We stand behind our workmanship, including wiring, connectors, labeling and configuration, for 90 days after delivery. If something we built fails in that time, we fix it at no charge for labor. This does not cover damage from drops, liquids, misuse, unapproved changes or normal wear.</p>`],
+    ['Service & support plan', `<p>The plan covers remote help with your rig, firmware updates and mix or scene changes, during normal business hours. It does not cover replacement gear, in-person visits or shipping, which we quote separately.</p>`],
+    ['Your responsibilities', `<p>You are responsible for safe use of the rig, for setting safe in-ear listening levels and for following venue power and safety rules. In-ear monitors can be very loud, so protect your hearing.</p>`],
+    ['Limitation of liability', `<p>To the extent the law allows, our total liability for any claim is limited to the amount you paid us for the build or service involved. We are not liable for lost bookings, lost income or other indirect losses, for example if gear fails during a show.</p>`],
+    ['Trademarks', `<p>Behringer, Midas, Shure, iConnectivity, Apple, Ableton and Gator are trademarks of their owners. BandRigs is an independent builder and is not affiliated with them.</p>`],
+    ['Changes and contact', `<p>We may update these terms. The version in place when you approve a quote applies to that order. Questions? Email <a href="mailto:${EMAIL}">${EMAIL}</a> or call <a href="tel:${TEL}">${PHONE}</a>.</p>`],
+  ]),
+});
+
+page('/privacy/', {
+  title: 'Privacy Policy | BandRigs',
+  description: 'How BandRigs collects, uses and protects the details you send through the rig finder, the plan my rig form, email and phone.',
+  schema: [crumbs([['Home', '/'], ['Privacy Policy', '/privacy/']])],
+  body: legal('Privacy Policy', UPDATED, [
+    ['The short version', `<p>We collect only what you send us so we can reply and plan your rig. We do not sell your information, we do not use advertising trackers on this site, and there is no newsletter.</p>`],
+    ['What we collect', `<ul><li><strong>Details you send us:</strong> your name, email, phone, band or act name, band size, timing, the rig you’re interested in, the gear you own and any message, through the Plan my rig form, email or phone.</li><li><strong>Rig finder answers:</strong> your answers are kept in your own browser for the current visit so the form can include them. They are only sent to us if you submit the form.</li><li><strong>Basic technical data:</strong> like any website, our host receives your IP address and browser details when pages load, for security and to keep the site running.</li></ul>`],
+    ['How we use it', `<p>We use your details to reply to you, plan and quote your rig, deliver and support it, send invoices and keep business records. We contact you only about your inquiry or order.</p>`],
+    ['Who we share it with', `<p>We use a small number of service providers to run the business. Each handles your data only to provide its service to us:</p><ul><li><strong>Zoho Bigin</strong> stores form submissions and customer records.</li><li><strong>Google Workspace</strong> handles our email.</li><li><strong>Cloudflare</strong> hosts this website.</li><li><strong>Google Fonts</strong> serves the site’s fonts, so Google receives your IP address when pages load.</li><li><strong>Shipping carriers</strong> receive your name, address and phone to deliver your rig.</li></ul><p>We may also share information if the law requires it.</p>`],
+    ['Cookies', `<p>This site does not use advertising or analytics cookies. The rig finder uses your browser’s session storage, which clears when you close the tab.</p>`],
+    ['How long we keep it', `<p>We keep inquiry details for as long as they are useful to follow up, and customer and order records for as long as tax and business rules require.</p>`],
+    ['Your choices', `<p>You can ask us to show you, correct or delete the personal information we hold about you. Email <a href="mailto:${EMAIL}">${EMAIL}</a> and we will reply within 30 days. Depending on where you live, such as California, you may have additional rights under state law, and we honor them.</p>`],
+    ['Security and children', `<p>We use reputable providers and limit access to your details. No method is perfect, but we take reasonable steps to protect your information. This site is not meant for children under 13, and we do not knowingly collect their information.</p>`],
+    ['Changes and contact', `<p>If we change this policy, we will update the date at the top. Questions? Email <a href="mailto:${EMAIL}">${EMAIL}</a> or call <a href="tel:${TEL}">${PHONE}</a>.</p>`],
+  ]),
+});
+
 pages.push({ path: '/404.html', html: layout({ path: '/404.html', title: 'Page not found | BandRigs', description: 'This page doesn’t exist.', body: `<section class="page-head"><div class="wrap"><p class="label">404</p><h1>That page isn’t here.</h1><p class="lead">Try the rig finder or see our rigs and pricing.</p><div class="actions"><a class="btn btn-primary" href="/#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">Rigs &amp; pricing</a></div></div></section>` }) });
 
 for (const { path, html } of pages) {

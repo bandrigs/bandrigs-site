@@ -255,3 +255,7 @@ h1{margin-bottom:var(--s5)}
 .why-lead{margin-bottom:var(--s5)}
 .why-cred{max-width:44ch;margin-bottom:var(--s5)}
 .extras{margin-top:var(--s5);max-width:52ch}
+.legal>*{max-width:760px}.legal h2{font-size:var(--fs-h3);margin:var(--s7) 0 var(--s3)}.legal h2:first-child{margin-top:0}.legal p,.legal li{color:var(--muted)}.legal strong{color:var(--text)}.legal ul{padding-left:1.2em}.legal li{margin-bottom:var(--s2)}
+.pay{width:100%;border-collapse:collapse;margin:0 0 var(--s4);font-size:var(--fs-small)}.pay th,.pay td{text-align:left;vertical-align:top;padding:var(--s3);border-bottom:1px solid var(--line)}.pay th{font:500 var(--fs-label) var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--signal);border-bottom-color:var(--line-strong)}.pay td{color:var(--muted)}.pay td:first-child{color:var(--text);font-weight:500}
+@media (max-width:720px){.pay thead{display:none}.pay tr{display:block;border-bottom:1px solid var(--line-strong);padding:var(--s3) 0}.pay td{display:block;border:0;padding:var(--s1) 0}}
+.foot-base a{color:inherit}
