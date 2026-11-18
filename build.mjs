@@ -47,7 +47,7 @@ function layout({ path, title, description, body, schema = [], image = '/assets/
 <a class="logo" href="/" aria-label="BandRigs home"><svg class="logo-mark" viewBox="0 0 100 100" width="34" height="34" aria-hidden="true"><g fill="#8ec5ff"><rect x="6" y="12" width="88" height="20" rx="2"/><g fill="#0d0e10"><circle cx="11" cy="22" r="2.2"/><circle cx="89" cy="22" r="2.2"/><rect x="17" y="21.25" width="66" height="1.5" opacity=".35"/></g><rect x="6" y="40" width="88" height="20" rx="2"/><g fill="#0d0e10"><circle cx="11" cy="50" r="2.2"/><circle cx="89" cy="50" r="2.2"/><rect x="17" y="49.25" width="66" height="1.5" opacity=".35"/></g><rect x="6" y="68" width="88" height="20" rx="2"/><g fill="#0d0e10"><circle cx="11" cy="78" r="2.2"/><circle cx="89" cy="78" r="2.2"/><rect x="17" y="77.25" width="66" height="1.5" opacity=".35"/></g></g></svg><span class="logo-text">Band<span>Rigs</span></span></a>
 ${socials('head-social')}
 <nav class="nav" id="nav" aria-label="Main">${nav.map(([h, t]) => `<a href="${h}"${path === h ? ' aria-current="page"' : ''}>${t}</a>`).join('')}${socials('nav-social')}</nav>
-<a class="btn btn-primary btn-sm head-cta" href="/plan/">Plan my rig</a>
+<a class="btn btn-primary btn-sm head-cta" href="/#finder">Plan my rig</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
 </div></header>
 <main id="main">${body}</main>
@@ -175,7 +175,7 @@ ${ctaBand()}`,
 });
 
 function ctaBand() {
-  return `<section class="cta-band"><div class="wrap cta-row"><div><h2>Ready to plan your rig?</h2><p class="muted">Tell us about your band. We reply within one business day.</p></div><div class="actions"><a class="btn btn-primary" href="/plan/">Plan my rig ${arrow}</a><a class="btn btn-secondary" href="tel:${TEL}">Call ${PHONE}</a></div></div></section>`;
+  return `<section class="cta-band"><div class="wrap cta-row"><div><h2>Ready to plan your rig?</h2><p class="muted">Tell us about your band. We reply within one business day.</p></div><div class="actions"><a class="btn btn-primary" href="/#finder">Plan my rig ${arrow}</a><a class="btn btn-secondary" href="tel:${TEL}">Call ${PHONE}</a></div></div></section>`;
 }
 
 // Systems overview
