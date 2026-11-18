@@ -121,9 +121,9 @@ page('/', {
 </section>
 
 <section class="section why" id="why" aria-labelledby="why-title"><div class="wrap why-grid">
-<div><h2 id="why-title">Why BandRigs exists</h2><p class="muted">For solo artists, duos, tribute and cover bands, worship teams and touring acts anywhere in the US.</p></div>
+<div><h2 id="why-title">Why BandRigs exists</h2><p class="lead why-lead">BandRigs builds complete sound and in-ear systems for working bands that want a consistent show without becoming audio engineers.</p><p class="muted">For solo artists, duos, tribute and cover bands, worship teams and touring acts anywhere in the US.</p></div>
 <div class="why-body">
-<p>You got into music to play, not to spend an hour running cables and chasing feedback. Most bands sound great in rehearsal, then fight every room they walk into: a new stage, a new house engineer, monitor wedges that squeal, and a mix nobody on stage can really hear. BandRigs builds custom in-ear monitor (IEM) and live mixing rigs so you spend more time in the music and less time setting up gear.</p>
+<p>You got into music to play, not to spend an hour running cables and chasing feedback. Most bands sound great in rehearsal, then fight every room they walk into: a new stage, a new house engineer, monitor wedges that squeal, and a mix nobody on stage can really hear. Our custom in-ear monitor (IEM) and live mixing rigs let you spend more time in the music and less time setting up gear.</p>
 <p>Everything lives in one rolling rack, wired, labeled and tested before it ships. Your monitor mixes are saved on a digital mixer like the Behringer WING, the players who move get wireless in-ear monitors, and playback with click and cues runs from the same rack. Roll it in, plug in power and a couple of cables, and you are line checked and ready to play.</p>
 <ul class="why-points">
 <li><h3>Faster setup</h3><p class="muted">The rack arrives prewired. Load-in drops from a pile of cables and stands to a few connections.</p></li>
