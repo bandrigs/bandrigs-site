@@ -217,7 +217,8 @@ page('/plan/', {
   schema: [crumbs([['Home', '/'], ['Plan my rig', '/plan/']])],
   body: `<section class="page-head"><div class="wrap plan-grid"><div class="plan-intro"><h1>Tell us about your band.</h1><p class="lead">Two minutes now saves a lot of back-and-forth.<br>We reply within one business day.</p>
 <dl class="specs compact"><div><dt>Phone</dt><dd><a href="tel:${TEL}">${PHONE}</a></dd></div><div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div></dl>
-<div class="finder-summary" data-summary hidden></div></div>
+<div class="finder-summary" data-summary hidden></div>
+<p class="change-rig"><a href="/#finder-restart">Need to change your rig selection?</a></p></div>
 <form class="form" id="plan-form" novalidate>
 <div class="form-grid">
 <label class="field"><span>Your name <i aria-hidden="true">*</i></span><input name="name" autocomplete="name" required aria-required="true"></label>

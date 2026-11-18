@@ -265,3 +265,6 @@ h1{margin-bottom:var(--s5)}
 .consent{display:flex;gap:12px;align-items:flex-start;font-size:var(--fs-small);line-height:1.5;color:var(--muted);cursor:pointer}
 .consent input{flex:none;width:20px;height:20px;margin-top:2px;accent-color:var(--primary)}
 .consent a{color:inherit;text-decoration:underline}
+.change-rig{margin:var(--s5) 0 0;font-size:var(--fs-small)}
+.change-rig a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+.change-rig a:hover{color:var(--primary-hover)}
