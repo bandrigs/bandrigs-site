@@ -135,7 +135,7 @@ function ctaBand() {
 // Systems overview
 page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
-  description: 'Compare BandRigs packages: solo artist rigs from $5,000, band in-ear monitoring from $7,500, complete live mixing rigs from $10,000, plus upgrades and custom builds.',
+  description: 'Compare BandRigs packages: solo and duo rigs from $5,000, band in-ear monitoring from $7,500, complete live mixing rigs from $10,000, plus upgrades and custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
   body: `<section class="page-head"><div class="wrap"><p class="label">Rigs &amp; pricing</p><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, and we work with artists and bands anywhere in the US.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
 <section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><p class="label">${p.for}</p><h2><a href="/systems/${k}/">${p.name}</a></h2><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section>${ctaBand()}`,

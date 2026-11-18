@@ -3,19 +3,19 @@ export const order = ['compact', 'band', 'complete', 'upgrade', 'custom'];
 
 export const packages = {
   compact: {
-    name: 'Solo artist rig', for: 'Solo artists', price: '$5,000', amount: 5000,
+    name: 'Solo artist rig', for: 'Solo performers and duos', price: '$5,000', amount: 5000,
     headline: 'Your whole show in one small rack.',
-    summary: 'Built for one performer. Mix your vocals, instruments and backing tracks from the stage, hear your own in-ear mix, and set the whole rig up by yourself.',
-    meta: 'Solo artist rig from $5,000: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rack, built by BandRigs.',
+    summary: 'Built for a solo performer or duo. Mix your vocals, instruments and backing tracks from the stage, hear your own in-ear mix, and set up the whole rig without a crew. Duos add a second PSM 300.',
+    meta: 'Solo and duo rig from $5,000: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rolling rack, built by BandRigs for solo performers and duos.',
     includes: ['Planning call and a written system design', 'Your mixer, stage box and wireless in-ears racked together', 'Wi-Fi router so you can mix from a tablet or phone', 'Wired, labeled and tested, with saved starting mixes', 'One-page setup guide'],
-    fit: ['You perform solo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up alone in minutes', 'You need an A/B splitter snake option for FOH'],
+    fit: ['You perform solo or as a duo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up without a crew in minutes', 'You need an A/B splitter snake option for FOH'],
     rig: ['furman', 'wing', 'router', 'psm300', 'dl8'],
     upgrades: ['playaudio', 'flightcase', 'macmini', 'namepanel'],
     photos: { front: ['solo-rig-front.webp', 1254, 1254], angle: ['solo-rig-angle.webp', 1536, 1024] },
     gear: ['wing', 'psm300'],
   },
   band: {
-    name: 'Band monitoring', for: 'Duos and bands up to 8', price: '$7,500', amount: 7500,
+    name: 'Band monitoring', for: 'Bands of 3 to 8', price: '$7,500', amount: 7500,
     headline: 'Every player gets their own mix.',
     summary: 'One rack that gives each performer their own in-ear mix, wired or wireless, from rehearsal to show.',
     meta: 'In-ear monitor rigs for bands, from $7,500. A personal mix for every player, wired or wireless, built by BandRigs.',
@@ -74,8 +74,8 @@ export const gear = {
 // Rig finder: answers -> package key
 export function recommend(a) {
   if (a.goal === 'upgrade') return 'upgrade';
-  if (a.who === 'solo') return 'compact'; // Ken's solo rig already includes the mixer
+  if (a.who === 'solo' || a.who === 'duo') return 'compact'; // the solo/duo rig already includes the mixer
   if (a.people > 16 || a.who === 'production') return 'custom';
   if (a.goal === 'everything') return 'complete';
-  return a.people <= 1 ? 'compact' : 'band';
+  return a.people <= 2 ? 'compact' : 'band';
 }
