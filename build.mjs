@@ -18,7 +18,7 @@ const org = {
 
 function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true }) {
   const url = SITE + path;
-  const nav = [['/systems/', 'Rigs & pricing'], ['/work/wing-rack-build/', 'Our work'], ['/#how', 'How it works']];
+  const nav = [['/systems/', 'Rigs & pricing'], ['/#how', 'How it works']];
   const ld = [org, ...schema].map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -107,10 +107,10 @@ page('/', {
 </div></section>
 
 <section class="section work" aria-labelledby="work-title"><div class="wrap work-grid">
-<figure><img src="/assets/photos/rig-0707.webp" alt="Rear of a BandRigs rack showing XLR and network connections, labeled" loading="lazy" width="1800" height="1350"><figcaption class="label">Rear panel · every connection labeled</figcaption></figure>
-<div><p class="label">Recent build</p><h2 id="work-title">A band’s mixing and in-ear rig in one road case.</h2>
-<p class="muted">A Behringer WING Rack mixer, an S16 stage box, a Midas DN4816-O output expander and Shure PSM 300 wireless in-ears, built into one Gator road case with Furman power.</p>
-<a class="quiet" href="/work/wing-rack-build/">See the build ${arrow}</a></div>
+<figure class="gear-img work-gear"><img src="/assets/wing-front.webp" alt="Behringer WING Rack digital mixer" loading="lazy" width="1100" height="498"></figure>
+<div><p class="label">How we build</p><h2 id="work-title">Mixing and in-ears in one road case.</h2>
+<ul class="ticks"><li>Mixer, stage box and in-ear transmitters racked together</li><li>Every cable and connection labeled for fast load-in</li><li>Mixes, scenes and wireless frequencies set up before delivery</li><li>Tested as one system, with a setup guide for the band</li></ul>
+<a class="quiet" href="/systems/complete/">See the Complete live rig ${arrow}</a></div>
 </div></section>
 
 <section class="section" aria-labelledby="faq-title"><div class="wrap faq-grid">
@@ -144,41 +144,13 @@ for (const k of order) {
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/systems/">Rigs &amp; pricing</a> / <span>${p.name}</span></nav>
 <p class="label">${p.for}</p><h1>${p.headline}</h1><p class="lead">${p.summary}</p>${priceLine(p)}
 <div class="actions"><a class="btn btn-primary" href="/plan/?system=${k}">Plan this rig ${arrow}</a><a class="btn btn-secondary" href="tel:${TEL}">Call ${PHONE}</a></div></div>
-<figure class="pkg-photo"><img src="/assets/photos/${p.photo}" alt="${esc(p.photoAlt)}" width="1800" height="1350"><figcaption class="label">Real BandRigs build</figcaption></figure></div></section>
+<figure class="pkg-photo"><div class="gear-img"><img src="/assets/${gear[p.gear[0]].image}" alt="${esc(gear[p.gear[0]].name)}" width="1100" height="${gear[p.gear[0]].h}"></div><figcaption class="label">Typical gear · ${gear[p.gear[0]].name}</figcaption></figure></div></section>
 <section class="section tight"><div class="wrap two-col"><div><h2>What’s included</h2><ul class="ticks">${p.includes.map(i => `<li>${i}</li>`).join('')}</ul></div>
 <div><h2>A good fit if…</h2><ul class="ticks">${p.fit.map(i => `<li>${i}</li>`).join('')}</ul></div></div></section>
 <section class="section tight"><div class="wrap"><div class="section-head"><h2>Gear we often start with</h2><p class="muted">Examples, not a fixed list. Your mix count, inputs and existing gear decide the final setup.</p></div>${gearRow(p.gear)}</div></section>
 ${ctaBand()}`,
   });
 }
-
-// Case study
-page('/work/wing-rack-build/', {
-  title: 'WING Rack Live Mixing & In-Ear Monitor Rig Build | BandRigs',
-  description: 'How BandRigs built a WING Rack, S16, DN4816-O and Shure PSM 300 mixing and in-ear monitor rig in one road case.',
-  image: '/assets/og.jpg',
-  schema: [crumbs([['Home', '/'], ['Our work', '/work/wing-rack-build/']])],
-  body: `<section class="page-head"><div class="wrap"><p class="label">Our work · 2025</p><h1>Mixing and in-ears in one road case.</h1><p class="lead">A complete live rig for a working band. The mixer, stage connections and wireless in-ears live in one road case, so setup is the same every night.</p></div></section>
-<section class="section tight"><div class="wrap gallery">
-<figure class="g-wide"><img src="/assets/photos/rig-0705.webp" alt="WING Rack touchscreen showing mixer faders inside a BandRigs rack" width="1800" height="1350"><figcaption class="label">Behringer WING Rack: the mixer for the show and every in-ear mix</figcaption></figure>
-<figure><img src="/assets/photos/rig-0702.webp" alt="BandRigs rack in a Gator case, seen from the front left" loading="lazy" width="1800" height="1350"><figcaption class="label">Gator road case with Furman power on top</figcaption></figure>
-<figure><img src="/assets/photos/rig-0708.webp" alt="Rear connection panel of a BandRigs rack" loading="lazy" width="1800" height="1013"><figcaption class="label">Labeled rear panel for fast load-in</figcaption></figure>
-<figure class="g-wide"><img src="/assets/photos/rig-0716.webp" alt="BandRigs rack powered on with WING Rack screen and PSM 300 transmitters lit" loading="lazy" width="1800" height="1350"><figcaption class="label">Powered up and tested before delivery</figcaption></figure>
-</div></section>
-<section class="section tight"><div class="wrap two-col"><div><h2>What’s in the rack</h2>
-<dl class="specs">
-<div><dt>Mixer</dt><dd>Behringer WING Rack</dd></div>
-<div><dt>Stage box</dt><dd>Behringer S16 (AES50)</dd></div>
-<div><dt>In-ear outputs</dt><dd>Midas DN4816-O</dd></div>
-<div><dt>Wireless in-ears</dt><dd>Shure PSM 300</dd></div>
-<div><dt>Power</dt><dd>Furman rack power</dd></div>
-<div><dt>Case</dt><dd>Gator rack case</dd></div>
-</dl></div>
-<div><h2>How it comes together</h2><p class="muted">The WING Rack runs the front-of-house mix and every performer’s in-ear mix. The S16 sits on stage and carries the band’s inputs over a single network cable. The DN4816-O adds analog outputs for wired in-ear packs, and the PSM 300 transmitters send wireless mixes to the players who move around.</p>
-<p class="muted">Everything was racked, labeled and tested together before delivery, along with a setup guide.</p>
-<a class="btn btn-primary" href="/systems/complete/">See the Complete live rig ${arrow}</a></div></div></section>
-${ctaBand()}`,
-});
 
 // Plan page (form markup is static; app.js sends it to Bigin)
 const sizeOpts = ['Solo artist', 'Duo', '3–4 piece', '5–6 piece', '7 or more', 'Church or production team'];

@@ -1,9 +1,9 @@
 # BandRigs design system
 
 Direction: **a labeled road rack, not a tech startup.** Dark graphite like a rack case, warm off-white text,
-one brand blue for actions, and monospace "rack label" text for specs and prices. Real photos of real builds
-do the selling. Layouts are left-aligned and asymmetric, with hairline rules instead of floating cards.
-(This direction was chosen from the existing brand and the real build photos. It wasn't compared against a
+one brand blue for actions, and monospace "rack label" text for specs and prices. Manufacturer gear shots on dark backing
+show what goes in the rack. Layouts are left-aligned and asymmetric, with hairline rules instead of floating cards.
+(This direction was chosen from the existing brand. It wasn't compared against a
 library of reference sites.)
 
 Avoid: AI concept renders, gradient text, glass panels, three identical feature cards, emoji, centered-everything
@@ -60,13 +60,13 @@ Radius: 4px for buttons, inputs and panels, 2px for tags. No shadows: depth come
 - **Quiet link**: `--primary` text with →, underline on hover.
 - **Option tile (finder)**: full-width row, 1px `--line-strong`, 56px min height, title + one-line hint; selected = `--primary` border plus `--surface-2`.
 - **Input**: `--surface` fill, 1px `--line-strong`, 48px; label above in 15px 500; error text in `--error` below.
-- **Spec row**: mono label left (`--muted`), value right, hairline between rows. Used for packages and the case study.
+- **Spec row**: mono label left (`--muted`), value right, hairline between rows. Used for packages.
 - **Nav**: logo left, 3 links + "Plan my rig" primary button right. On phones: logo + "Plan my rig" button + menu toggle.
 - **Footer**: contact, socials, small links, all on `--bg` above a hairline.
 
 ## Imagery and icons
 
 - Home header: the BandRigs concept render of a loaded rack on stage (`/assets/hero-rack.webp`), chosen by Ken, labeled "BandRigs concept visualization".
-- Everywhere else: real BandRigs build photos (`/assets/photos/rig-*.webp`), captioned with a mono label naming the gear.
+- Everywhere else: manufacturer product shots on `--surface-2` backing, captioned with a mono label naming the gear. Do not use the rack photos in Dropbox Bandrigs/Images (IMG_07xx): Ken confirmed they are not BandRigs builds. Add real build photos only when Ken supplies them.
 - Manufacturer product shots only on `--surface-2` backing, for "typical gear".
 - Icons: inline SVG, 1.5px stroke, currentColor, used only where they add meaning (phone, mail, socials, arrows).

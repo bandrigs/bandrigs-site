@@ -200,3 +200,6 @@ figcaption.label{margin-top:var(--s3)}
 .rig-go .tri{width:11px;height:13px}
 .logo{display:inline-flex;align-items:center;gap:10px}.logo-mark{flex:none;display:block}
 .logo .logo-text{color:var(--text)}.logo .logo-text span{color:var(--primary)}
+
+.pkg-photo .gear-img{aspect-ratio:16/10;padding:var(--s6);margin:0 0 var(--s2)}.work-gear{aspect-ratio:16/10;padding:var(--s6);margin:0}.work-gear img{border:0;border-radius:0;width:auto}
+.pkg-photo .gear-img img,.work-gear img{border:0;border-radius:0;width:auto;max-width:100%;max-height:100%;object-fit:contain}
