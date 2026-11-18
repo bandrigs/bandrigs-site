@@ -103,7 +103,7 @@ page('/', {
 <section class="hero hero-stage">
 <picture class="hero-bg"><source media="(max-width:720px)" srcset="/assets/hero-rack-m.webp"><img src="/assets/hero-rack.webp" alt="BandRigs rack with a WING Rack mixer, Shure PSM 300 transmitters and stage boxes in a road case on a lit stage" width="1672" height="941" fetchpriority="high"></picture>
 <div class="wrap hero-inner"><div class="hero-copy">
-<p class="label hero-eyebrow">Your next stage starts here</p>
+
 <h1>Your sound.<br>Your stage.<br>Your BandRig.</h1>
 <p class="lead">Custom in-ear monitor and live mixing rigs, built around how your band plays. Answer four quick questions to find your starting point.</p>
 <div class="actions"><a class="btn btn-primary" href="#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
@@ -113,29 +113,29 @@ page('/', {
 </section>
 
 <section class="section finder-section" id="finder" aria-labelledby="finder-title"><div class="wrap finder-grid">
-<div class="finder-intro"><p class="label">Rig finder</p><h2 id="finder-title">Which rig fits your band?</h2><p class="muted">Four taps, no sign-up. You’ll see a starting price and what we’d build.</p></div>
+<div class="finder-intro"><h2 id="finder-title">Which rig fits your band?</h2><p class="muted">Four taps, no sign-up. You’ll see a starting price and what we’d build.</p></div>
 <div class="finder" data-finder><noscript><p>The rig finder needs JavaScript. You can still <a href="/plan/">send us your details</a> or call <a href="tel:${TEL}">${PHONE}</a>.</p></noscript></div>
 </div></section>
 
 <section class="section" id="how" aria-labelledby="how-title"><div class="wrap">
-<div class="section-head"><p class="label">How it works</p><h2 id="how-title">From first call to first show.</h2></div>
+<div class="section-head"><h2 id="how-title">From first call to first show.</h2></div>
 <ol class="steps">${steps.map(([t, d], i) => `<li><span class="step-n">0${i + 1}</span><h3>${t}</h3><p class="muted">${d}</p></li>`).join('')}</ol>
 </div></section>
 
 <section class="section" aria-labelledby="rigs-title"><div class="wrap">
-<div class="section-head split"><div><p class="label">Rigs &amp; pricing</p><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted">Prices include the gear and the build. Final price depends on how many mixes you need, how much is wireless and what gear you keep.</p></div>
+<div class="section-head split"><div><h2 id="rigs-title">Start with a size. We tailor the rest.</h2></div><p class="muted">Prices include the gear and the build. Final price depends on how many mixes you need, how much is wireless and what gear you keep.</p></div>
 <div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a>`; }).join('')}</div>
 </div></section>
 
 <section class="section work" aria-labelledby="work-title"><div class="wrap work-grid">
 <figure class="gear-img work-gear"><img src="/assets/wing-front.webp" alt="Behringer WING Rack digital mixer" loading="lazy" width="1100" height="498"></figure>
-<div><p class="label">How we build</p><h2 id="work-title">Mixing and in-ears in one road case.</h2>
+<div><h2 id="work-title">Mixing and in-ears in one road case.</h2>
 <ul class="ticks"><li>Mixer, stage box and in-ear transmitters racked together</li><li>Every cable and connection labeled for fast load-in</li><li>Mixes, scenes and wireless frequencies set up before delivery</li><li>Tested as one system, with a setup guide for the band</li></ul>
 <a class="quiet" href="/systems/complete/">See the Complete live rig ${arrow}</a></div>
 </div></section>
 
 <section class="section" aria-labelledby="faq-title"><div class="wrap faq-grid">
-<div><p class="label">Questions</p><h2 id="faq-title">Good to know</h2></div>
+<div><h2 id="faq-title">Good to know</h2></div>
 <div class="faq">${faqs.map(([q, a]) => `<details><summary>${q}</summary><p class="muted">${a}</p></details>`).join('')}</div>
 </div></section>
 ${ctaBand()}`,
@@ -150,7 +150,7 @@ page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
   description: 'Compare BandRigs packages: solo and duo rigs from $5,000, band in-ear monitoring from $7,500, complete live mixing rigs from $10,000, plus upgrades and custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
-  body: `<section class="page-head"><div class="wrap"><p class="label">Rigs &amp; pricing</p><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, and we work with artists and bands anywhere in the US.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
+  body: `<section class="page-head"><div class="wrap"><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build, and we work with artists and bands anywhere in the US.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
 <section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><p class="label">${p.for}</p><h2><a href="/systems/${k}/">${p.name}</a></h2><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section>${ctaBand()}`,
 });
 
@@ -182,7 +182,7 @@ page('/plan/', {
   title: 'Plan Your Rig: Free Consultation | BandRigs',
   description: 'Tell BandRigs about your band, your shows and your current gear. We reply within one business day with next steps for your in-ear or live mixing rig.',
   schema: [crumbs([['Home', '/'], ['Plan my rig', '/plan/']])],
-  body: `<section class="page-head"><div class="wrap plan-grid"><div class="plan-intro"><p class="label">Plan my rig</p><h1>Tell us about your band.</h1><p class="lead">Two minutes now saves a lot of back-and-forth.<br>We reply within one business day.</p>
+  body: `<section class="page-head"><div class="wrap plan-grid"><div class="plan-intro"><h1>Tell us about your band.</h1><p class="lead">Two minutes now saves a lot of back-and-forth.<br>We reply within one business day.</p>
 <dl class="specs compact"><div><dt>Phone</dt><dd><a href="tel:${TEL}">${PHONE}</a></dd></div><div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div></dl>
 <div class="finder-summary" data-summary hidden></div></div>
 <form class="form" id="plan-form" novalidate>
