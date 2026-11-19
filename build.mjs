@@ -217,7 +217,7 @@ page('/plan/', {
   title: 'Plan Your Rig: Free Consultation | BandRigs',
   description: 'Tell BandRigs about your band, your shows and your current gear. We reply within one business day with next steps for your in-ear or live mixing rig.',
   schema: [crumbs([['Home', '/'], ['Plan my rig', '/plan/']])],
-  body: `<section class="page-head"><div class="wrap plan-grid"><div class="plan-intro"><h1>Tell us about your band.</h1><p class="lead">Two minutes now saves a lot of back-and-forth.<br>We reply within one business day.</p>
+  body: `<section class="page-head plan-head"><div class="wrap plan-grid"><div class="plan-intro"><h1>Tell us about your band.</h1><p class="lead">Two minutes now saves a lot of back-and-forth.<br>We reply within one business day.</p>
 <dl class="specs compact"><div><dt>Phone</dt><dd><a href="tel:${TEL}">${PHONE}</a></dd></div><div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div></dl>
 <div class="finder-summary" data-summary hidden></div>
 <p class="change-rig"><a href="/#finder-restart">Need to change your rig selection?</a></p></div>
@@ -231,8 +231,10 @@ page('/plan/', {
 <label class="field"><span>When do you need it?</span><select name="timing"><option value="">Choose one</option>${timingOpts.map(o => `<option>${o}</option>`).join('')}</select></label>
 </div>
 <label class="field"><span>Which rig are you interested in?</span><select name="system"><option value="">Not sure yet</option>${order.map(k => `<option value="${k}">${esc(fullName(packages[k]))}</option>`).join('')}</select></label>
-<label class="field"><span>Gear you already have</span><textarea name="gear" rows="3" placeholder="Mixer, in-ear systems, stage boxes, anything you want to keep"></textarea></label>
-<label class="field"><span>Anything else?</span><textarea name="message" rows="3" placeholder="Typical venues, what you want to fix, budget range"></textarea></label>
+<div class="form-grid">
+<label class="field"><span>Gear you already have</span><textarea name="gear" rows="2" placeholder="Mixer, in-ear systems, stage boxes, anything you want to keep"></textarea></label>
+<label class="field"><span>Anything else?</span><textarea name="message" rows="2" placeholder="Typical venues, what you want to fix, budget range"></textarea></label>
+</div>
 <label class="consent"><input type="checkbox" name="sms" value="yes"><span>Yes, BandRigs may text me about my inquiry, quote, build and support at the phone number above. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is optional and not required to buy. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</span></label>
 <p class="error" id="plan-error" role="alert" hidden></p>
 <button class="btn btn-primary" type="submit">Send my details ${arrow}</button>
