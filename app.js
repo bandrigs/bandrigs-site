@@ -98,7 +98,9 @@ ${key === 'band' && a.goal === 'everything' ? `<p class="small muted">Running th
 // ---------- Plan form -> Zoho CRM (Leads web form "Website rig request New Leads", New Leads layout, Bandrigs org) ----------
 const ZOHO = { url: 'https://crm.zoho.com/crm/WebToLeadForm', xnQsjsdp: '27ac35d4d71f9167139a62cc6d370568da70f4bca038f34a4c7b46827978c614', xmIwtLD: '49506ba7941b4785d73e2a7f13d6da2157ab5a9e4e2c1fec636f5077b3d1c1b5c8572fdbff4c61a4816b5f5b753a7aa7', actionType: 'TGVhZHM=',
   // CRM "Product" (LEADCF1) picklist values, spelled exactly as in Zoho
-  product: { compact: 'The Trobadour - Solo & Duo', band: 'The CenterStage - Full Band', complete: 'The Headliner - Complete Live', upgrade: 'The Encore - Expand Your Existing Rig', custom: 'The Signature - Custom Build' } };
+  product: { compact: 'The Trobadour - Solo & Duo', band: 'The CenterStage - Full Band', complete: 'The Headliner - Complete Live', upgrade: 'The Encore - Expand Your Existing Rig', custom: 'The Signature - Custom Build' },
+  // CRM "When Needed" (LEADCF3) picklist values, spelled exactly as in Zoho
+  when: { 'Within a month': 'Within a month', '1–3 months': '1-3 Months', '3–6 months': '3-6 Months', 'Just exploring': 'Just exploring' } };
 // US numbers -> (xxx) xxx-xxxx for the CRM; anything else is sent as typed
 const usPhone = v => { let n = String(v).replace(/\D/g, ''); if (n.length === 11 && n[0] === '1') n = n.slice(1); return n.length === 10 ? `(${n.slice(0, 3)}) ${n.slice(3, 6)}-${n.slice(6)}` : String(v).trim(); };
 // Capitalize names for the CRM; all-lower or ALL-CAPS names are fully proper-cased, mixed case (McDonald) is kept
@@ -114,7 +116,7 @@ if (form) {
     if (map[a.who]) form.elements.size.value = map[a.who];
     const box = document.querySelector('[data-summary]');
     box.hidden = false;
-    box.innerHTML = `<p class="label">From the rig finder</p><p class="small">${esc(label(WHO, a.who))} · ${a.people} in-ear ${a.people === 1 ? 'mix' : 'mixes'} · ${esc(label(GOAL, a.goal))} · ${esc(label(MOVE, a.move))}</p><p class="small muted">We’ll include these answers with your details.</p>`;
+    box.innerHTML = `<p class="label">From the rig finder</p><p class="small">${esc(label(WHO, a.who))} · ${a.people} in-ear ${a.people === 1 ? 'mix' : 'mixes'} · ${esc(label(GOAL, a.goal))} · ${esc(label(MOVE, a.move))}</p>`;
   }
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -126,17 +128,16 @@ if (form) {
     err.hidden = true;
     const sysName = d.system ? `${packages[d.system].name} (${packages[d.system].sub})` : 'Not sure yet';
     const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nBand: ${d.band}\nPerformers: ${d.size}\nTiming: ${d.timing}\nInterested in: ${sysName}\nSMS consent: ${d.sms === 'yes' ? 'YES, opted in to texts on ' + new Date().toISOString() : 'No'}\n\nCurrent gear:\n${d.gear}\n\nNotes:\n${d.message}\n\n${summaryText(a)}`;
-    const fin = a && a.who ? summaryText(a).split('\n').slice(1) : [];
-    const crmDesc = [['Rig', sysName], ['Performers', d.size], ['Timing', d.timing], ['SMS consent', d.sms === 'yes' ? 'Yes, opted in ' + new Date().toISOString() : 'No'], ['Current gear', d.gear], ['Notes', d.message]]
+    const crmDesc = [['Rig', sysName], ['Performers', d.size], ['SMS consent', d.sms === 'yes' ? 'Yes, opted in ' + new Date().toISOString() : 'No'], ['Current gear', d.gear], ['Notes', d.message]]
       .filter(([, v]) => v && String(v).trim()).map(([k, v]) => `${k}: ${String(v).trim().replace(/\s*\n\s*/g, '; ')}`)
-      .concat(fin.length ? ['Rig finder: ' + fin.join('; ')] : [], ['Page: ' + location.href]).join('\n');
+      .concat(['Page: ' + location.href]).join('\n');
     const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
     try {
       const words = properName(d.name).split(' '), last = words.length > 1 ? words[words.length - 1] : words[0], first = words.length > 1 ? words.slice(0, -1).join(' ') : '';
       const fd = new FormData();
       [['xnQsjsdp', ZOHO.xnQsjsdp], ['zc_gad', ''], ['xmIwtLD', ZOHO.xmIwtLD], ['actionType', ZOHO.actionType], ['returnURL', 'null'], ['aG9uZXlwb3Q', ''],
         ['Company', (d.band || d.name).trim().slice(0, 200)], ['First Name', first.slice(0, 40)], ['Last Name', last.slice(0, 80)], ['Email', d.email.trim().slice(0, 100)], ['Phone', usPhone(d.phone || '').slice(0, 30)],
-        ['LEADCF1', ZOHO.product[d.system] || '-None-'], ['LEADCF2', 'New Lead'],
+        ['LEADCF1', ZOHO.product[d.system] || '-None-'], ['LEADCF2', 'New Lead'], ['LEADCF3', ZOHO.when[d.timing] || '-None-'],
         ['Description', crmDesc.slice(0, 32000)]].forEach(([k, v]) => fd.append(k, v));
       const res = await fetch(ZOHO.url, { method: 'POST', body: fd, cache: 'no-cache' });
       const out = (res.headers.get('Content-Type') || '').includes('application/json') ? await res.json() : null;
