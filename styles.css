@@ -135,7 +135,7 @@ figcaption.label{margin-top:var(--s3)}
 .field textarea{resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--primary);outline-offset:0;border-color:var(--primary)}
 .field [aria-invalid=true]{border-color:var(--error)}
 .error{color:var(--error);font-weight:500}
-.form .btn{margin:var(--s2) 0 var(--s3)}
+.form .btn{margin:var(--s6) 0 var(--s3)}
 .sent{outline:none}.ok{color:var(--success)}
 
 /* Footer */
