@@ -30,7 +30,7 @@ const org = {
 
 function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true, noindex = false }) {
   const url = SITE + path;
-  const nav = [['/systems/', 'Rigs & pricing'], ['/#how', 'How it works']];
+  const nav = [['/systems/', 'Rigs & pricing'], ['/#how', 'How it works'], ['/#faq', 'FAQ']];
   const ld = [org, ...schema].map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -169,7 +169,7 @@ ${servicesBlock('h3')}
 <a class="quiet" href="/systems/complete/">See ${packages.complete.name}, our ${packages.complete.sub.toLowerCase()} ${arrow}</a></div>
 </div></section>
 
-<section class="section" aria-labelledby="faq-title"><div class="wrap faq-grid">
+<section class="section" id="faq" aria-labelledby="faq-title"><div class="wrap faq-grid">
 <div><h2 id="faq-title">In-ear monitor rig FAQ</h2></div>
 <div class="faq">${faqs.map(([q, a]) => `<details><summary>${q}</summary><p class="muted">${a}</p></details>`).join('')}</div>
 </div></section>
