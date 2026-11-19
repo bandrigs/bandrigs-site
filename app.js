@@ -1,4 +1,4 @@
-import { packages, gear, recommend } from '/data.js?v=78a6018d32';
+import { packages, gear, recommend } from '/data.js?v=1bc8201875';
 
 const KEY = 'bandrigs-finder';
 const arrow = '<span aria-hidden="true" class="arr"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span>';
@@ -33,7 +33,7 @@ const label = (list, v) => (list.find(x => x[0] === v) || [])[1] || '';
 export function summaryText(a) {
   if (!a || !a.who) return '';
   const key = recommend({ ...a, goal: a.goal === 'unsure' ? 'monitoring' : a.goal });
-  return `Rig finder answers\nWho's playing: ${label(WHO, a.who)}\nPeople who want their own in-ear mix: ${a.people}\nWhat the rig should do: ${label(GOAL, a.goal)}\nWho moves around: ${label(MOVE, a.move)}\nSuggested rig: ${packages[key].name}`;
+  return `Rig finder answers\nWho's playing: ${label(WHO, a.who)}\nPeople who want their own in-ear mix: ${a.people}\nWhat the rig should do: ${label(GOAL, a.goal)}\nWho moves around: ${label(MOVE, a.move)}\nSuggested rig: ${packages[key].name} (${packages[key].sub})`;
 }
 
 const finder = document.querySelector('[data-finder]');
@@ -70,11 +70,11 @@ if (finder) {
     else if (a.goal === 'everything') why.push('A digital mixer for your main mix, in the same rack');
     if (a.goal === 'upgrade') why.push('We start from the gear you already own');
     if (a.goal === 'unsure') why.push('We’ll talk through whether you need mixing too');
-    return `<div class="result"><p class="label">We’d start with</p><h3 class="r-name" tabindex="-1">${p.name}</h3>
+    return `<div class="result"><p class="label">We’d start with</p><h3 class="r-name" tabindex="-1">${p.name}</h3><p class="rig-sub">${esc(p.sub)}</p>
 <p class="r-price">${p.price ? `<span class="label">Starting at</span> ${p.price}` : '<span class="label">Price</span> Custom quote after a free gear review'}</p>
 <ul class="ticks">${why.map(w => `<li>${esc(w)}</li>`).join('')}</ul>
 <p class="small muted">Typical gear: ${p.gear.map(g => gear[g].name).join(', ')}.</p>
-${key === 'band' && a.goal === 'everything' ? `<p class="small muted">Running the main speakers too? The <a href="/systems/complete/">Complete live rig</a> adds front-of-house mixing and splitting from ${packages.complete.price}.</p>` : ''}
+${key === 'band' && a.goal === 'everything' ? `<p class="small muted">Running the main speakers too? <a href="/systems/complete/">${packages.complete.name}</a>, our complete live rig, adds front-of-house mixing and splitting from ${packages.complete.price}.</p>` : ''}
 <div class="f-actions"><a class="btn btn-primary" href="/plan/?system=${key}">Plan this rig ${arrow}</a><a class="quiet" href="/systems/${key}/">What’s included ${arrow}</a></div>
 <button type="button" class="link-btn" data-restart>Start over</button></div>`;
   };
@@ -118,7 +118,7 @@ if (form) {
     form.querySelectorAll('[aria-invalid]').forEach(x => x.removeAttribute('aria-invalid'));
     if (bad) { err.textContent = bad === 'name' ? 'Please add your name.' : 'Please add a valid email address so we can reply.'; err.hidden = false; form.elements[bad].setAttribute('aria-invalid', 'true'); form.elements[bad].focus(); return; }
     err.hidden = true;
-    const sysName = d.system ? packages[d.system].name : 'Not sure yet';
+    const sysName = d.system ? `${packages[d.system].name} (${packages[d.system].sub})` : 'Not sure yet';
     const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nBand: ${d.band}\nPerformers: ${d.size}\nTiming: ${d.timing}\nInterested in: ${sysName}\nSMS consent: ${d.sms === 'yes' ? 'YES, opted in to texts on ' + new Date().toISOString() : 'No'}\n\nCurrent gear:\n${d.gear}\n\nNotes:\n${d.message}\n\n${summaryText(a)}`;
     const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
     try {

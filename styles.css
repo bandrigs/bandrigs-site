@@ -269,3 +269,10 @@ h1{margin-bottom:var(--s5)}
 .change-rig a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
 .change-rig a:hover{color:var(--primary-hover)}
 .gear-img.fill{padding:0;overflow:hidden}.gear-img.fill img{width:100%;height:100%;max-height:none;object-fit:cover}
+/* Rig names (Ken, 2026-11-19): name as the headline, subtitle as a rack-label descriptor */
+.rig-sub{display:block;font:500 var(--fs-label)/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--signal);margin:var(--s2) 0 0}
+p.rig-sub{margin:0 0 var(--s4)}
+.rig-row:hover .rig-sub{color:var(--signal)}
+.pkg-head h1.pkg-title{margin-bottom:var(--s3)}
+.pkg-tagline{font:600 var(--fs-h3)/1.2 var(--display);letter-spacing:-.01em;margin:0 0 var(--s4)}
+.result .rig-sub{margin:0 0 var(--s4)}

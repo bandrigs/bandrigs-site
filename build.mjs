@@ -63,11 +63,13 @@ ${socials('head-social')}
 </body></html>`;
 }
 
+const fullName = p => `${p.name}: ${p.sub}`; // titles, schema, form options
+const rigSub = (p, tag = 'span') => `<${tag} class="rig-sub">${esc(p.sub)}</${tag}>`;
 const priceLine = p => p.price ? `<span class="price"><span class="label">Starting at</span> ${p.price}<span class="price-note">Gear and build included, plus shipping</span></span>` : `<span class="price"><span class="label">Price</span> Custom quote</span>`;
 const servicesBlock = (tag = 'h2') => `<div class="services"><div class="section-head"><${tag}>Other services</${tag}></div><div class="rig-table" role="list"><a class="rig-row" role="listitem" href="/plan/"><span class="rig-name">Service &amp; support plan</span><span class="rig-for muted">Remote support, firmware updates and mix changes for any rig</span><span class="price"><span class="label">Price</span> $75/mo<span class="price-note">or $50/mo billed annually</span></span><span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a><a class="rig-row" role="listitem" href="tel:${TEL}"><span class="rig-name">Playback tracks built in Ableton</span><span class="rig-for muted">Your stems, click and cues, set up as a show-ready Ableton session</span><span class="price"><span class="label">Price</span> Call for pricing</span><span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a></div></div>`;
 const EXTRAS = 'FOH splitting to the house system, antenna distribution and custom or upgraded earphones';
 const extrasNote = k => ['compact', 'band'].includes(k)
-  ? `<p class="small muted extras">Not included in this rig: ${k === 'band' ? 'FOH splitting to the house system and custom or upgraded earphones' : EXTRAS}.${k === 'band' ? ' The RF Venue antenna pack is available as an upgrade below.' : ''} They are available on our <a href="/systems/complete/">Complete live</a> and <a href="/systems/custom/">Custom</a> rigs. Shipping and the support plan are extra.</p>`
+  ? `<p class="small muted extras">Not included in this rig: ${k === 'band' ? 'FOH splitting to the house system and custom or upgraded earphones' : EXTRAS}.${k === 'band' ? ' The RF Venue antenna pack is available as an upgrade below.' : ''} They are available on <a href="/systems/complete/">${packages.complete.name}</a> and <a href="/systems/custom/">${packages.custom.name}</a> rigs. Shipping and the support plan are extra.</p>`
   : ['complete', 'custom'].includes(k) ? `<p class="small muted extras">Available with this rig and quoted for your show: ${EXTRAS}. Shipping and the support plan are extra.</p>` : '';
 const gearRow = keys => `<ul class="gear">${keys.map(k => { const g = gear[k]; return `<li><div class="gear-img"><img src="/assets/${g.image}" alt="${esc(g.name)}" loading="lazy" width="1100" height="${g.h}"></div><p class="label">${g.tag}</p><p class="gear-name">${g.name}</p><p class="small muted">${g.desc}</p></li>`; }).join('')}</ul>`;
 
@@ -111,7 +113,7 @@ page('/', {
   title: 'Custom In-Ear Monitor & Live Mixing Rigs for Artists | BandRigs',
   description: 'Custom in-ear monitor and live mixing rigs for artists and bands, designed and built by BandRigs. Answer 4 questions to find your rig. Rigs from $4,995.',
   schema: [faqSchema, { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Custom live sound and in-ear monitor rack design and build', provider: { '@id': SITE + '/#org' },
-    offers: order.filter(k => packages[k].price).map(k => ({ '@type': 'Offer', name: packages[k].name, url: `${SITE}/systems/${k}/`, priceSpecification: { '@type': 'PriceSpecification', minPrice: packages[k].amount, priceCurrency: 'USD' } })) }],
+    offers: order.filter(k => packages[k].price).map(k => ({ '@type': 'Offer', name: fullName(packages[k]), url: `${SITE}/systems/${k}/`, priceSpecification: { '@type': 'PriceSpecification', minPrice: packages[k].amount, priceCurrency: 'USD' } })) }],
   body: `
 <section class="hero hero-stage">
 <picture class="hero-bg"><source media="(max-width:720px)" srcset="/assets/hero-rack-m.webp"><img src="/assets/hero-rack.webp" alt="BandRigs rack with a WING Rack mixer, Shure PSM 300 transmitters and stage boxes in a road case on a lit stage" width="1672" height="941" fetchpriority="high"></picture>
@@ -155,8 +157,8 @@ page('/', {
 
 <section class="section" aria-labelledby="rigs-title"><div class="wrap">
 <div class="section-head split"><div><h2 id="rigs-title">In-ear monitor rigs, sized to your band.</h2></div><p class="muted"><strong class="hl">Every price includes the gear and the build. Shipping the rig to you is extra.</strong> Final price depends on how many mixes you need, how much is wireless and what gear you keep. Prefer to buy the gear yourself? Have it drop shipped to us and we build it at our <span class="nowrap">$125/hr</span> service rate, plus shipping back to you.</p></div>
-<div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a>`; }).join('')}</div>
-<div class="rig-shots"><a class="rig-shot" href="/systems/compact/"><img src="/assets/solo-live.webp" alt="Solo acoustic artist performing with in-ear monitors and a BandRigs rolling rack with laptop playback beside him" loading="lazy" width="1100" height="619"><span class="label">Solo / Duo artist rig</span></a><a class="rig-shot" href="/systems/band/"><img src="/assets/band-full.webp" alt="Five-piece band performing live with wireless in-ear monitors and a BandRigs rack on stage" loading="lazy" width="1100" height="619"><span class="label">Band rig</span></a></div>
+<div class="rig-table" role="list">${order.map(k => { const p = packages[k]; return `<a class="rig-row" role="listitem" href="/systems/${k}/"><span class="rig-name">${p.name}${rigSub(p)}</span><span class="rig-for muted">${p.for}</span>${priceLine(p)}<span class="rig-go" aria-hidden="true"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a>`; }).join('')}</div>
+<div class="rig-shots"><a class="rig-shot" href="/systems/compact/"><img src="/assets/solo-live.webp" alt="Solo acoustic artist performing with in-ear monitors and a BandRigs rolling rack with laptop playback beside him" loading="lazy" width="1100" height="619"><span class="label">${packages.compact.name} · ${esc(packages.compact.sub)}</span></a><a class="rig-shot" href="/systems/band/"><img src="/assets/band-full.webp" alt="Five-piece band performing live with wireless in-ear monitors and a BandRigs rack on stage" loading="lazy" width="1100" height="619"><span class="label">${packages.band.name} · ${esc(packages.band.sub)}</span></a></div>
 ${servicesBlock('h3')}
 </div></section>
 
@@ -164,7 +166,7 @@ ${servicesBlock('h3')}
 <figure class="gear-img work-gear"><img src="/assets/wing-front.webp" alt="Behringer WING Rack digital mixer" loading="lazy" width="1100" height="498"></figure>
 <div><h2 id="work-title">Mixing and in-ears in one road case.</h2>
 <ul class="ticks"><li>Mixer, stage box and in-ear transmitters racked together</li><li>Every cable and connection labeled for fast load-in</li><li>Mixes, scenes and wireless frequencies set up before delivery</li><li>Tested as one system, with a setup guide for the band</li></ul>
-<a class="quiet" href="/systems/complete/">See the Complete live rig ${arrow}</a></div>
+<a class="quiet" href="/systems/complete/">See ${packages.complete.name}, our ${packages.complete.sub.toLowerCase()} ${arrow}</a></div>
 </div></section>
 
 <section class="section" aria-labelledby="faq-title"><div class="wrap faq-grid">
@@ -181,29 +183,29 @@ function ctaBand() {
 // Systems overview
 page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
-  description: 'Compare BandRigs packages: solo and duo rigs from $4,995, band rigs from $9,995, complete live mixing rigs from $10,995, plus upgrades and custom builds.',
+  description: 'Compare BandRigs rigs: The Troubadour solo and duo rig from $4,995, The CenterStage full band rig from $9,995, The Headliner complete live rig from $10,995, plus The Encore upgrades and The Signature custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
   body: `<section class="page-head"><div class="wrap"><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build. Shipping the finished rig to you is extra. We work with artists and bands anywhere in the US. You can also buy the gear yourself, have it drop shipped to us, and we build it at our <span class="nowrap">$125/hr</span> service rate, plus shipping back to you.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
-<section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><p class="label">${p.for}</p><h2><a href="/systems/${k}/">${p.name}</a></h2><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section><section class="section tight"><div class="wrap">${servicesBlock()}</div></section>${ctaBand()}`,
+<section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><h2><a href="/systems/${k}/">${p.name}</a></h2>${rigSub(p, 'p')}<p class="label">${p.for}</p><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section><section class="section tight"><div class="wrap">${servicesBlock()}</div></section>${ctaBand()}`,
 });
 
 // Package pages
 for (const k of order) {
   const p = packages[k];
   page(`/systems/${k}/`, {
-    title: `${p.name}${p.price ? ` from ${p.price}` : ''} | BandRigs`,
+    title: `${fullName(p)}${p.price ? ` from ${p.price}` : ''} | BandRigs`,
     description: p.meta,
-    schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/'], [p.name, `/systems/${k}/`]]), { '@context': 'https://schema.org', '@type': 'Service', name: p.name, description: p.summary, provider: { '@id': SITE + '/#org' }, ...(p.amount ? { offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: p.amount, priceCurrency: 'USD' } } } : {}) }],
+    schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/'], [p.name, `/systems/${k}/`]]), { '@context': 'https://schema.org', '@type': 'Service', name: fullName(p), description: p.summary, provider: { '@id': SITE + '/#org' }, ...(p.amount ? { offers: { '@type': 'Offer', priceSpecification: { '@type': 'PriceSpecification', minPrice: p.amount, priceCurrency: 'USD' } } } : {}) }],
     body: `<section class="page-head pkg-head"><div class="wrap pkg-head-grid"><div>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/systems/">Rigs &amp; pricing</a> / <span>${p.name}</span></nav>
-<p class="label">${p.for}</p><h1>${p.headline}</h1><p class="lead">${p.summary}</p>${priceLine(p)}
+<h1 class="pkg-title">${p.name}</h1>${rigSub(p, 'p')}<p class="pkg-tagline">${p.headline}</p><p class="label">${p.for}</p><p class="lead">${p.summary}</p>${priceLine(p)}
 <div class="actions"><a class="btn btn-primary" href="/plan/?system=${k}">Plan this rig ${arrow}</a><a class="btn btn-secondary" href="tel:${TEL}">Call ${PHONE}</a></div></div>
-${p.photos ? `<figure class="pkg-photo"><img src="/assets/${p.photos.front[0]}" alt="Mockup of the ${esc(p.name)} with all upgrades in a rolling rack case, front view" width="${p.photos.front[1]}" height="${p.photos.front[2]}"><figcaption class="label">Mockup · Shown with all upgrades</figcaption></figure>` : `<figure class="pkg-photo"><div class="gear-img"><img src="/assets/${gear[p.gear[0]].image}" alt="${esc(gear[p.gear[0]].name)}" width="1100" height="${gear[p.gear[0]].h}"></div><figcaption class="label">Typical gear · ${gear[p.gear[0]].name}</figcaption></figure>`}</div></section>
+${p.photos ? `<figure class="pkg-photo"><img src="/assets/${p.photos.front[0]}" alt="Mockup of ${esc(p.name)} with all upgrades in a rolling rack case, front view" width="${p.photos.front[1]}" height="${p.photos.front[2]}"><figcaption class="label">Mockup · Shown with all upgrades</figcaption></figure>` : `<figure class="pkg-photo"><div class="gear-img"><img src="/assets/${gear[p.gear[0]].image}" alt="${esc(gear[p.gear[0]].name)}" width="1100" height="${gear[p.gear[0]].h}"></div><figcaption class="label">Typical gear · ${gear[p.gear[0]].name}</figcaption></figure>`}</div></section>
 <section class="section tight"><div class="wrap two-col"><div><h2>What’s included</h2><ul class="ticks">${p.includes.map(i => `<li>${i}</li>`).join('')}</ul>${extrasNote(k)}</div>
 <div><h2>A good fit if…</h2><ul class="ticks">${p.fit.map(i => `<li>${i}</li>`).join('')}</ul></div></div></section>
 ${p.rig ? `<section class="section tight"><div class="wrap"><div class="section-head"><h2>The basic rig</h2><p class="muted">What goes in the rack. Prices are typical US retail for each piece, for reference. Your rig price covers the gear and the build.</p></div>${pieceRow(p.rig)}</div></section>` : ''}
 ${p.rig ? '' : `<section class="section tight"><div class="wrap"><div class="section-head"><h2>Gear we often start with</h2><p class="muted">Examples, not a fixed list. Your mix count, inputs and existing gear decide the final setup.</p></div>${gearRow(p.gear)}</div></section>`}
-${p.upgrades ? `<section class="section tight"><div class="wrap"><div class="section-head"><h2>Popular upgrades</h2><p class="muted">Add any of these to your rig.</p></div>${pieceRow(p.upgrades)}${p.photos ? `<figure class="wide-shot mock-one"><img src="/assets/${p.photos.angle[0]}" alt="Mockup of the ${esc(p.name)} in an open flight case on wheels" loading="lazy" width="${p.photos.angle[1]}" height="${p.photos.angle[2]}"></figure><p class="label mock-cap">Mockup · The solo / duo artist rig with all upgrades: PlayAUDIO1U playback, two Mac minis, the backlit name panel and the rolling flight case</p>` : ''}</div></section>` : ''}
+${p.upgrades ? `<section class="section tight"><div class="wrap"><div class="section-head"><h2>Popular upgrades</h2><p class="muted">Add any of these to your rig.</p></div>${pieceRow(p.upgrades)}${p.photos ? `<figure class="wide-shot mock-one"><img src="/assets/${p.photos.angle[0]}" alt="Mockup of ${esc(p.name)} in an open flight case on wheels" loading="lazy" width="${p.photos.angle[1]}" height="${p.photos.angle[2]}"></figure><p class="label mock-cap">Mockup · ${p.name} with all upgrades: PlayAUDIO1U playback, two Mac minis, the backlit name panel and the rolling flight case</p>` : ''}</div></section>` : ''}
 ${ctaBand()}`,
   });
 }
@@ -228,7 +230,7 @@ page('/plan/', {
 <label class="field"><span>How many performers?</span><select name="size"><option value="">Choose one</option>${sizeOpts.map(o => `<option>${o}</option>`).join('')}</select></label>
 <label class="field"><span>When do you need it?</span><select name="timing"><option value="">Choose one</option>${timingOpts.map(o => `<option>${o}</option>`).join('')}</select></label>
 </div>
-<label class="field"><span>Which rig are you interested in?</span><select name="system"><option value="">Not sure yet</option>${order.map(k => `<option value="${k}">${packages[k].name}</option>`).join('')}</select></label>
+<label class="field"><span>Which rig are you interested in?</span><select name="system"><option value="">Not sure yet</option>${order.map(k => `<option value="${k}">${esc(fullName(packages[k]))}</option>`).join('')}</select></label>
 <label class="field"><span>Gear you already have</span><textarea name="gear" rows="3" placeholder="Mixer, in-ear systems, stage boxes, anything you want to keep"></textarea></label>
 <label class="field"><span>Anything else?</span><textarea name="message" rows="3" placeholder="Typical venues, what you want to fix, budget range"></textarea></label>
 <label class="consent"><input type="checkbox" name="sms" value="yes"><span>Yes, BandRigs may text me about my inquiry, quote, build and support at the phone number above. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is optional and not required to buy. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</span></label>
