@@ -120,13 +120,17 @@ if (form) {
     err.hidden = true;
     const sysName = d.system ? `${packages[d.system].name} (${packages[d.system].sub})` : 'Not sure yet';
     const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nBand: ${d.band}\nPerformers: ${d.size}\nTiming: ${d.timing}\nInterested in: ${sysName}\nSMS consent: ${d.sms === 'yes' ? 'YES, opted in to texts on ' + new Date().toISOString() : 'No'}\n\nCurrent gear:\n${d.gear}\n\nNotes:\n${d.message}\n\n${summaryText(a)}`;
+    const fin = a && a.who ? summaryText(a).split('\n').slice(1) : [];
+    const crmDesc = [['Rig', sysName], ['Performers', d.size], ['Timing', d.timing], ['SMS consent', d.sms === 'yes' ? 'Yes, opted in ' + new Date().toISOString() : 'No'], ['Current gear', d.gear], ['Notes', d.message]]
+      .filter(([, v]) => v && String(v).trim()).map(([k, v]) => `${k}: ${String(v).trim().replace(/\s*\n\s*/g, '; ')}`)
+      .concat(fin.length ? ['Rig finder: ' + fin.join('; ')] : [], ['Page: ' + location.href]).join('\n');
     const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
     try {
       const words = d.name.trim().split(/\s+/), last = words.length > 1 ? words[words.length - 1] : words[0], first = words.length > 1 ? words.slice(0, -1).join(' ') : '';
       const fd = new FormData();
       [['xnQsjsdp', ZOHO.xnQsjsdp], ['zc_gad', ''], ['xmIwtLD', ZOHO.xmIwtLD], ['actionType', ZOHO.actionType], ['returnURL', 'null'], ['aG9uZXlwb3Q', ''],
         ['Company', (d.band || d.name).trim().slice(0, 200)], ['First Name', first.slice(0, 40)], ['Last Name', last.slice(0, 80)], ['Email', d.email.trim().slice(0, 100)], ['Phone', (d.phone || '').slice(0, 30)],
-        ['Description', (body + '\n\nPage: ' + location.href).slice(0, 32000)]].forEach(([k, v]) => fd.append(k, v));
+        ['Description', crmDesc.slice(0, 32000)]].forEach(([k, v]) => fd.append(k, v));
       const res = await fetch(ZOHO.url, { method: 'POST', body: fd, cache: 'no-cache' });
       const out = (res.headers.get('Content-Type') || '').includes('application/json') ? await res.json() : null;
       if (!res.ok || (out && out.actionsubmit === 'error_msg')) throw new Error('zoho');
