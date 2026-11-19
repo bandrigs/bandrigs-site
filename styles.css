@@ -276,3 +276,4 @@ p.rig-sub{margin:0 0 var(--s4)}
 .pkg-head h1.pkg-title{margin-bottom:var(--s3)}
 .pkg-tagline{font:600 var(--fs-h3)/1.2 var(--display);letter-spacing:-.01em;margin:0 0 var(--s4)}
 .result .rig-sub{margin:0 0 var(--s4)}
+.field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23b4b8bf' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10% center;background-size:12px 8px;padding-right:calc(10% + 28px)}
