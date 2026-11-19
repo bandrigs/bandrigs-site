@@ -99,6 +99,8 @@ ${key === 'band' && a.goal === 'everything' ? `<p class="small muted">Running th
 const ZOHO = { url: 'https://crm.zoho.com/crm/WebToLeadForm', xnQsjsdp: '27ac35d4d71f9167139a62cc6d370568da70f4bca038f34a4c7b46827978c614', xmIwtLD: '49506ba7941b4785d73e2a7f13d6da2157ab5a9e4e2c1fec636f5077b3d1c1b5c8572fdbff4c61a4816b5f5b753a7aa7', actionType: 'TGVhZHM=',
   // CRM "Product" (LEADCF1) picklist values, spelled exactly as in Zoho
   product: { compact: 'The Trobadour - Solo & Duo', band: 'The CenterStage - Full Band', complete: 'The Headliner - Complete Live', upgrade: 'The Encore - Expand Your Existing Rig', custom: 'The Signature - Custom Build' } };
+// US numbers -> (xxx) xxx-xxxx for the CRM; anything else is sent as typed
+const usPhone = v => { let n = String(v).replace(/\D/g, ''); if (n.length === 11 && n[0] === '1') n = n.slice(1); return n.length === 10 ? `(${n.slice(0, 3)}) ${n.slice(3, 6)}-${n.slice(6)}` : String(v).trim(); };
 const form = document.querySelector('#plan-form');
 if (form) {
   const a = load();
@@ -131,7 +133,7 @@ if (form) {
       const words = d.name.trim().split(/\s+/), last = words.length > 1 ? words[words.length - 1] : words[0], first = words.length > 1 ? words.slice(0, -1).join(' ') : '';
       const fd = new FormData();
       [['xnQsjsdp', ZOHO.xnQsjsdp], ['zc_gad', ''], ['xmIwtLD', ZOHO.xmIwtLD], ['actionType', ZOHO.actionType], ['returnURL', 'null'], ['aG9uZXlwb3Q', ''],
-        ['Company', (d.band || d.name).trim().slice(0, 200)], ['First Name', first.slice(0, 40)], ['Last Name', last.slice(0, 80)], ['Email', d.email.trim().slice(0, 100)], ['Phone', (d.phone || '').slice(0, 30)],
+        ['Company', (d.band || d.name).trim().slice(0, 200)], ['First Name', first.slice(0, 40)], ['Last Name', last.slice(0, 80)], ['Email', d.email.trim().slice(0, 100)], ['Phone', usPhone(d.phone || '').slice(0, 30)],
         ['LEADCF1', ZOHO.product[d.system] || '-None-'], ['LEADCF2', 'New Lead'],
         ['Description', crmDesc.slice(0, 32000)]].forEach(([k, v]) => fd.append(k, v));
       const res = await fetch(ZOHO.url, { method: 'POST', body: fd, cache: 'no-cache' });
