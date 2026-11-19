@@ -95,8 +95,8 @@ ${key === 'band' && a.goal === 'everything' ? `<p class="small muted">Running th
   render(false);
 }
 
-// ---------- Plan form -> Zoho Bigin ----------
-const BIGIN = { url: 'https://bigin.zoho.com/crm/WebForm', xnQsjsdp: 'd68340578f7881c10dec46f976d39b23ed98b6232a5f388a2ec97fe3867af67a', xmIwtLD: 'e55c369a528333424588d79b900f1b5a9cb9b2ac4f5ffec3513d7905e31b838b005b196cee560c63223098ddf2c07ed2', actionType: 'UG90ZW50aWFscw==' };
+// ---------- Plan form -> Zoho CRM (Leads web form "Website rig request", Bandrigs org) ----------
+const ZOHO = { url: 'https://crm.zoho.com/crm/WebToLeadForm', xnQsjsdp: '462d8c5d5b41b037c0549002fd3b678fb1cdb39ae0e99eaaf79dda2ab7cb2290', xmIwtLD: 'e3b176184df250e744ded83b5b7dd2d504d0e9d7e47bb8cb49caa1561685a249a1cd7d91087baa7cbe03c4fdaf35650c', actionType: 'TGVhZHM=' };
 const form = document.querySelector('#plan-form');
 if (form) {
   const a = load();
@@ -123,12 +123,13 @@ if (form) {
     const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
     try {
       const words = d.name.trim().split(/\s+/), last = words.length > 1 ? words[words.length - 1] : words[0], first = words.length > 1 ? words.slice(0, -1).join(' ') : '';
-      const close = new Date(Date.now() + 60 * 864e5), mdy = `${String(close.getMonth() + 1).padStart(2, '0')}/${String(close.getDate()).padStart(2, '0')}/${close.getFullYear()}`;
       const fd = new FormData();
-      [['xnQsjsdp', BIGIN.xnQsjsdp], ['zc_gad', ''], ['xmIwtLD', BIGIN.xmIwtLD], ['actionType', BIGIN.actionType], ['returnURL', 'null'], ['rmsg', 'true'],
-        ['Potential Name', `${d.band || d.name} — ${sysName}`.slice(0, 120)], ['Contacts.First Name', first], ['Contacts.Last Name', last], ['Contacts.Email', d.email.trim()], ['Contacts.Phone', d.phone || ''],
-        ['Description', (body + '\n\nPage: ' + location.href).slice(0, 30000)], ['Closing Date', mdy], ['Pipeline', 'Sales Pipeline Standard'], ['Stage', 'New lead']].forEach(([k, v]) => fd.append(k, v));
-      await fetch(BIGIN.url, { method: 'POST', mode: 'no-cors', body: fd });
+      [['xnQsjsdp', ZOHO.xnQsjsdp], ['zc_gad', ''], ['xmIwtLD', ZOHO.xmIwtLD], ['actionType', ZOHO.actionType], ['returnURL', 'null'], ['aG9uZXlwb3Q', ''],
+        ['Company', (d.band || d.name).trim().slice(0, 200)], ['First Name', first.slice(0, 40)], ['Last Name', last.slice(0, 80)], ['Email', d.email.trim().slice(0, 100)], ['Phone', (d.phone || '').slice(0, 30)],
+        ['Description', (body + '\n\nPage: ' + location.href).slice(0, 32000)]].forEach(([k, v]) => fd.append(k, v));
+      const res = await fetch(ZOHO.url, { method: 'POST', body: fd, cache: 'no-cache' });
+      const out = (res.headers.get('Content-Type') || '').includes('application/json') ? await res.json() : null;
+      if (!res.ok || (out && out.actionsubmit === 'error_msg')) throw new Error('zoho');
       const wrap = form.parentElement;
       form.outerHTML = `<div class="form sent" tabindex="-1"><p class="label ok">Sent</p><h2>Thanks, ${esc(words[0])}. We’ve got it.</h2><p class="muted">We’ll reply within one business day.<br>Show coming up fast? Call <a href="tel:+18582323544" style="white-space:nowrap">858-232-3544</a>.</p><a class="btn btn-secondary" href="/systems/">Browse rigs &amp; pricing</a></div>`;
       wrap.querySelector('.sent').focus();
