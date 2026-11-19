@@ -237,8 +237,8 @@ page('/plan/', {
 </div>
 <label class="consent"><input type="checkbox" name="sms" value="yes"><span>Yes, BandRigs may text me about my inquiry, quote, build and support at the phone number above. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is optional and not required to buy. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms</a>.</span></label>
 <p class="error" id="plan-error" role="alert" hidden></p>
-<button class="btn btn-primary" type="submit">Send my details ${arrow}</button>
-<p class="small muted">We only use this to reply to you. No newsletter.</p>
+<div class="form-submit"><button class="btn btn-primary" type="submit">Send my details ${arrow}</button>
+<p class="small muted">We only use this to reply to you. No newsletter.</p></div>
 </form></div></section>`,
 });
 
