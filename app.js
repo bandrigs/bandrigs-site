@@ -114,10 +114,16 @@ if (form) {
   if (a.done) {
     const map = { solo: 'Solo artist', duo: 'Duo', band: a.people <= 4 ? '3–4 piece' : '5–6 piece', big: '7 or more', production: 'Church or production team' };
     if (map[a.who]) form.elements.size.value = map[a.who];
-    const box = document.querySelector('[data-summary]');
-    box.hidden = false;
-    box.innerHTML = `<p class="label">From the rig finder</p><p class="small">${esc(label(WHO, a.who))} · ${a.people} in-ear ${a.people === 1 ? 'mix' : 'mixes'} · ${esc(label(GOAL, a.goal))} · ${esc(label(MOVE, a.move))}</p>`;
   }
+  // Side box shows the rig picked in "Rig interested in" and follows it as it changes
+  const box = document.querySelector('[data-summary]');
+  const showRig = () => {
+    const p = packages[form.elements.system.value];
+    box.hidden = !p;
+    if (p) box.innerHTML = `<p class="label">Your rig</p><p class="small"><strong>${esc(p.name)}</strong> · ${esc(p.sub)}</p><p class="small muted">${p.price ? 'Starting at ' + p.price : 'Quoted for your setup'}</p>`;
+  };
+  showRig();
+  form.elements.system.addEventListener('change', showRig);
   // Performers sets a default rig (Solo/Duo -> Troubadour, 3+ -> CenterStage) until the person picks a rig themselves
   let rigPicked = false;
   form.elements.system.addEventListener('change', () => { rigPicked = true; });
@@ -125,7 +131,7 @@ if (form) {
     if (rigPicked) return;
     const v = form.elements.size.value;
     const rig = /^(Solo artist|Duo)$/.test(v) ? 'compact' : /^(3–4 piece|5–6 piece|7 or more)$/.test(v) ? 'band' : '';
-    if (rig) form.elements.system.value = rig;
+    if (rig) { form.elements.system.value = rig; showRig(); }
   });
   form.addEventListener('submit', async e => {
     e.preventDefault();
