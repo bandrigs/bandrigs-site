@@ -6,7 +6,7 @@ import { dirname } from 'node:path';
 import { packages, order, gear } from './data.js';
 
 const SOCIAL = [
-  ['YouTube', 'https://www.youtube.com/@bandrigs', '<path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"/>'],
+  ['YouTube', 'https://www.youtube.com/@BandRigsChannel/videos', '<path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"/>'],
   ['Instagram', 'https://www.instagram.com/bandrigs/', '<rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/>'],
   ['TikTok', 'https://www.tiktok.com/@bandrigschannel', '<path fill="currentColor" d="M16.6 2h-3.4v13.1a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V8.8a6.4 6.4 0 1 0 5.4 6.3V8.6a8 8 0 0 0 4.6 1.5V6.7a4.6 4.6 0 0 1-4.6-4.7z"/>'],
 ];
@@ -25,7 +25,7 @@ const org = {
   '@context': 'https://schema.org', '@type': 'Organization', '@id': SITE + '/#org', name: 'BandRigs', url: SITE + '/',
   logo: SITE + '/assets/logo.svg', image: SITE + '/assets/og.jpg', email: EMAIL, telephone: TEL,
   description: 'BandRigs designs and builds custom live mixing and in-ear monitor rack systems for artists and bands anywhere in the US.', areaServed: { '@type': 'Country', name: 'United States' },
-  sameAs: ['https://www.youtube.com/@bandrigs', 'https://www.instagram.com/bandrigs/', 'https://www.tiktok.com/@bandrigschannel'],
+  sameAs: ['https://www.youtube.com/@BandRigsChannel', 'https://www.instagram.com/bandrigs/', 'https://www.tiktok.com/@bandrigschannel'],
 };
 
 // Google Analytics 4 (GA4) + Google tag. Loads only on the live domain so preview links don't count as visits.
@@ -65,7 +65,7 @@ ${socials('head-social')}
 <div><p class="label">Talk to us</p><p><a href="tel:${TEL}">${PHONE}</a><br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
 <div><p class="label">Rigs</p><p>${order.map(k => `<a href="/systems/${k}/">${packages[k].name}</a>`).join('<br>')}</p></div>
 <div><p class="label">Follow the builds</p><p class="socials">
-<a href="https://www.youtube.com/@bandrigs" rel="noopener" target="_blank">YouTube</a><br>
+<a href="https://www.youtube.com/@BandRigsChannel/videos" rel="noopener" target="_blank">YouTube</a><br>
 <a href="https://www.instagram.com/bandrigs/" rel="noopener" target="_blank">Instagram</a><br>
 <a href="https://www.tiktok.com/@bandrigschannel" rel="noopener" target="_blank">TikTok</a></p></div>
 </div><div class="wrap foot-base"><span>© 2026 BandRigs · <a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a></span><span>Behringer, Midas, Shure and iConnectivity are trademarks of their owners. BandRigs is an independent builder.</span></div></footer>
