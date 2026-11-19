@@ -96,7 +96,7 @@ ${key === 'band' && a.goal === 'everything' ? `<p class="small muted">Running th
 }
 
 // ---------- Plan form -> Zoho CRM (Leads web form "Website rig request New Leads", New Leads layout, Bandrigs org) ----------
-const ZOHO = { url: 'https://crm.zoho.com/crm/WebToLeadForm', xnQsjsdp: '27ac35d4d71f9167139a62cc6d370568da70f4bca038f34a4c7b46827978c614', xmIwtLD: '49506ba7941b4785d73e2a7f13d6da2157ab5a9e4e2c1fec636f5077b3d1c1b5c8572fdbff4c61a4816b5f5b753a7aa7', actionType: 'TGVhZHM=',
+const ZOHO = { url: 'https://crm.zoho.com/crm/WebToLeadForm', xnQsjsdp: '403043ba007944169c7357582e835edab47f04b33e76b28489a88e2aa9f0dbb1', xmIwtLD: '0afd4abe2500cd3cd54cee688ec3163da44f55ca05936946c17eb25d26206be03ea974d5ae89f230fd29843c371a2b75', actionType: 'TGVhZHM=',
   // CRM "Product" (LEADCF1) picklist values, spelled exactly as in Zoho
   product: { compact: 'The Trobadour - Solo & Duo', band: 'The CenterStage - Full Band', complete: 'The Headliner - Complete Live', upgrade: 'The Encore - Expand Your Existing Rig', custom: 'The Signature - Custom Build' },
   // CRM "When Needed" (LEADCF3) picklist values, spelled exactly as in Zoho
@@ -137,7 +137,7 @@ if (form) {
       const fd = new FormData();
       [['xnQsjsdp', ZOHO.xnQsjsdp], ['zc_gad', ''], ['xmIwtLD', ZOHO.xmIwtLD], ['actionType', ZOHO.actionType], ['returnURL', 'null'], ['aG9uZXlwb3Q', ''],
         ['Company', (d.band || d.name).trim().slice(0, 200)], ['First Name', first.slice(0, 40)], ['Last Name', last.slice(0, 80)], ['Email', d.email.trim().slice(0, 100)], ['Phone', usPhone(d.phone || '').slice(0, 30)],
-        ['LEADCF1', ZOHO.product[d.system] || '-None-'], ['LEADCF2', 'New Lead'], ['LEADCF3', ZOHO.when[d.timing] || '-None-'],
+        ['LEADCF1', ZOHO.product[d.system] || '-None-'], ['LEADCF3', ZOHO.when[d.timing] || '-None-'],
         ['Description', crmDesc.slice(0, 32000)]].forEach(([k, v]) => fd.append(k, v));
       const res = await fetch(ZOHO.url, { method: 'POST', body: fd, cache: 'no-cache' });
       const out = (res.headers.get('Content-Type') || '').includes('application/json') ? await res.json() : null;
