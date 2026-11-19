@@ -7,6 +7,31 @@ const load = () => { try { return JSON.parse(sessionStorage.getItem(KEY)) || {};
 if (location.hash === '#finder-restart') { try { sessionStorage.removeItem(KEY); } catch {} history.replaceState(null, '', location.pathname + '#finder'); requestAnimationFrame(() => document.getElementById('finder')?.scrollIntoView()); }
 const save = a => { try { sessionStorage.setItem(KEY, JSON.stringify(a)); } catch {} };
 
+// ---------- Lead source: where this visitor came from (UTM tags, ad click ids, referrer) ----------
+// The last visit with a real signal wins; plain direct visits keep what was stored. Sent to the CRM "Lead Source" field.
+const SRC_KEY = 'br_src';
+const leadSource = (() => {
+  const q = new URLSearchParams(location.search), g = k => (q.get(k) || '').trim().toLowerCase().slice(0, 80);
+  const s = g('utm_source'), m = g('utm_medium'), c = g('utm_campaign');
+  let ref = ''; try { const h = new URL(document.referrer).hostname.replace(/^www\./, ''); if (h && h !== location.hostname.replace(/^www\./, '') && !/(^|\.)bandrigs\.(com|pages\.dev)$/.test(h)) ref = h; } catch {}
+  const paid = /cpc|ppc|paid|ad/.test(m), clickG = ['gclid', 'gbraid', 'wbraid'].some(k => q.has(k)), clickM = q.has('fbclid');
+  const social = /facebook|instagram|^meta$|^fb$|^ig$/, search = /(^|\.)(google|bing|duckduckgo|yahoo|ecosia|brave|search)\./.test(ref + '.');
+  const ch = clickG || (/google/.test(s) && paid) ? 'Google Ads'
+    : social.test(s) ? (paid ? 'Meta Ads' : 'IG')
+    : /youtube/.test(s) || /(^|\.)youtube\.com$|^youtu\.be$/.test(ref) ? 'YouTube'
+    : /tiktok/.test(s) || /tiktok\.com$/.test(ref) ? 'TikTok'
+    : /outreach/.test(s + ' ' + m) ? 'Outreach'
+    : /partner|referral/.test(s + ' ' + m) ? 'Partner'
+    : /email|newsletter/.test(m) ? 'Email List'
+    : clickM || /(facebook|instagram)\.com$/.test(ref) ? 'IG'
+    : ref && !search && !s ? 'External Referral'
+    : (s || ref) ? 'Organic' : '';
+  const now = { ch, detail: [s || (clickG ? 'google' : clickM ? 'facebook' : ref), m || (clickG ? 'cpc' : ref ? (search ? 'organic' : 'referral') : ''), c].filter(Boolean).join(' / '), land: location.pathname, at: new Date().toISOString().slice(0, 10) };
+  let saved = null; try { saved = JSON.parse(localStorage.getItem(SRC_KEY)); } catch {}
+  if (ch || !saved) { if (!ch) Object.assign(now, { ch: 'Organic', detail: 'direct' }); try { localStorage.setItem(SRC_KEY, JSON.stringify(now)); } catch {} return now; }
+  return saved;
+})();
+
 // Mobile menu
 const menuBtn = document.querySelector('.menu-btn');
 menuBtn?.addEventListener('click', () => { const open = menuBtn.getAttribute('aria-expanded') !== 'true'; menuBtn.setAttribute('aria-expanded', open); document.body.classList.toggle('menu-open', open); });
@@ -100,6 +125,8 @@ const ZOHO = { url: 'https://crm.zoho.com/crm/WebToLeadForm', xnQsjsdp: '403043b
   // CRM "Product" (LEADCF1) picklist values, spelled exactly as in Zoho
   product: { compact: 'The Trobadour - Solo & Duo', band: 'The CenterStage - Full Band', complete: 'The Headliner - Complete Live', upgrade: 'The Encore - Expand Your Existing Rig', custom: 'The Signature - Custom Build' },
   // CRM "When Needed" (LEADCF3) picklist values, spelled exactly as in Zoho
+  // CRM "Lead Source" picklist: our channel name -> the value Zoho stores
+  source: { 'Google Ads': 'Advertisement', IG: 'Facebook' },
   when: { 'Within a month': 'Within a month', '1–3 months': '1-3 Months', '3–6 months': '3-6 Months', 'Just exploring': 'Just exploring' } };
 // US numbers -> (xxx) xxx-xxxx for the CRM; anything else is sent as typed
 const usPhone = v => { let n = String(v).replace(/\D/g, ''); if (n.length === 11 && n[0] === '1') n = n.slice(1); return n.length === 10 ? `(${n.slice(0, 3)}) ${n.slice(3, 6)}-${n.slice(6)}` : String(v).trim(); };
@@ -145,14 +172,14 @@ if (form) {
     const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nBand: ${d.band}\nPerformers: ${d.size}\nTiming: ${d.timing}\nInterested in: ${sysName}\nSMS consent: ${d.sms === 'yes' ? 'YES, opted in to texts on ' + new Date().toISOString() : 'No'}\n\nCurrent gear:\n${d.gear}\n\nNotes:\n${d.message}\n\n${summaryText(a)}`;
     const crmDesc = [['Rig', sysName], ['Performers', d.size], ['SMS consent', d.sms === 'yes' ? 'Yes, opted in ' + new Date().toISOString() : 'No'], ['Current gear', d.gear], ['Notes', d.message]]
       .filter(([, v]) => v && String(v).trim()).map(([k, v]) => `${k}: ${String(v).trim().replace(/\s*\n\s*/g, '; ')}`)
-      .concat(['Page: ' + location.href]).join('\n');
+      .concat(['Source: ' + leadSource.ch + (leadSource.detail ? ' (' + leadSource.detail + ')' : '') + ', landed on ' + leadSource.land + ' ' + leadSource.at, 'Page: ' + location.href]).join('\n');
     const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
     try {
       const words = properName(d.name).split(' '), last = words.length > 1 ? words[words.length - 1] : words[0], first = words.length > 1 ? words.slice(0, -1).join(' ') : '';
       const fd = new FormData();
       [['xnQsjsdp', ZOHO.xnQsjsdp], ['zc_gad', ''], ['xmIwtLD', ZOHO.xmIwtLD], ['actionType', ZOHO.actionType], ['returnURL', 'null'], ['aG9uZXlwb3Q', ''],
         ['Company', (d.band || d.name).trim().slice(0, 200)], ['First Name', first.slice(0, 40)], ['Last Name', last.slice(0, 80)], ['Email', d.email.trim().slice(0, 100)], ['Phone', usPhone(d.phone || '').slice(0, 30)],
-        ['LEADCF1', ZOHO.product[d.system] || '-None-'], ['LEADCF3', ZOHO.when[d.timing] || '-None-'],
+        ['LEADCF1', ZOHO.product[d.system] || '-None-'], ['LEADCF3', ZOHO.when[d.timing] || '-None-'], ['Lead Source', ZOHO.source[leadSource.ch] || leadSource.ch],
         ['Description', crmDesc.slice(0, 32000)]].forEach(([k, v]) => fd.append(k, v));
       const res = await fetch(ZOHO.url, { method: 'POST', body: fd, cache: 'no-cache' });
       const out = (res.headers.get('Content-Type') || '').includes('application/json') ? await res.json() : null;
