@@ -101,6 +101,8 @@ const ZOHO = { url: 'https://crm.zoho.com/crm/WebToLeadForm', xnQsjsdp: '27ac35d
   product: { compact: 'The Trobadour - Solo & Duo', band: 'The CenterStage - Full Band', complete: 'The Headliner - Complete Live', upgrade: 'The Encore - Expand Your Existing Rig', custom: 'The Signature - Custom Build' } };
 // US numbers -> (xxx) xxx-xxxx for the CRM; anything else is sent as typed
 const usPhone = v => { let n = String(v).replace(/\D/g, ''); if (n.length === 11 && n[0] === '1') n = n.slice(1); return n.length === 10 ? `(${n.slice(0, 3)}) ${n.slice(3, 6)}-${n.slice(6)}` : String(v).trim(); };
+// Capitalize names for the CRM; all-lower or ALL-CAPS names are fully proper-cased, mixed case (McDonald) is kept
+const properName = v => { const t = String(v).trim().replace(/\s+/g, ' '); const mixed = t !== t.toLowerCase() && t !== t.toUpperCase(); return t.replace(/[^\s\-']+/g, w => w[0].toUpperCase() + (mixed ? w.slice(1) : w.slice(1).toLowerCase())); };
 const form = document.querySelector('#plan-form');
 if (form) {
   const a = load();
@@ -130,7 +132,7 @@ if (form) {
       .concat(fin.length ? ['Rig finder: ' + fin.join('; ')] : [], ['Page: ' + location.href]).join('\n');
     const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
     try {
-      const words = d.name.trim().split(/\s+/), last = words.length > 1 ? words[words.length - 1] : words[0], first = words.length > 1 ? words.slice(0, -1).join(' ') : '';
+      const words = properName(d.name).split(' '), last = words.length > 1 ? words[words.length - 1] : words[0], first = words.length > 1 ? words.slice(0, -1).join(' ') : '';
       const fd = new FormData();
       [['xnQsjsdp', ZOHO.xnQsjsdp], ['zc_gad', ''], ['xmIwtLD', ZOHO.xmIwtLD], ['actionType', ZOHO.actionType], ['returnURL', 'null'], ['aG9uZXlwb3Q', ''],
         ['Company', (d.band || d.name).trim().slice(0, 200)], ['First Name', first.slice(0, 40)], ['Last Name', last.slice(0, 80)], ['Email', d.email.trim().slice(0, 100)], ['Phone', usPhone(d.phone || '').slice(0, 30)],
