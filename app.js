@@ -157,12 +157,15 @@ if (form) {
       const res = await fetch(ZOHO.url, { method: 'POST', body: fd, cache: 'no-cache' });
       const out = (res.headers.get('Content-Type') || '').includes('application/json') ? await res.json() : null;
       if (!res.ok || (out && out.actionsubmit === 'error_msg')) throw new Error('zoho');
-      const wrap = form.parentElement;
-      form.outerHTML = `<div class="form sent" tabindex="-1"><p class="label ok">Sent</p><h2>Thanks, ${esc(words[0])}. We’ve got it.</h2><p class="muted">We’ll reply within one business day.<br>Show coming up fast? Call <a href="tel:+18582323544" style="white-space:nowrap">858-232-3544</a>.</p><a class="btn btn-secondary" href="/systems/">Browse rigs &amp; pricing</a></div>`;
-      wrap.querySelector('.sent').focus();
+      try { sessionStorage.setItem('br_first', words[0]); } catch {}
+      location.href = '/thanks/';
     } catch {
       location.href = 'mailto:sales@bandrigs.com?subject=' + encodeURIComponent('Rig request — ' + (d.band || d.name)) + '&body=' + encodeURIComponent(body);
       btn.disabled = false; btn.innerHTML = 'Send my details ' + arrow;
     }
   });
 }
+
+// Thanks page: greet by first name when we have it
+const thanksH = document.querySelector('[data-thanks]');
+if (thanksH) { let n = ''; try { n = sessionStorage.getItem('br_first') || ''; } catch {} if (n) thanksH.textContent = `Thanks, ${n}. We’ve got it.`; }

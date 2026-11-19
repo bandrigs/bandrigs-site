@@ -290,3 +290,8 @@ p.rig-sub{margin:0 0 var(--s4)}
 .form-submit{display:flex;align-items:center;flex-wrap:wrap;gap:var(--s2) var(--s4);margin-top:var(--s5)}
 .form-submit .btn,.plan-head .form-submit .btn{margin:0}
 .form-submit p{margin:0}
+
+/* Mobile: center the Send button and the note under it */
+@media (max-width:720px){.form-submit{flex-direction:column;justify-content:center;text-align:center}}
+.thanks .form.sent{max-width:640px;margin:0 auto}
+.thanks .actions{margin:var(--s5) 0 0}

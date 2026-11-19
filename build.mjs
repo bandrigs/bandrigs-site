@@ -28,13 +28,13 @@ const org = {
   sameAs: ['https://www.youtube.com/channel/UCKjgT1H8lktykWGHgZ9NeRg', 'https://www.instagram.com/bandrigs/', 'https://www.tiktok.com/@bandrigschannel'],
 };
 
-function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true }) {
+function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true, noindex = false }) {
   const url = SITE + path;
   const nav = [['/systems/', 'Rigs & pricing'], ['/#how', 'How it works']];
   const ld = [org, ...schema].map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)}</title><meta name="description" content="${esc(description)}">
+<title>${esc(title)}</title><meta name="description" content="${esc(description)}">${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="canonical" href="${url}"><meta name="theme-color" content="#0d0e10">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BandRigs"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE + image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -293,6 +293,10 @@ page('/privacy/', {
   ]),
 });
 
+// Confirmation page after the Plan my rig form sends (not indexed, not in the sitemap)
+page('/thanks/', { title: 'Thanks, we got it | BandRigs', description: 'Your rig details were sent to BandRigs.', noindex: true,
+  body: `<section class="page-head thanks"><div class="wrap"><div class="form sent"><p class="label ok">Sent</p><h1 data-thanks>Thanks. We’ve got it.</h1><p class="lead">We’ll reply within one business day.</p><p class="muted">Show coming up fast? Call <a href="tel:${TEL}" style="white-space:nowrap">${PHONE}</a>.</p><div class="actions"><a class="btn btn-primary" href="/systems/">Browse rigs &amp; pricing ${arrow}</a><a class="btn btn-secondary" href="/">Back to home</a></div></div></div></section>` });
+
 pages.push({ path: '/404.html', html: layout({ path: '/404.html', title: 'Page not found | BandRigs', description: 'This page doesn’t exist.', body: `<section class="page-head"><div class="wrap"><p class="label">404</p><h1>That page isn’t here.</h1><p class="lead">Try the rig finder or see our rigs and pricing.</p><div class="actions"><a class="btn btn-primary" href="/#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">Rigs &amp; pricing</a></div></div></section>` }) });
 
 for (const { path, html } of pages) {
@@ -301,6 +305,6 @@ for (const { path, html } of pages) {
   writeFileSync(file, html);
 }
 const today = new Date().toISOString().slice(0, 10);
-writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => !p.path.endsWith('.html')).map(p => `<url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => !p.path.endsWith('.html') && p.path !== '/thanks/').map(p => `<url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 writeFileSync('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 console.log('built', pages.length, 'pages');
