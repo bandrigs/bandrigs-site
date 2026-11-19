@@ -118,6 +118,15 @@ if (form) {
     box.hidden = false;
     box.innerHTML = `<p class="label">From the rig finder</p><p class="small">${esc(label(WHO, a.who))} · ${a.people} in-ear ${a.people === 1 ? 'mix' : 'mixes'} · ${esc(label(GOAL, a.goal))} · ${esc(label(MOVE, a.move))}</p>`;
   }
+  // Performers sets a default rig (Solo/Duo -> Troubadour, 3+ -> CenterStage) until the person picks a rig themselves
+  let rigPicked = false;
+  form.elements.system.addEventListener('change', () => { rigPicked = true; });
+  form.elements.size.addEventListener('change', () => {
+    if (rigPicked) return;
+    const v = form.elements.size.value;
+    const rig = /^(Solo artist|Duo)$/.test(v) ? 'compact' : /^(3–4 piece|5–6 piece|7 or more)$/.test(v) ? 'band' : '';
+    if (rig) form.elements.system.value = rig;
+  });
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(form));
