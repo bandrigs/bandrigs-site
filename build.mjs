@@ -28,12 +28,18 @@ const org = {
   sameAs: ['https://www.youtube.com/channel/UCKjgT1H8lktykWGHgZ9NeRg', 'https://www.instagram.com/bandrigs/', 'https://www.tiktok.com/@bandrigschannel'],
 };
 
+// Google Analytics 4 (GA4) + Google tag. Loads only on the live domain so preview links don't count as visits.
+// The /thanks/ page records a generate_lead event, which Google Ads imports as the lead conversion.
+const GA_ID = 'G-QB3NVGBJ0Y';
+const gtag = path => `<script>(function(){var h=location.hostname;if(h!=='bandrigs.com'&&h!=='www.bandrigs.com')return;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_ID}';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','${GA_ID}');${path === '/thanks/' ? "gtag('event','generate_lead',{form:'rig_plan'});" : ''}})();</script>`;
+
 function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true, noindex = false }) {
   const url = SITE + path;
   const nav = [['/systems/', 'Rigs & pricing'], ['/#how', 'How it works'], ['/#faq', 'FAQ']];
   const ld = [org, ...schema].map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+${gtag(path)}
 <title>${esc(title)}</title><meta name="description" content="${esc(description)}">${noindex ? '<meta name="robots" content="noindex">' : ''}
 <link rel="canonical" href="${url}"><meta name="theme-color" content="#0d0e10">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BandRigs"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE + image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
