@@ -3,10 +3,10 @@ export const order = ['compact', 'band', 'complete', 'upgrade', 'custom'];
 
 export const packages = {
   compact: {
-    name: 'The Troubadour', sub: 'Solo & Duo Artist Rig', for: 'Solo performers and duos', price: '$6,995', amount: 6995,
+    name: 'The Troubadour', sub: 'Solo & Duo Artist Rig', for: 'Solo performers and duos', price: '$6,495', amount: 6495,
     headline: 'Your whole show in one small rack.',
     summary: 'Built for a solo performer or duo. Mix your vocals, instruments and backing tracks from the stage, hear your own in-ear mix, and set up the whole rig without a crew. Duos add a second PSM 300.',
-    meta: 'The Troubadour, a solo and duo rig from $6,995: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rolling rack, built by BandRigs for solo performers and duos.',
+    meta: 'The Troubadour, a solo and duo rig from $6,495: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rolling rack, built by BandRigs for solo performers and duos.',
     includes: ['Planning call and a written system design', 'Your mixer, stage box and wireless in-ears racked together', 'Wi-Fi router so you can mix from a tablet or phone', 'Wired, labeled and tested, with saved starting mixes', 'One-page setup guide'],
     fit: ['You perform solo or as a duo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up without a crew in minutes', 'You may want to add an A/B splitter snake for FOH later'],
     rig: ['rack', 'furman', 'wing', 'router', 'psm300', 'dl8'],
@@ -71,14 +71,14 @@ export const gear = {
   furman: { name: 'Furman PL-8C', tag: 'Power conditioner', image: 'gear/furman.webp', h: 339, price: '$327.95', desc: 'Clean, protected power for everything in the rack, with pull-out rack lights.' },
   router: { name: 'MikroTik L009 Wi-Fi router', tag: 'Wireless control', image: 'gear/router.webp', h: 935, price: '$109', desc: 'Mix from a tablet or phone anywhere on stage.' },
   playaudio: { name: 'iConnectivity PlayAUDIO1U', tag: 'Playback interface', image: 'gear/playaudio1u.webp', h: 184, price: '$1,199.99', desc: 'Runs tracks from two computers and switches to the backup instantly.' },
-  flightcase: { name: 'Gator G-Tour 8U shock rack case', tag: 'Rolling flight case', image: 'gear/flightcase-8u.webp', h: 1137, price: '$999.99', desc: 'Swap the rolling rack for a shock-mounted ATA case with locking lids. Price is for the 8-space size, from Sweetwater.' },
+  flightcase: { name: 'Gator G-Tour 8U shock rack case', tag: 'Rolling flight case', image: 'gear/flightcase-8u.webp', h: 1137, price: '$999.99', desc: 'Swap the rolling rack for a shock-mounted ATA case with locking lids. Price is for the 8-space size.' },
   tracks: { name: 'Playback tracks built in Ableton', tag: 'Service', image: 'gear/ableton-stems.webp', h: 619, fill: true, price: 'Call for pricing', desc: 'We turn your stems into a show-ready Ableton session with click, cues and the right outputs for your rig.' },
   rfpack: { name: 'RF Venue 4-channel IEM upgrade pack', tag: 'Antenna upgrade', image: 'gear/rfvenue-comb4cpb.webp', h: 619, fill: true, price: '$1,799', desc: 'COMBINE4 transmitter combiner, CP Beam antenna and 25 ft cable (COMB4CPB). Combines four PSM 300s into one directional antenna for cleaner, longer-range in-ears.' },
   support: { name: 'Service & support plan', tag: 'Subscription', art: 'support', price: '$75/mo, or $50/mo billed annually', desc: 'Ongoing help with your rig: remote support, firmware updates and mix changes when you need them.' },
-  rack12: { name: 'Gator G-Tour 12U rolling rack', tag: 'Rolling rack', image: 'gear/rollingrack-8u.webp', h: 1100, price: '$699.99', desc: '12-space ATA road case on casters, room for the whole band rig. Price from Markertek.' },
+  rack12: { name: 'Gator G-Tour 12U rolling rack', tag: 'Rolling rack', image: 'gear/rollingrack-8u.webp', h: 1100, price: '$699.99', desc: '12-space ATA road case on casters, room for the whole band rig.' },
   psm300band: { name: 'Shure PSM 300 × 4', tag: 'Wireless in-ears', image: 'gear/psm300-p3t.webp', h: 491, price: '$3,956 ($989 each)', desc: 'Four stereo wireless in-ear systems, one per player. They mount two per rack space.' },
   psm300extra: { name: 'Extra Shure PSM 300', tag: 'More wireless mixes', image: 'gear/psm300-p3t.webp', h: 491, price: '$989 each', desc: 'Add wireless in-ears for players five and six. The rack has room for both.' },
-  rack: { name: 'Gator GRR-8L rolling rack', tag: 'Rolling rack', image: 'gear/rollingrack-8u.webp', h: 1100, price: '$489.99', desc: '8-space rack on casters with front and rear rails and locking covers. Price from Sweetwater.' },
+  rack: { name: 'Gator GRR-8L rolling rack', tag: 'Rolling rack', image: 'gear/rollingrack-8u.webp', h: 1100, price: '$489.99', desc: '8-space rack on casters with front and rear rails and locking covers.' },
   macmini: { name: 'Apple Mac mini', tag: 'Tracks computers', image: 'gear/macmini.webp', h: 358, price: '$899 each', desc: 'Two computers running your tracks, one as a live backup.' },
   namepanel: { name: 'Backlit name panel', tag: 'Custom 1U panel', image: 'gear/name-panel.webp', h: 619, fill: true, price: '$199', desc: 'One rack space with your artist name cut out and backlit in blue.' },
 };

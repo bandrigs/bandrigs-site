@@ -90,7 +90,7 @@ const ART = {
   case: '<svg viewBox="0 0 240 150" width="240" height="150" aria-hidden="true"><rect x="30" y="20" width="180" height="110" rx="6" fill="#23272c" stroke="#a4a8ae" stroke-width="2"/><g fill="none" stroke="#a4a8ae" stroke-width="2"><path d="M30 40h180M30 110h180"/><rect x="95" y="8" width="50" height="12" rx="3"/></g><g fill="#a4a8ae"><rect x="26" y="16" width="16" height="16" rx="2"/><rect x="198" y="16" width="16" height="16" rx="2"/><rect x="26" y="118" width="16" height="16" rx="2"/><rect x="198" y="118" width="16" height="16" rx="2"/><rect x="70" y="68" width="14" height="22" rx="2"/><rect x="156" y="68" width="14" height="22" rx="2"/></g></svg>',
   name: '<svg viewBox="0 0 260 90" width="260" height="90" aria-hidden="true"><defs><filter id="glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="6" y="22" width="248" height="46" rx="3" fill="#111316" stroke="#3a4048" stroke-width="2"/><circle cx="18" cy="45" r="4" fill="#0d0e10" stroke="#3a4048"/><circle cx="242" cy="45" r="4" fill="#0d0e10" stroke="#3a4048"/><text x="130" y="54" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="600" font-size="26" letter-spacing="6" fill="#8ec5ff" filter="url(#glow)">BANDRIGS</text></svg>',
 };
-const pieceRow = keys => `<ul class="gear pieces">${keys.map(k => { const g = gear[k]; const pic = g.art ? ART[g.art] : `<img src="/assets/${g.image}" alt="${esc(g.name)}" loading="lazy">`; return `<li><div class="gear-img${g.fill ? ' fill' : ''}">${pic}</div><p class="label">${g.tag}</p><p class="gear-name">${g.name}</p><p class="piece-price">${g.price || 'Priced with your build'}</p><p class="small muted">${g.desc}</p></li>`; }).join('')}</ul>`;
+const pieceRow = (keys, showPrice = true) => `<ul class="gear pieces">${keys.map(k => { const g = gear[k]; const pic = g.art ? ART[g.art] : `<img src="/assets/${g.image}" alt="${esc(g.name)}" loading="lazy">`; return `<li><div class="gear-img${g.fill ? ' fill' : ''}">${pic}</div><p class="label">${g.tag}</p><p class="gear-name">${g.name}</p>${showPrice ? `<p class="piece-price">${g.price || 'Priced with your build'}</p>` : ''}<p class="small muted">${g.desc}</p></li>`; }).join('')}</ul>`;
 
 const steps = [
   ['Answer four questions', 'Right below this, tap through four quick questions about your lineup. You see a starting price and the rig we’d build in under a minute.'],
@@ -120,7 +120,7 @@ const page = (path, opts) => pages.push({ path, html: layout({ path, ...opts }) 
 // Home
 page('/', {
   title: 'Custom In-Ear Monitor & Live Mixing Rigs for Artists | BandRigs',
-  description: 'Custom in-ear monitor and live mixing rigs for artists and bands, designed and built by BandRigs. Answer 4 questions to find your rig. Rigs from $6,995.',
+  description: 'Custom in-ear monitor and live mixing rigs for artists and bands, designed and built by BandRigs. Answer 4 questions to find your rig. Rigs from $6,495.',
   schema: [faqSchema, { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Custom live sound and in-ear monitor rack design and build', provider: { '@id': SITE + '/#org' },
     offers: order.filter(k => packages[k].price).map(k => ({ '@type': 'Offer', name: fullName(packages[k]), url: `${SITE}/systems/${k}/`, priceSpecification: { '@type': 'PriceSpecification', minPrice: packages[k].amount, priceCurrency: 'USD' } })) }],
   body: `
@@ -131,7 +131,7 @@ page('/', {
 <h1>Your sound.<br>Your stage.<br>Your BandRig.</h1>
 <p class="lead">Custom in-ear monitor and live mixing rigs, built around how your band plays. Answer four quick questions to find your starting point.</p>
 <div class="actions"><a class="btn btn-primary" href="#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
-<p class="hero-tag"><strong>Less setup. More show.</strong><br><span class="muted">Gear and build from $6,995 · Artists &amp; Bands anywhere in the US</span></p>
+<p class="hero-tag"><strong>Less setup. More show.</strong><br><span class="muted">Gear and build from $6,495 · Artists &amp; Bands anywhere in the US</span></p>
 </div></div>
 
 </section>
@@ -192,7 +192,7 @@ function ctaBand() {
 // Systems overview
 page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
-  description: 'Compare BandRigs rigs: The Troubadour solo and duo rig from $6,995, The CenterStage full band rig from $10,295, The Headliner complete live rig from $11,500, plus The Encore upgrades and The Signature custom builds.',
+  description: 'Compare BandRigs rigs: The Troubadour solo and duo rig from $6,495, The CenterStage full band rig from $10,295, The Headliner complete live rig from $11,500, plus The Encore upgrades and The Signature custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
   body: `<section class="page-head"><div class="wrap"><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build. Shipping the finished rig to you is extra. We work with artists and bands anywhere in the US. You can also buy the gear yourself, have it drop shipped to us, and we build it at our <span class="nowrap">$125/hr</span> service rate, plus shipping back to you.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
 <section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><h2><a href="/systems/${k}/">${p.name}</a></h2>${rigSub(p, 'p')}<p class="label">${p.for}</p><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section><section class="section tight"><div class="wrap">${servicesBlock()}</div></section>${ctaBand()}`,
@@ -212,7 +212,7 @@ for (const k of order) {
 ${p.photos ? `<figure class="pkg-photo"><img src="/assets/${p.photos.front[0]}" alt="Mockup of ${esc(p.name)} with all upgrades in a rolling rack case, front view" width="${p.photos.front[1]}" height="${p.photos.front[2]}"><figcaption class="label">Mockup · Shown with all upgrades</figcaption></figure>` : `<figure class="pkg-photo"><div class="gear-img"><img src="/assets/${gear[p.gear[0]].image}" alt="${esc(gear[p.gear[0]].name)}" width="1100" height="${gear[p.gear[0]].h}"></div><figcaption class="label">Typical gear · ${gear[p.gear[0]].name}</figcaption></figure>`}</div></section>
 <section class="section tight"><div class="wrap two-col"><div><h2>What’s included</h2><ul class="ticks">${p.includes.map(i => `<li>${i}</li>`).join('')}</ul>${extrasNote(k)}</div>
 <div><h2>A good fit if…</h2><ul class="ticks">${p.fit.map(i => `<li>${i}</li>`).join('')}</ul></div></div></section>
-${p.rig ? `<section class="section tight"><div class="wrap"><div class="section-head"><h2>The basic rig</h2><p class="muted">What goes in the rack. Prices are typical US retail for each piece, for reference. Your rig price covers the gear and the build.</p></div>${pieceRow(p.rig)}</div></section>` : ''}
+${p.rig ? `<section class="section tight"><div class="wrap"><div class="section-head"><h2>The basic rig</h2><p class="muted">What goes in the rack. Your rig price covers all of this gear and the build.</p></div>${pieceRow(p.rig, false)}</div></section>` : ''}
 ${p.rig ? '' : `<section class="section tight"><div class="wrap"><div class="section-head"><h2>Gear we often start with</h2><p class="muted">Examples, not a fixed list. Your mix count, inputs and existing gear decide the final setup.</p></div>${gearRow(p.gear)}</div></section>`}
 ${p.upgrades ? `<section class="section tight"><div class="wrap"><div class="section-head"><h2>Popular upgrades</h2><p class="muted">Add any of these to your rig.</p></div>${pieceRow(p.upgrades)}${p.photos ? `<figure class="wide-shot mock-one"><img src="/assets/${p.photos.angle[0]}" alt="Mockup of ${esc(p.name)} in an open flight case on wheels" loading="lazy" width="${p.photos.angle[1]}" height="${p.photos.angle[2]}"></figure><p class="label mock-cap">Mockup · ${p.name} with all upgrades: PlayAUDIO1U playback, two Mac minis, the backlit name panel and the rolling flight case</p>` : ''}</div></section>` : ''}
 ${ctaBand()}`,
