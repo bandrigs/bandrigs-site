@@ -54,6 +54,7 @@ export const packages = {
     fit: ['You need more than 16 in-ear mixes', 'Several people run the system', 'You need it to grow over time'],
     upgrades: ['tracks', 'support'],
     gear: ['wing', 's32', 'dn4888', 'dn4816'],
+    scene: { img: 'worship-soundcheck-wide.webp', w: 1672, h: 941, cap: 'Worship team soundcheck · every musician on in-ears, one rolling rack', alt: 'Church worship team soundcheck in a sanctuary with in-ear monitors, a custom BandRigs rolling rack with mixer and wireless in-ear transmitters on stage' },
   },
 };
 

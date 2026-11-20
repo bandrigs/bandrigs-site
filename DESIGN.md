@@ -69,4 +69,5 @@ Radius: 4px for buttons, inputs and panels, 2px for tags. No shadows: depth come
 - Home header: the BandRigs concept render of a loaded rack on stage (`/assets/hero-rack.webp`), chosen by Ken, no caption (Ken removed it 2026-11-18).
 - Everywhere else: manufacturer product shots on `--surface-2` backing, captioned with a mono label naming the gear. Do not use the rack photos in Dropbox Bandrigs/Images (IMG_07xx): Ken confirmed they are not BandRigs builds. Add real build photos only when Ken supplies them.
 - Manufacturer product shots only on `--surface-2` backing, for "typical gear".
+- Worship photos (Ken, 2026-11-20): `worship-live-service`, `worship-soundcheck`, `portable-church-soundcheck` in the home "Churches & worship teams" section; the sanctuary soundcheck also on The Signature page. Captions in mono labels.
 - Icons: inline SVG, 1.5px stroke, currentColor, used only where they add meaning (phone, mail, socials, arrows).

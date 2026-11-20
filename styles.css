@@ -295,3 +295,5 @@ p.rig-sub{margin:0 0 var(--s4)}
 @media (max-width:720px){.form-submit{flex-direction:column;justify-content:center;text-align:center}}
 .thanks .form.sent{max-width:640px;margin:0 auto}
 .thanks .actions{margin:var(--s5) 0 0}
+.worship-shots{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-top:var(--s5)}.worship-shots figure{margin:0}.worship-shots img{width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line)}.worship .wide-shot figcaption,.worship-shots figcaption{margin-top:var(--s2)}.worship-link{display:inline-block;margin-top:var(--s6)}
+@media (max-width:720px){.worship-shots{grid-template-columns:1fr}}
