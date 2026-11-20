@@ -1,4 +1,4 @@
-import { packages, gear, recommend } from '/data.js?v=1bc8201875';
+import { packages, gear, recommend } from '/data.js?v=aec6dce8d4';
 
 const KEY = 'bandrigs-finder';
 const arrow = '<span aria-hidden="true" class="arr"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span>';

@@ -3,10 +3,10 @@ export const order = ['compact', 'band', 'complete', 'upgrade', 'custom'];
 
 export const packages = {
   compact: {
-    name: 'The Troubadour', sub: 'Solo & Duo Artist Rig', for: 'Solo performers and duos', price: '$4,995', amount: 4995,
+    name: 'The Troubadour', sub: 'Solo & Duo Artist Rig', for: 'Solo performers and duos', price: '$6,995', amount: 6995,
     headline: 'Your whole show in one small rack.',
     summary: 'Built for a solo performer or duo. Mix your vocals, instruments and backing tracks from the stage, hear your own in-ear mix, and set up the whole rig without a crew. Duos add a second PSM 300.',
-    meta: 'The Troubadour, a solo and duo rig from $4,995: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rolling rack, built by BandRigs for solo performers and duos.',
+    meta: 'The Troubadour, a solo and duo rig from $6,995: Behringer WING Rack, Midas DL8, Shure PSM 300 in-ears and Furman power in one rolling rack, built by BandRigs for solo performers and duos.',
     includes: ['Planning call and a written system design', 'Your mixer, stage box and wireless in-ears racked together', 'Wi-Fi router so you can mix from a tablet or phone', 'Wired, labeled and tested, with saved starting mixes', 'One-page setup guide'],
     fit: ['You perform solo or as a duo, with tracks or live', 'You want to run your own sound from the stage', 'You want something you can set up without a crew in minutes', 'You may want to add an A/B splitter snake for FOH later'],
     rig: ['rack', 'furman', 'wing', 'router', 'psm300', 'dl8'],
@@ -15,10 +15,10 @@ export const packages = {
     gear: ['wing', 'psm300'],
   },
   band: {
-    name: 'The CenterStage', sub: 'Full Band Rig', for: 'Bands of 3 to 6 · 4 wireless included, 5–6 extra', price: '$9,995', amount: 9995,
+    name: 'The CenterStage', sub: 'Full Band Rig', for: 'Bands of 3 to 6 · 4 wireless included, 5–6 extra', price: '$10,295', amount: 10295,
     headline: 'Every player hears their own mix.',
     summary: 'Built for bands of 3 to 6. Four players get their own wireless in-ear mix (add two more for a six-piece), the whole band plugs into one stage box, and you run it all from a tablet. One rolling rack, the same setup every night.',
-    meta: 'The CenterStage, a full band in-ear rig from $9,995 for bands of 3 to 6: Behringer WING Rack, Midas DL16 stage box, four Shure PSM 300 wireless in-ears and Furman power in one rolling rack, built by BandRigs.',
+    meta: 'The CenterStage, a full band in-ear rig from $10,295 for bands of 3 to 6: Behringer WING Rack, Midas DL16 stage box, four Shure PSM 300 wireless in-ears and Furman power in one rolling rack, built by BandRigs.',
     includes: ['Mix plan: who hears what, and how it connects', 'Your mixer, stage box and wireless in-ears racked together', 'Four wireless in-ear systems, one mix per player', 'Wi-Fi router so each player can adjust their mix from a phone', 'Wired, labeled and tested, with saved starting mixes', 'Setup guide and a walkthrough with your band'],
     fit: ['Your band has 3 to 6 players', 'Your band uses wedges and nobody can hear', 'Each player wants a different mix', 'You want load-in to be the same every night', 'You may want to add an A/B splitter snake for FOH later'],
     rig: ['rack12', 'furman', 'wing', 'router', 'dl16', 'psm300band'],
@@ -26,10 +26,10 @@ export const packages = {
     gear: ['wing', 'dl16', 'psm300'],
   },
   complete: {
-    name: 'The Headliner', sub: 'Complete Live Rig', for: 'Bands that run their own sound', price: '$10,995', amount: 10995,
+    name: 'The Headliner', sub: 'Complete Live Rig', for: 'Bands that run their own sound', price: '$11,500', amount: 11500,
     headline: 'Mixing and in-ears in one road case.',
     summary: 'Your front-of-house mix, every in-ear mix and your stage connections, built into one rack around a digital mixer.',
-    meta: 'The Headliner, a complete live mixing and in-ear rig for bands, from $10,995. WING Rack, stage box and in-ears in one road case, built by BandRigs.',
+    meta: 'The Headliner, a complete live mixing and in-ear rig for bands, from $11,500. WING Rack, stage box and in-ears in one road case, built by BandRigs.',
     includes: ['Full plan: inputs, outputs, in-ear mixes and venue hand-off', 'Rack layout, routing, power and cabling', 'Digital mixer, stage box and in-ear systems, configured', 'Bench-tested as a complete system before delivery', 'Labels, setup guide and an operating walkthrough'],
     fit: ['You run your own sound at most gigs', 'You want one case instead of a pile of gear', 'You want the same show at every venue'],
     upgrades: ['rfpack', 'tracks', 'support'],

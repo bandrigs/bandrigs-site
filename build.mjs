@@ -120,7 +120,7 @@ const page = (path, opts) => pages.push({ path, html: layout({ path, ...opts }) 
 // Home
 page('/', {
   title: 'Custom In-Ear Monitor & Live Mixing Rigs for Artists | BandRigs',
-  description: 'Custom in-ear monitor and live mixing rigs for artists and bands, designed and built by BandRigs. Answer 4 questions to find your rig. Rigs from $4,995.',
+  description: 'Custom in-ear monitor and live mixing rigs for artists and bands, designed and built by BandRigs. Answer 4 questions to find your rig. Rigs from $6,995.',
   schema: [faqSchema, { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Custom live sound and in-ear monitor rack design and build', provider: { '@id': SITE + '/#org' },
     offers: order.filter(k => packages[k].price).map(k => ({ '@type': 'Offer', name: fullName(packages[k]), url: `${SITE}/systems/${k}/`, priceSpecification: { '@type': 'PriceSpecification', minPrice: packages[k].amount, priceCurrency: 'USD' } })) }],
   body: `
@@ -131,7 +131,7 @@ page('/', {
 <h1>Your sound.<br>Your stage.<br>Your BandRig.</h1>
 <p class="lead">Custom in-ear monitor and live mixing rigs, built around how your band plays. Answer four quick questions to find your starting point.</p>
 <div class="actions"><a class="btn btn-primary" href="#finder">Find my rig ${arrow}</a><a class="btn btn-secondary" href="/systems/">See rigs &amp; pricing</a></div>
-<p class="hero-tag"><strong>Less setup. More show.</strong><br><span class="muted">Gear and build from $4,995 · Artists &amp; Bands anywhere in the US</span></p>
+<p class="hero-tag"><strong>Less setup. More show.</strong><br><span class="muted">Gear and build from $6,995 · Artists &amp; Bands anywhere in the US</span></p>
 </div></div>
 
 </section>
@@ -192,7 +192,7 @@ function ctaBand() {
 // Systems overview
 page('/systems/', {
   title: 'In-Ear Monitor Rigs & Pricing for Bands | BandRigs',
-  description: 'Compare BandRigs rigs: The Troubadour solo and duo rig from $4,995, The CenterStage full band rig from $9,995, The Headliner complete live rig from $10,995, plus The Encore upgrades and The Signature custom builds.',
+  description: 'Compare BandRigs rigs: The Troubadour solo and duo rig from $6,995, The CenterStage full band rig from $10,295, The Headliner complete live rig from $11,500, plus The Encore upgrades and The Signature custom builds.',
   schema: [crumbs([['Home', '/'], ['Rigs & pricing', '/systems/']])],
   body: `<section class="page-head"><div class="wrap"><h1>Pick a starting point.</h1><p class="lead">Every rig is designed around your lineup. Prices include the gear and the build. Shipping the finished rig to you is extra. We work with artists and bands anywhere in the US. You can also buy the gear yourself, have it drop shipped to us, and we build it at our <span class="nowrap">$125/hr</span> service rate, plus shipping back to you.</p><a class="quiet" href="/#finder">Not sure? Use the rig finder ${arrow}</a></div></section>
 <section class="section tight"><div class="wrap pkg-list">${order.map(k => { const p = packages[k]; return `<article class="pkg"><div class="pkg-main"><h2><a href="/systems/${k}/">${p.name}</a></h2>${rigSub(p, 'p')}<p class="label">${p.for}</p><p class="muted">${p.summary}</p>${priceLine(p)}</div><ul class="ticks">${p.includes.slice(0, 3).map(i => `<li>${i}</li>`).join('')}</ul><a class="btn btn-secondary" href="/systems/${k}/">Details ${arrow}</a></article>`; }).join('')}</div></section><section class="section tight"><div class="wrap">${servicesBlock()}</div></section>${ctaBand()}`,
