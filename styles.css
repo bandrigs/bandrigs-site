@@ -300,15 +300,19 @@ p.rig-sub{margin:0 0 var(--s4)}
 /* Payment page */
 .pay-head h1{max-width:12ch}
 .pay-help{margin-top:var(--s5);max-width:44ch}
-.pay-methods{list-style:none;padding:0;margin:0 0 var(--s5);border-top:1px solid var(--line)}
+.pay-methods{list-style:none;padding:0;margin:var(--s6) 0;border-top:1px solid var(--line)}
 .pay-methods li{padding:var(--s4) 0;border-bottom:1px solid var(--line)}
-.pay-methods h2{font-size:var(--fs-h3);line-height:1.2;margin:0 0 var(--s2);display:flex;align-items:center;flex-wrap:wrap;gap:var(--s3)}
+.pay-methods h2{font-size:20px;line-height:1.2;margin:0 0 var(--s2);display:flex;align-items:center;flex-wrap:wrap;gap:var(--s3)}
 .pay-methods p{margin:0}
 .pay-tag{font:500 var(--fs-label)/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--primary);border:1px solid var(--primary);border-radius:var(--r-sm);padding:4px 6px}
 .form .pay-btn{width:100%;justify-content:center;margin:0 0 var(--s3)}
-.pay-btn:disabled{opacity:.4;cursor:not-allowed}
+
 .pay-soon{border-left:2px solid var(--primary);padding-left:var(--s3);margin:0 0 var(--s4)}
 .pay-steps{grid-template-columns:repeat(3,1fr)}
 .pay-terms{margin-top:var(--s6);max-width:66ch}
 @media (max-width:960px){.pay-head .plan-grid{grid-template-columns:1fr;gap:var(--s6)}}
 @media (max-width:720px){.pay-steps{grid-template-columns:1fr}}
+.pay-amount{position:relative;display:block}.pay-amount>span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);margin:0;font-size:var(--fs-body)}.field .pay-amount input{padding-left:28px}
+.pay-panel .form-grid .field,.pay-panel .field{margin-bottom:var(--s4)}
+.pay-btn:disabled{opacity:.6;cursor:progress}
+#pay-done h2{margin-bottom:var(--s3)}#pay-done .specs{margin:var(--s5) 0}

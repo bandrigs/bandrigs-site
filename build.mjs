@@ -259,12 +259,15 @@ page('/plan/', {
 </form></div></section>`,
 });
 
-// Payments. Customers pay on Helcim's hosted payment page, so no card or bank details touch this site.
-// Helcim hosted payment page "BandRigs Invoice Payment" (Invoice Payment type, ACH or card, Fee Saver on). Empty = "coming soon" placeholder.
+// Payments. Customers stay on bandrigs.com: /_worker.js (Cloudflare) starts a HelcimPay.js checkout with the
+// HELCIM_API_TOKEN secret, and payment.js opens Helcim's secure checkout window over this page.
+// Card and bank numbers go straight to Helcim and never touch this site.
+// HELCIM_PAY_URL is Helcim's own hosted page, kept as a fallback if the popup can't start.
 const HELCIM_PAY_URL = 'https://bandrigs.myhelcim.com/hosted/?token=c464d05109ce78075f0cdd';
+const PAY_V = ver('payment.js');
 const payMethods = [
-  ['Bank transfer (ACH)', 'Recommended', 'Pay straight from your checking account, with no fee and no card limits. The simplest way to pay a large deposit. Clears in about 3 to 5 business days.'],
-  ['Credit or debit card', '', 'Visa, Mastercard, American Express and Discover. Clears right away. A card processing fee of about 3% is added at checkout.'],
+  ['Bank transfer (ACH)', 'No fee', 'From your checking account. Clears in about 3 to 5 business days.'],
+  ['Credit or debit card', '', 'Visa, Mastercard, Amex and Discover. A fee of about 3% is added at checkout.'],
 ];
 const paySteps = [
   ['You approve the quote', '75% deposit. We order your gear as soon as it clears.'],
@@ -276,20 +279,33 @@ page('/payment/', {
   description: 'Pay a deposit or balance on your BandRigs rig build by bank transfer (ACH) or card.',
   noindex: true,
   body: `<section class="page-head pay-head"><div class="wrap plan-grid"><div class="plan-intro"><p class="label">Payments</p><h1>Pay your invoice.</h1><p class="lead">Pay a deposit or balance on your BandRigs build. Have your invoice or quote number ready.</p>
+<ul class="pay-methods">${payMethods.map(([t, tag, d]) => `<li><h2>${t}${tag ? ` <span class="pay-tag">${tag}</span>` : ''}</h2><p class="muted">${d}</p></li>`).join('')}</ul>
 <dl class="specs compact"><div><dt>Phone</dt><dd><a href="tel:${TEL}">${PHONE}</a></dd></div><div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div></dl>
 <p class="small muted pay-help">Not sure what you owe, or need an invoice resent? Call or email and we’ll sort it out the same day.</p></div>
-<div class="form pay-panel"><p class="label">Two ways to pay</p>
-<ul class="pay-methods">${payMethods.map(([t, tag, d]) => `<li><h2>${t}${tag ? ` <span class="pay-tag">${tag}</span>` : ''}</h2><p class="muted">${d}</p></li>`).join('')}</ul>
-${HELCIM_PAY_URL
-    ? `<a class="btn btn-primary pay-btn" href="${HELCIM_PAY_URL}" rel="noopener">Pay now ${arrow}</a><p class="small muted">Opens our secure payment page, run by Helcim. Enter the invoice number and the amount shown on your invoice, then choose bank transfer or card.</p>`
-    : `<button class="btn btn-primary pay-btn" type="button" disabled>Pay now ${arrow}</button><p class="pay-soon" role="status">Online payment opens soon. Until then, call or email and we’ll send you a secure payment link.</p>`}
-<p class="small muted">Payments are processed by Helcim. We never see or store your full card or bank account number.</p></div>
+<div class="form pay-panel">
+<form id="pay-form" novalidate data-fallback="${HELCIM_PAY_URL}">
+<p class="label">Pay online</p>
+<div class="form-grid">
+<label class="field"><span>Your name <i aria-hidden="true">*</i></span><input name="name" autocomplete="name" required aria-required="true" maxlength="80"></label>
+<label class="field"><span>Email <i aria-hidden="true">*</i></span><input name="email" type="email" autocomplete="email" required aria-required="true" maxlength="120"></label>
+<label class="field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" maxlength="20"></label>
+<label class="field"><span>Invoice or quote number <i aria-hidden="true">*</i></span><input name="invoice" required aria-required="true" maxlength="40" autocomplete="off"></label>
+</div>
+<label class="field"><span>Amount (USD) <i aria-hidden="true">*</i></span><span class="pay-amount"><span aria-hidden="true">$</span><input name="amount" inputmode="decimal" required aria-required="true" placeholder="0.00" autocomplete="off"></span></label>
+<p class="error" id="pay-error" role="alert" hidden></p>
+<button class="btn btn-primary pay-btn" type="submit">Continue to payment ${arrow}</button>
+<p class="small muted">A secure Helcim checkout opens right here. Choose bank transfer or card. We never see or store your full card or bank account number.</p>
+<noscript><p class="small">JavaScript is off. <a href="${HELCIM_PAY_URL}" rel="noopener">Pay on our Helcim payment page</a> instead.</p></noscript>
+</form>
+<div id="pay-done" class="sent" tabindex="-1" hidden><p class="label ok">Payment received</p><h2>Thank you.</h2><p class="lead" data-done-line></p><dl class="specs compact" data-done-specs></dl><p class="muted">We’ll confirm by email. Questions? Call <a href="tel:${TEL}" style="white-space:nowrap">${PHONE}</a>.</p></div>
+</div>
 </div></section>
 <section class="section tight"><div class="wrap">
 <div class="section-head"><h2>How payments work</h2><p class="muted">Rig builds are paid in two parts.</p></div>
 <ol class="steps pay-steps">${paySteps.map(([t, d], i) => `<li><span class="step-n">0${i + 1}</span><h3>${t}</h3><p class="muted">${d}</p></li>`).join('')}</ol>
 <p class="small muted pay-terms">Quotes are good for 14 days. Builds with gear you buy yourself, playback tracks and the support plan have their own schedules. See our <a href="/terms/">Terms of Service</a>.</p>
-</div></section>`,
+</div></section>
+<script src="https://secure.helcim.app/helcim-pay/services/start.js" defer></script><script src="/payment.js?v=${PAY_V}" defer></script>`,
 });
 
 // 404

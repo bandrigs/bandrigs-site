@@ -7,7 +7,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/styles.css?v=b317150b09"><script type="module" src="/app.js?v=3a9efba922"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://bandrigs.com/#org","name":"BandRigs","url":"https://bandrigs.com/","logo":"https://bandrigs.com/assets/logo.svg","image":"https://bandrigs.com/assets/og.jpg","email":"sales@bandrigs.com","telephone":"+18582323544","description":"BandRigs designs and builds custom live mixing and in-ear monitor rack systems for artists and bands anywhere in the US.","areaServed":{"@type":"Country","name":"United States"},"sameAs":["https://www.youtube.com/@BandRigsChannel","https://www.instagram.com/bandrigs/","https://www.tiktok.com/@bandrigschannel"]}</script>
+<link rel="stylesheet" href="/styles.css?v=4954f342e6"><script type="module" src="/app.js?v=3a9efba922"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://bandrigs.com/#org","name":"BandRigs","url":"https://bandrigs.com/","logo":"https://bandrigs.com/assets/logo.svg","image":"https://bandrigs.com/assets/og.jpg","email":"sales@bandrigs.com","telephone":"+18582323544","description":"BandRigs designs and builds custom live mixing and in-ear monitor rack systems for artists and bands anywhere in the US.","areaServed":{"@type":"Country","name":"United States"},"sameAs":["https://www.youtube.com/@BandRigsChannel","https://www.instagram.com/bandrigs/","https://www.tiktok.com/@bandrigschannel"]}</script>
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap head-row">
@@ -18,18 +18,33 @@
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
 </div></header>
 <main id="main"><section class="page-head pay-head"><div class="wrap plan-grid"><div class="plan-intro"><p class="label">Payments</p><h1>Pay your invoice.</h1><p class="lead">Pay a deposit or balance on your BandRigs build. Have your invoice or quote number ready.</p>
+<ul class="pay-methods"><li><h2>Bank transfer (ACH) <span class="pay-tag">No fee</span></h2><p class="muted">From your checking account. Clears in about 3 to 5 business days.</p></li><li><h2>Credit or debit card</h2><p class="muted">Visa, Mastercard, Amex and Discover. A fee of about 3% is added at checkout.</p></li></ul>
 <dl class="specs compact"><div><dt>Phone</dt><dd><a href="tel:+18582323544">858-232-3544</a></dd></div><div><dt>Email</dt><dd><a href="mailto:sales@bandrigs.com">sales@bandrigs.com</a></dd></div></dl>
 <p class="small muted pay-help">Not sure what you owe, or need an invoice resent? Call or email and we’ll sort it out the same day.</p></div>
-<div class="form pay-panel"><p class="label">Two ways to pay</p>
-<ul class="pay-methods"><li><h2>Bank transfer (ACH) <span class="pay-tag">Recommended</span></h2><p class="muted">Pay straight from your checking account, with no fee and no card limits. The simplest way to pay a large deposit. Clears in about 3 to 5 business days.</p></li><li><h2>Credit or debit card</h2><p class="muted">Visa, Mastercard, American Express and Discover. Clears right away. A card processing fee of about 3% is added at checkout.</p></li></ul>
-<a class="btn btn-primary pay-btn" href="https://bandrigs.myhelcim.com/hosted/?token=c464d05109ce78075f0cdd" rel="noopener">Pay now <span aria-hidden="true" class="arr"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></a><p class="small muted">Opens our secure payment page, run by Helcim. Enter the invoice number and the amount shown on your invoice, then choose bank transfer or card.</p>
-<p class="small muted">Payments are processed by Helcim. We never see or store your full card or bank account number.</p></div>
+<div class="form pay-panel">
+<form id="pay-form" novalidate data-fallback="https://bandrigs.myhelcim.com/hosted/?token=c464d05109ce78075f0cdd">
+<p class="label">Pay online</p>
+<div class="form-grid">
+<label class="field"><span>Your name <i aria-hidden="true">*</i></span><input name="name" autocomplete="name" required aria-required="true" maxlength="80"></label>
+<label class="field"><span>Email <i aria-hidden="true">*</i></span><input name="email" type="email" autocomplete="email" required aria-required="true" maxlength="120"></label>
+<label class="field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" maxlength="20"></label>
+<label class="field"><span>Invoice or quote number <i aria-hidden="true">*</i></span><input name="invoice" required aria-required="true" maxlength="40" autocomplete="off"></label>
+</div>
+<label class="field"><span>Amount (USD) <i aria-hidden="true">*</i></span><span class="pay-amount"><span aria-hidden="true">$</span><input name="amount" inputmode="decimal" required aria-required="true" placeholder="0.00" autocomplete="off"></span></label>
+<p class="error" id="pay-error" role="alert" hidden></p>
+<button class="btn btn-primary pay-btn" type="submit">Continue to payment <span aria-hidden="true" class="arr"><svg class="tri" viewBox="0 0 10 12" width="9" height="11" aria-hidden="true"><path d="M0 0 10 6 0 12Z" fill="currentColor"/></svg></span></button>
+<p class="small muted">A secure Helcim checkout opens right here. Choose bank transfer or card. We never see or store your full card or bank account number.</p>
+<noscript><p class="small">JavaScript is off. <a href="https://bandrigs.myhelcim.com/hosted/?token=c464d05109ce78075f0cdd" rel="noopener">Pay on our Helcim payment page</a> instead.</p></noscript>
+</form>
+<div id="pay-done" class="sent" tabindex="-1" hidden><p class="label ok">Payment received</p><h2>Thank you.</h2><p class="lead" data-done-line></p><dl class="specs compact" data-done-specs></dl><p class="muted">We’ll confirm by email. Questions? Call <a href="tel:+18582323544" style="white-space:nowrap">858-232-3544</a>.</p></div>
+</div>
 </div></section>
 <section class="section tight"><div class="wrap">
 <div class="section-head"><h2>How payments work</h2><p class="muted">Rig builds are paid in two parts.</p></div>
 <ol class="steps pay-steps"><li><span class="step-n">01</span><h3>You approve the quote</h3><p class="muted">75% deposit. We order your gear as soon as it clears.</p></li><li><span class="step-n">02</span><h3>We build and test</h3><p class="muted">Every rig is bench tested. We send you photos or video of the finished rig.</p></li><li><span class="step-n">03</span><h3>Before it ships</h3><p class="muted">25% balance, plus shipping and any sales tax. Your rig ships once it’s paid in full.</p></li></ol>
 <p class="small muted pay-terms">Quotes are good for 14 days. Builds with gear you buy yourself, playback tracks and the support plan have their own schedules. See our <a href="/terms/">Terms of Service</a>.</p>
-</div></section></main>
+</div></section>
+<script src="https://secure.helcim.app/helcim-pay/services/start.js" defer></script><script src="/payment.js?v=3e586dd607" defer></script></main>
 <footer class="site-footer"><div class="wrap foot-grid">
 <div><a class="logo" href="/" aria-label="BandRigs home"><svg class="logo-mark" viewBox="0 0 100 100" width="34" height="34" aria-hidden="true"><g fill="none" stroke="#8ec5ff" stroke-width="5" stroke-linecap="round"><rect x="8.5" y="4.5" width="83" height="76" rx="12"/><path d="M8.5 30.5h83M8.5 55.5h83M17 81v8M83 81v8"/></g><g fill="#8ec5ff"><circle cx="20" cy="17.5" r="3.3"/><circle cx="80" cy="17.5" r="3.3"/><circle cx="20" cy="43" r="3.3"/><circle cx="80" cy="43" r="3.3"/><circle cx="20" cy="68" r="3.3"/><circle cx="80" cy="68" r="3.3"/><circle cx="17" cy="92.5" r="4.5"/><circle cx="83" cy="92.5" r="4.5"/></g></svg><span class="logo-text">Band<span>Rigs</span></span></a><p class="muted">Custom live mixing and in-ear monitor rigs, designed and built for your band.</p></div>
 <div><p class="label">Talk to us</p><p><a href="tel:+18582323544">858-232-3544</a><br><a href="mailto:sales@bandrigs.com">sales@bandrigs.com</a></p></div>
