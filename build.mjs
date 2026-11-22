@@ -38,7 +38,7 @@ const gtag = path => `<script>(function(){var h=location.hostname;if(h!=='bandri
 
 function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true, noindex = false }) {
   const url = SITE + path;
-  const nav = [['/systems/', 'Rigs & pricing'], ['/#how', 'How it works'], ['/#faq', 'FAQ']];
+  const nav = [['/systems/', 'Rigs & pricing'], ['/#how', 'How it works'], ['/#faq', 'FAQ'], ['/payment/', 'Payment']];
   const ld = [org, ...schema].map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
