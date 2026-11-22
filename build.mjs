@@ -260,11 +260,11 @@ page('/plan/', {
 });
 
 // Payments. Customers pay on Helcim's hosted payment page, so no card or bank details touch this site.
-// Paste the Helcim hosted payment page link here when Helcim approves the account. Empty = "coming soon" placeholder.
-const HELCIM_PAY_URL = '';
+// Helcim hosted payment page "BandRigs Invoice Payment" (Invoice Payment type, ACH or card, Fee Saver on). Empty = "coming soon" placeholder.
+const HELCIM_PAY_URL = 'https://bandrigs.myhelcim.com/hosted/?token=c464d05109ce78075f0cdd';
 const payMethods = [
-  ['Bank transfer (ACH)', 'Recommended', 'Pay straight from your checking account. It’s the simplest way to pay a large deposit, with no card limits. Clears in about 3 to 5 business days.'],
-  ['Credit or debit card', '', 'Visa, Mastercard, American Express and Discover. Clears right away.'],
+  ['Bank transfer (ACH)', 'Recommended', 'Pay straight from your checking account, with no fee and no card limits. The simplest way to pay a large deposit. Clears in about 3 to 5 business days.'],
+  ['Credit or debit card', '', 'Visa, Mastercard, American Express and Discover. Clears right away. A card processing fee of about 3% is added at checkout.'],
 ];
 const paySteps = [
   ['You approve the quote', '75% deposit. We order your gear as soon as it clears.'],
@@ -281,7 +281,7 @@ page('/payment/', {
 <div class="form pay-panel"><p class="label">Two ways to pay</p>
 <ul class="pay-methods">${payMethods.map(([t, tag, d]) => `<li><h2>${t}${tag ? ` <span class="pay-tag">${tag}</span>` : ''}</h2><p class="muted">${d}</p></li>`).join('')}</ul>
 ${HELCIM_PAY_URL
-    ? `<a class="btn btn-primary pay-btn" href="${HELCIM_PAY_URL}" rel="noopener">Pay now ${arrow}</a><p class="small muted">You’ll finish on our secure payment page, run by Helcim. Enter the invoice number and the amount shown on your invoice.</p>`
+    ? `<a class="btn btn-primary pay-btn" href="${HELCIM_PAY_URL}" rel="noopener">Pay now ${arrow}</a><p class="small muted">Opens our secure payment page, run by Helcim. Enter the invoice number and the amount shown on your invoice, then choose bank transfer or card.</p>`
     : `<button class="btn btn-primary pay-btn" type="button" disabled>Pay now ${arrow}</button><p class="pay-soon" role="status">Online payment opens soon. Until then, call or email and we’ll send you a secure payment link.</p>`}
 <p class="small muted">Payments are processed by Helcim. We never see or store your full card or bank account number.</p></div>
 </div></section>
