@@ -28,13 +28,13 @@ const org = {
   sameAs: ['https://www.youtube.com/channel/UCKjgT1H8lktykWGHgZ9NeRg', 'https://www.instagram.com/bandrigs/', 'https://www.tiktok.com/@bandrigschannel'],
 };
 
-function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true }) {
+function layout({ path, title, description, body, schema = [], image = '/assets/og.jpg', scripts = true, head = '', noindex = false }) {
   const url = SITE + path;
   const nav = [['/systems/', 'Rigs & pricing'], ['/#how', 'How it works']];
   const ld = [org, ...schema].map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)}</title><meta name="description" content="${esc(description)}">
+<title>${esc(title)}</title>${noindex ? '<meta name="robots" content="noindex, follow">' : ''}${head}<meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${url}"><meta name="theme-color" content="#0d0e10">
 <meta property="og:type" content="website"><meta property="og:site_name" content="BandRigs"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${SITE + image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -104,7 +104,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 const crumbs = list => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: list.map(([n, p], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: SITE + p })) });
 
 const pages = [];
-const page = (path, opts) => pages.push({ path, html: layout({ path, ...opts }) });
+const page = (path, opts) => pages.push({ path, noindex: opts.noindex, html: layout({ path, ...opts }) });
 
 // Home
 page('/', {
@@ -238,6 +238,42 @@ page('/plan/', {
 </form></div></section>`,
 });
 
+// Invoice payments. Processing stays disabled until merchant configuration and
+// a server-side verified response endpoint are installed (see PAYMENT-SETUP.md).
+page('/payment/', {
+  title: 'Make a Payment | BandRigs',
+  description: 'Make a payment toward your BandRigs invoice or approved rig build.',
+  noindex: true,
+  head: `<link rel="stylesheet" href="/payment.css?v=${ver('payment.css')}"><script defer src="/payment.js?v=${ver('payment.js')}"></script>`,
+  body: `<section class="page-head"><div class="wrap payment-layout">
+<div class="payment-intro"><p class="label">BANDRIGS / PAYMENTS</p><h1>One step closer<br>to your next show.</h1><p class="lead">Pay a deposit or balance toward your BANDRIGS invoice.</p><p class="muted">Have your invoice handy and enter the amount shown. Questions about your payment? We’re here to help.</p><dl class="specs compact"><div><dt>Call</dt><dd><a href="tel:${TEL}">${PHONE}</a></dd></div><div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div></dl><p class="small muted payment-note">Payments are subject to your approved quote and our <a href="/terms/">Terms of Service</a>.</p></div>
+<form class="form payment-form" name="helcimForm" id="helcimForm" method="POST" aria-describedby="payment-availability">
+<p class="label">YOUR PAYMENT</p><h2>Payment details</h2>
+<p id="payment-availability" role="status">Online payments aren’t available yet. Please contact us for a payment link.</p>
+<div id="helcimResults" role="alert" aria-live="assertive"></div>
+<input type="hidden" id="token" value="">
+<fieldset id="payment-fields" disabled>
+<legend class="payment-legend">Invoice information</legend>
+<label class="field"><span>Invoice number</span><input id="invoiceNumber" type="text" maxlength="64" placeholder="Your invoice reference" required></label>
+<label class="field"><span>Payment amount (USD)</span><div class="payment-amount"><span aria-hidden="true">$</span><input id="amount" type="text" inputmode="decimal" pattern="[0-9]+([.][0-9]{1,2})?" placeholder="0.00" required></div></label>
+<h3>Card information</h3>
+<label class="field"><span>Name on card</span><input type="text" id="cardHolderName" autocomplete="cc-name" required></label>
+<label class="field"><span>Card number</span><input type="text" id="cardNumber" autocomplete="cc-number" inputmode="numeric" maxlength="23" required></label>
+<div class="payment-card-row">
+<label class="field"><span>Expiry month</span><input type="text" id="cardExpiryMonth" autocomplete="cc-exp-month" inputmode="numeric" placeholder="MM" pattern="0[1-9]|1[0-2]" maxlength="2" required></label>
+<label class="field"><span>Expiry year</span><input type="text" id="cardExpiryYear" autocomplete="cc-exp-year" inputmode="numeric" placeholder="YY" pattern="[0-9]{2}" maxlength="2" required></label>
+<label class="field"><span>Security code</span><input type="password" id="cardCVV" autocomplete="cc-csc" inputmode="numeric" pattern="[0-9]{3,4}" maxlength="4" required></label>
+</div>
+<h3>Billing address</h3>
+<label class="field"><span>Street address</span><input type="text" id="cardHolderAddress" autocomplete="billing street-address" required></label>
+<label class="field"><span>ZIP / postal code</span><input type="text" id="cardHolderPostalCode" autocomplete="billing postal-code" maxlength="16" required></label>
+<button class="btn btn-primary payment-submit" type="button" id="buttonProcess" disabled>Pay now</button>
+</fieldset>
+<p class="small muted">Payment provider: Helcim. See our <a href="/privacy/">Privacy Policy</a>.</p>
+<noscript><p>JavaScript is required for online payments. Please call us for help.</p></noscript>
+</form></div></section>`,
+});
+
 // 404
 const legal = (h1, updated, sections) => `<section class="page-head"><div class="wrap"><h1>${h1}</h1><p class="small muted">Last updated ${updated}</p></div></section>
 <section class="section tight"><div class="wrap legal">${sections.map(([h, body]) => `<h2>${h}</h2>${body}`).join('\n')}</div></section>`;
@@ -297,6 +333,6 @@ for (const { path, html } of pages) {
   writeFileSync(file, html);
 }
 const today = new Date().toISOString().slice(0, 10);
-writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => !p.path.endsWith('.html')).map(p => `<url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => !p.path.endsWith('.html') && !p.noindex).map(p => `<url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 writeFileSync('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 console.log('built', pages.length, 'pages');

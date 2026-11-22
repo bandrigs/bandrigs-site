@@ -1,0 +1,16 @@
+/* Scoped invoice-payment layout, using the existing BANDRIGS design tokens. */
+.payment-layout{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8);align-items:start}
+.payment-intro h1{font-size:clamp(44px,5.5vw,76px)}
+.payment-note{margin-top:var(--s6)}
+.payment-form h2{font-size:36px;margin-bottom:var(--s4)}
+.payment-form h3{margin:var(--s5) 0 var(--s4)}
+.payment-form fieldset{border:0;padding:0;margin:var(--s5) 0 0;min-width:0}
+.payment-legend{font-weight:600;margin-bottom:var(--s4)}
+.payment-card-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.payment-amount{position:relative}.payment-amount>span{position:absolute;left:14px;top:11px;font-size:20px}.payment-form .payment-amount input{padding-left:34px;font-size:20px}
+.payment-form .payment-submit{width:100%;justify-content:center;margin-top:var(--s4)}
+.payment-form fieldset:disabled input{cursor:not-allowed}
+#payment-availability{border-left:2px solid var(--primary);padding-left:var(--s4);color:var(--text)}
+#helcimResults:empty{display:none}
+@media(max-width:960px){.payment-layout{grid-template-columns:1fr;gap:var(--s6)}.payment-intro{max-width:66ch}}
+@media(max-width:380px){.payment-card-row{gap:8px}.payment-card-row .field span{font-size:14px}}
