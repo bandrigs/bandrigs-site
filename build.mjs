@@ -62,7 +62,7 @@ ${socials('head-social')}
 <main id="main">${body}</main>
 <footer class="site-footer"><div class="wrap foot-grid">
 <div><a class="logo" href="/" aria-label="BandRigs home"><svg class="logo-mark" viewBox="0 0 100 100" width="34" height="34" aria-hidden="true"><g fill="none" stroke="#8ec5ff" stroke-width="5" stroke-linecap="round"><rect x="8.5" y="4.5" width="83" height="76" rx="12"/><path d="M8.5 30.5h83M8.5 55.5h83M17 81v8M83 81v8"/></g><g fill="#8ec5ff"><circle cx="20" cy="17.5" r="3.3"/><circle cx="80" cy="17.5" r="3.3"/><circle cx="20" cy="43" r="3.3"/><circle cx="80" cy="43" r="3.3"/><circle cx="20" cy="68" r="3.3"/><circle cx="80" cy="68" r="3.3"/><circle cx="17" cy="92.5" r="4.5"/><circle cx="83" cy="92.5" r="4.5"/></g></svg><span class="logo-text">Band<span>Rigs</span></span></a><p class="muted">Custom live mixing and in-ear monitor rigs, designed and built for your band.</p></div>
-<div><p class="label">Talk to us</p><p><a href="tel:${TEL}">${PHONE}</a><br><a href="mailto:${EMAIL}">${EMAIL}</a></p></div>
+<div><p class="label">Talk to us</p><p><a href="tel:${TEL}">${PHONE}</a><br><a href="mailto:${EMAIL}">${EMAIL}</a><br><a href="/payment/">Make a payment</a></p></div>
 <div><p class="label">Rigs</p><p>${order.map(k => `<a href="/systems/${k}/">${packages[k].name}</a>`).join('<br>')}</p></div>
 <div><p class="label">Follow the builds</p><p class="socials">
 <a href="https://www.youtube.com/@BandRigsChannel/videos" rel="noopener" target="_blank">YouTube</a><br>
