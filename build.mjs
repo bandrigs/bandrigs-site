@@ -68,7 +68,7 @@ ${socials('head-social')}
 <a href="https://www.youtube.com/@BandRigsChannel/videos" rel="noopener" target="_blank">YouTube</a><br>
 <a href="https://www.instagram.com/bandrigs/" rel="noopener" target="_blank">Instagram</a><br>
 <a href="https://www.tiktok.com/@bandrigschannel" rel="noopener" target="_blank">TikTok</a></p></div>
-</div><div class="wrap foot-base"><span>© 2026 BandRigs · <a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a></span><span>Behringer, Midas, Shure and iConnectivity are trademarks of their owners. BandRigs is an independent builder.</span></div></footer>
+</div><div class="wrap foot-base"><span>© 2026 BandRigs · <a href="/terms/">Terms</a> · <a href="/privacy/">Privacy</a> · <a href="/payment/">Make a payment</a></span><span>Behringer, Midas, Shure and iConnectivity are trademarks of their owners. BandRigs is an independent builder.</span></div></footer>
 </body></html>`;
 }
 
@@ -115,7 +115,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
 const crumbs = list => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: list.map(([n, p], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: SITE + p })) });
 
 const pages = [];
-const page = (path, opts) => pages.push({ path, html: layout({ path, ...opts }) });
+const page = (path, opts) => pages.push({ path, noindex: opts.noindex, html: layout({ path, ...opts }) });
 
 // Home
 page('/', {
@@ -259,6 +259,39 @@ page('/plan/', {
 </form></div></section>`,
 });
 
+// Payments. Customers pay on Helcim's hosted payment page, so no card or bank details touch this site.
+// Paste the Helcim hosted payment page link here when Helcim approves the account. Empty = "coming soon" placeholder.
+const HELCIM_PAY_URL = '';
+const payMethods = [
+  ['Bank transfer (ACH)', 'Recommended', 'Pay straight from your checking account. It’s the simplest way to pay a large deposit, with no card limits. Clears in about 3 to 5 business days.'],
+  ['Credit or debit card', '', 'Visa, Mastercard, American Express and Discover. Clears right away.'],
+];
+const paySteps = [
+  ['You approve the quote', '75% deposit. We order your gear as soon as it clears.'],
+  ['We build and test', 'Every rig is bench tested. We send you photos or video of the finished rig.'],
+  ['Before it ships', '25% balance, plus shipping and any sales tax. Your rig ships once it’s paid in full.'],
+];
+page('/payment/', {
+  title: 'Make a Payment | BandRigs',
+  description: 'Pay a deposit or balance on your BandRigs rig build by bank transfer (ACH) or card.',
+  noindex: true,
+  body: `<section class="page-head pay-head"><div class="wrap plan-grid"><div class="plan-intro"><p class="label">Payments</p><h1>Pay your invoice.</h1><p class="lead">Pay a deposit or balance on your BandRigs build. Have your invoice or quote number ready.</p>
+<dl class="specs compact"><div><dt>Phone</dt><dd><a href="tel:${TEL}">${PHONE}</a></dd></div><div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div></dl>
+<p class="small muted pay-help">Not sure what you owe, or need an invoice resent? Call or email and we’ll sort it out the same day.</p></div>
+<div class="form pay-panel"><p class="label">Two ways to pay</p>
+<ul class="pay-methods">${payMethods.map(([t, tag, d]) => `<li><h2>${t}${tag ? ` <span class="pay-tag">${tag}</span>` : ''}</h2><p class="muted">${d}</p></li>`).join('')}</ul>
+${HELCIM_PAY_URL
+    ? `<a class="btn btn-primary pay-btn" href="${HELCIM_PAY_URL}" rel="noopener">Pay now ${arrow}</a><p class="small muted">You’ll finish on our secure payment page, run by Helcim. Enter the invoice number and the amount shown on your invoice.</p>`
+    : `<button class="btn btn-primary pay-btn" type="button" disabled>Pay now ${arrow}</button><p class="pay-soon" role="status">Online payment opens soon. Until then, call or email and we’ll send you a secure payment link.</p>`}
+<p class="small muted">Payments are processed by Helcim. We never see or store your full card or bank account number.</p></div>
+</div></section>
+<section class="section tight"><div class="wrap">
+<div class="section-head"><h2>How payments work</h2><p class="muted">Rig builds are paid in two parts.</p></div>
+<ol class="steps pay-steps">${paySteps.map(([t, d], i) => `<li><span class="step-n">0${i + 1}</span><h3>${t}</h3><p class="muted">${d}</p></li>`).join('')}</ol>
+<p class="small muted pay-terms">Quotes are good for 14 days. Builds with gear you buy yourself, playback tracks and the support plan have their own schedules. See our <a href="/terms/">Terms of Service</a>.</p>
+</div></section>`,
+});
+
 // 404
 const legal = (h1, updated, sections) => `<section class="page-head"><div class="wrap"><h1>${h1}</h1><p class="small muted">Last updated ${updated}</p></div></section>
 <section class="section tight"><div class="wrap legal">${sections.map(([h, body]) => `<h2>${h}</h2>${body}`).join('\n')}</div></section>`;
@@ -322,6 +355,6 @@ for (const { path, html } of pages) {
   writeFileSync(file, html);
 }
 const today = new Date().toISOString().slice(0, 10);
-writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => !p.path.endsWith('.html') && p.path !== '/thanks/').map(p => `<url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(p => !p.path.endsWith('.html') && !p.noindex).map(p => `<url><loc>${SITE}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 writeFileSync('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 console.log('built', pages.length, 'pages');
