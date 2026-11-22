@@ -28,16 +28,27 @@ async function startCheckout(request, env) {
     customerRequest: { contactName: name, ...(phone ? { cellPhone: phone } : {}), billingAddress: billing },
     invoiceRequest: { notes: `Website payment toward BandRigs invoice ${invoice}`, lineItems: [{ description: `Payment toward invoice ${invoice}`, quantity: 1, price: amount, total: amount }] },
   };
-  const r = await fetch('https://api.helcim.com/v2/helcim-pay/initialize', {
+  const token = String(env.HELCIM_API_TOKEN).trim();
+  const init = body => fetch('https://api.helcim.com/v2/helcim-pay/initialize', {
     method: 'POST',
-    headers: { accept: 'application/json', 'content-type': 'application/json', 'api-token': env.HELCIM_API_TOKEN },
-    body: JSON.stringify(payload),
-  });
-  const data = await r.json().catch(() => ({}));
-  if (!r.ok || !data.checkoutToken) {
-    console.log('helcim initialize failed', r.status, JSON.stringify(data.errors || data).slice(0, 500));
-    return json({ error: 'We couldn’t start the payment. Please try again, or call us.' }, 502);
+    headers: { accept: 'application/json', 'content-type': 'application/json', 'api-token': token },
+    body: JSON.stringify(body),
+  }).then(async r => ({ ok: r.ok, status: r.status, data: await r.json().catch(() => ({})) }));
+  // Full request first (customer + invoice record). If Helcim rejects the extras, fall back to a plain
+  // checkout so the customer can still pay.
+  let res = await init(payload);
+  const firstErr = res.ok && res.data.checkoutToken ? null : res;
+  if (firstErr) {
+    const { customerRequest, invoiceRequest, ...plain } = payload;
+    res = await init(plain);
   }
+  if (!res.ok || !res.data.checkoutToken) {
+    const detail = [firstErr, res].filter(Boolean).map(r => r.status + ' ' + JSON.stringify(r.data.errors || r.data).slice(0, 300)).join(' | ');
+    console.log('helcim initialize failed', res.status, detail);
+    return json({ error: 'We couldn’t start the payment. Please try again, or call us.', status: res.status, detail }, 502);
+  }
+  const data = res.data;
+  if (firstErr) console.log('helcim full payload rejected, used plain checkout', firstErr.status, JSON.stringify(firstErr.data).slice(0, 300));
   // secretToken stays here; the browser only needs the checkoutToken to open Helcim's window.
   return json({ checkoutToken: data.checkoutToken });
 }
