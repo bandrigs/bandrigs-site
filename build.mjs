@@ -270,9 +270,9 @@ const payMethods = [
   ['Credit or debit card', '', 'Visa, Mastercard, Amex and Discover. A fee of about 3% is added at checkout.'],
 ];
 const paySteps = [
-  ['You approve the quote', '75% deposit. We order your gear as soon as it clears.'],
+  ['You approve the quote', '50% deposit. We order your gear as soon as it clears.'],
   ['We build and test', 'Every rig is bench tested. We send you photos or video of the finished rig.'],
-  ['Before it ships', '25% balance, plus shipping and any sales tax. Your rig ships once it’s paid in full.'],
+  ['Before it ships', '50% balance, plus shipping and any sales tax. Your rig ships once it’s paid in full.'],
 ];
 page('/payment/', {
   title: 'Make a Payment | BandRigs',
@@ -321,7 +321,7 @@ page('/terms/', {
     ['Who we are', `<p>BandRigs designs, builds and supports custom live mixing and in-ear monitor rigs for artists and bands in the United States. These terms apply to every quote, build, service and subscription we provide. By approving a quote or paying a deposit, you agree to them.</p>`],
     ['Quotes and system design', `<p>Before anything is ordered, we send you a written design with an equipment list, signal flow and a fixed quote. Starting prices on this site are guides. Your final price depends on the number of mixes, how much is wireless and what gear you already own. A quote is valid for 14 days, because gear prices and stock change often.</p>`],
     ['Payment schedule', `<table class="pay"><thead><tr><th>Service</th><th>To start</th><th>Before delivery</th></tr></thead><tbody>
-<tr><td>Rig build (gear and build included)</td><td>75% deposit when you approve the quote. We order gear only after it clears.</td><td>25% balance after the bench test, before the rig ships. We send photos or video of the finished rig first.</td></tr>
+<tr><td>Rig build (gear and build included)</td><td>50% deposit when you approve the quote. We order gear only after it clears.</td><td>50% balance after the bench test, before the rig ships. We send photos or video of the finished rig first.</td></tr>
 <tr><td>Build with gear you buy yourself</td><td>50% of the estimated hours at $125/hr when you approve the plan.</td><td>Remaining hours, plus return shipping, before the rig ships back.</td></tr>
 <tr><td>Playback tracks in Ableton</td><td>50% when we start.</td><td>50% on delivery of the finished session.</td></tr>
 <tr><td>Service &amp; support plan</td><td colspan="2">$75 a month billed monthly, or $50 a month billed once a year in advance.</td></tr>
